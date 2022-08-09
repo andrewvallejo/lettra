@@ -1,11 +1,20 @@
 <script lang="ts">
 	let textInput: string = '';
+	let wordiables = [];
+
+	const wrapWord = (str: string) => {
+		// find word wrapped in forward slashes and wrap it in a span tag. example "my name is \john\" becomes "my name is <span>john</span>"
+		const regex = /\\(.*?)\b\\/g;
+		return str.replace(regex, '<span style="color: pink;">\\$1\\</span>');
+	};
+
+	$: text = wrapWord(textInput);
 </script>
 
 <div class="editor">
-	<div class='container'>
-		<p class='live-text'>{textInput}</p>
-		<textarea class="text-input" bind:value={textInput}/>
+	<div class="container">
+		<p class="live-text">{@html text}</p>
+		<textarea class="text-input" bind:value={textInput} />
 	</div>
 </div>
 
@@ -22,27 +31,24 @@
 			width: 60%;
 			height: inherit;
 			.live-text {
-				padding: 0;
-				margin: 0;
 				position: absolute;
-				top: 0;
-				height: inherit;
 				z-index: 1;
-				max-width: 100%;
+				top: 0;
 				pointer-events: none;
-				word-wrap: break-word;
-				}
-			.text-input {
-				padding: 0;
-				margin: 0;
-				position: absolute;
-				top:0;
-				border: none;
 				width: 100%;
 				height: inherit;
+				word-wrap: break-word;
+			}
+			.text-input {
+				position: absolute;
+				top: 0;
 				outline: none;
+				resize: none;
 				border: 1px solid lightgray;
-				color: white;
+				padding: 0;
+				height: inherit;
+				width: 100%;
+				color: transparent;
 				caret-color: black;
 			}
 		}
