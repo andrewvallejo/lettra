@@ -19,17 +19,16 @@
 			<h2>by Andrew Vallejo</h2>
 		</div>
 	</header>
-	<button on:click={bark}>Woof</button>
 	<Editors />
 </div>
 
 <style lang="scss">
 	:global(*) {
-		padding: 0;
-		margin: 0;
     box-sizing: border-box;
-		font-family:  Roboto, sans-serif;
+		margin: 0;
+		padding: 0;
     font-size: 1.5rem;
+		font-family:  Roboto, sans-serif;
     color: black;
   }
 	.wrapper {
@@ -51,7 +50,6 @@
 		justify-content: space-around;
 		display: flex;
 		width: 100%;
-		line-height: 0.1;
 		.title {
 			flex-direction: column;
 			align-items: center;
