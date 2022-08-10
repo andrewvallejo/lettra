@@ -1,14 +1,12 @@
 <script lang="ts">
+	import { replaceNewlines, wrapWord } from '$lib/editor';
+
 	let textInput: string = '';
-	let wordiables = [];
 
-	const wrapWord = (str: string) => {
-		// find word wrapped in forward slashes and wrap it in a span tag. example "my name is \john\" becomes "my name is <span>john</span>"
-		const regex = /\\(.*?)\b\\/g;
-		return str.replace(regex, '<span style="color: pink;">\\$1\\</span>');
-	};
+	let text: string = '';
 
-	$: text = wrapWord(textInput);
+	$: parsedText = wrapWord(textInput);
+	$: text = replaceNewlines(parsedText);
 </script>
 
 <div class="editor">
