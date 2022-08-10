@@ -24,13 +24,18 @@
 
 <style lang="scss">
 	:global(*) {
-    box-sizing: border-box;
+		box-sizing: border-box;
 		margin: 0;
 		padding: 0;
-    font-size: 1.5rem;
-		font-family:  Roboto, sans-serif;
-    color: black;
-  }
+		font-size: 1.5rem;
+		font-family: Roboto, sans-serif;
+		color: black;
+	}
+
+	:global(strong) {
+		color: green;
+		font-weight: normal;
+	}
 	.wrapper {
 		flex-direction: column;
 		align-items: center;
