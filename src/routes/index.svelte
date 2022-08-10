@@ -1,14 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Editors from '../components/Editors.svelte';
-
-	export let editor;
-
-	let editorState = editor;
-
-	const bark = () => {
-		console.log('woof');
-	};
 </script>
 
 <div class="wrapper">
