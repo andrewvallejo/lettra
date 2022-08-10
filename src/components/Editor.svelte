@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { replaceNewlines, wrapWord } from '$lib/editor';
+	import { replaceNewlines, wrapWord } from '../lib/editor';
+	import { words } from '../store/words';
 
 	let textInput: string = '';
 
+	$: words.set([textInput]);
 	let text: string = '';
 
 	$: parsedText = wrapWord(textInput);

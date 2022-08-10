@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import Editors from '../components/Editors.svelte';
+	import Editor from '../components/Editor.svelte';
 </script>
 
 <div class="wrapper">
@@ -11,7 +11,7 @@
 			<h2>by Andrew Vallejo</h2>
 		</div>
 	</header>
-	<Editors />
+	<Editor />
 </div>
 
 <style lang="scss">
