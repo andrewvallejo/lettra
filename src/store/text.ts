@@ -1,3 +1,13 @@
-import { writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
+
+import { replaceNewlines, wrapWords } from "./../lib/editor";
 
 export const text = writable<string>('');
+
+export const liveText = derived(
+	text,
+	$text => {
+    const parsed = replaceNewlines($text)
+    return wrapWords(parsed);
+  }
+);

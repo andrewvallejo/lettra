@@ -1,17 +1,14 @@
 <script lang="ts">
-	import { replaceNewlines, wrapWord } from '../lib/editor';
-	import { text } from '../store/text';
+	import { text, liveText } from '../store/text';
 
 	let textInput: string = '';
 
 	$: text.set(textInput);
-	$: parsedText = wrapWord($text);
-	$: liveText = replaceNewlines(parsedText);
 </script>
 
 <div class="editor">
 	<div class="container">
-		<p class="live-text">{@html liveText}</p>
+		<p class="live-text">{@html $liveText}</p>
 		<textarea class="text-input" bind:value={textInput} />
 	</div>
 </div>

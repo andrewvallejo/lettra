@@ -1,4 +1,4 @@
-export const wrapWord = (str: string) => {
+export const wrapWords = (str: string) => {
 	const regex = /\\(.*?)\b\\/g;
 	return str.replace(regex, "<strong>\\$1\\</strong>");
 };
