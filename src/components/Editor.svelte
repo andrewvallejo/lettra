@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { text, liveText } from '../store/text';
+	import { addMatchedWords } from '../lib/editor';
+
+	import { liveText, matchedWords, text } from '../store/text';
 
 	let textInput: string = '';
 
 	$: text.set(textInput);
+	$: addMatchedWords(textInput);
+	$: console.log($matchedWords);
 </script>
 
 <div class="editor">
