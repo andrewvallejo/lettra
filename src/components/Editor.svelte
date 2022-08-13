@@ -3,17 +3,20 @@
 
 	import { liveText, matchedWords, text } from '../store/text';
 
-	let textInput: string = '';
+	let value: string = '';
 
-	$: text.set(textInput);
-	$: addMatchedWords(textInput);
-	$: console.log($matchedWords);
+	$: text.set(value);
+	$: addMatchedWords(value);
 </script>
 
 <div class="editor">
 	<div class="container">
-		<p class="live-text">{@html $liveText}</p>
-		<textarea class="text-input" bind:value={textInput} />
+		{#if value}
+			<p class="live-text">{@html $liveText}</p>
+		{/if}
+		<label for="editor"> Editor </label>
+
+		<textarea id="editor" name="editor" class="text-input" bind:value />
 	</div>
 </div>
 
@@ -25,6 +28,9 @@
 		display: flex;
 		width: 100%;
 		height: 100%;
+		label[for='editor'] {
+			font-size: 0;
+		}
 		.container {
 			position: relative;
 			width: 60%;

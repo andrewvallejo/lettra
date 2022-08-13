@@ -3,6 +3,10 @@
 	import Editor from '../components/Editor.svelte';
 </script>
 
+<svelte:head>
+	<title>Lettra</title>
+</svelte:head>
+
 <div class="wrapper">
 	<header>
 		<img class="logo" src={`${base}/favicon.png`} alt="Lettra's Logo" />
