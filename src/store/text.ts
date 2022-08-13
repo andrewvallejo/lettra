@@ -1,6 +1,6 @@
 import { derived, writable } from "svelte/store";
 
-import { replaceNewlines, wrapWords } from "../lib/editor.ts";
+import { replaceNewlines, wrapWords } from "../lib/editor";
 
 export const text = writable<string>('');
 
