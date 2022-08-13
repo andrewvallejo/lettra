@@ -12,7 +12,7 @@ export const wrapWords = (str: string) => {
 			const matches = word.match(regex);
 			if (matches) {
 				return matches.reduce((acc, match) => {
-					return acc.replace(match, `<stron>${match}</stron>`);
+					return acc.replace(match, `<strong>${match}</strong>`);
 				}, word);
 			}
 			return word;
@@ -35,10 +35,17 @@ export const addMatchedWords = (str: string) => {
 };
 
 const updateMatches = (str: string[]) => {
-	// Adds unique matches to the store
-	 str.forEach((match) => {
-		if (!wordiables.includes(match)) {
-			wordiables.push(match);
+if (str.length < 2) return;
+
+
+str.forEach((word) => {
+/** conditions
+ * 1. word is not in wordiables
+ * 2. there are only two forward slashes wrapped around the word */
+const isWorthy = word.match(/\\/g).length === 2 && !wordiables.includes(word);
+
+		if (isWorthy) {
+			wordiables.push(word);
 			matchedWords.set(wordiables);
 		}
 	});
@@ -50,3 +57,4 @@ const updateMatches = (str: string[]) => {
 		}
 	});
 }
+
