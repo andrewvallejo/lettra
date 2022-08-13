@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { addMatchedWords } from '../lib/editor';
 
-	import { liveText, matchedWords, text } from '../store/text';
+	import { parsedText, text } from '../store/text';
+	import LiveText from './LiveText.svelte';
 
 	let value: string = '';
 
@@ -12,10 +13,9 @@
 <div class="editor">
 	<div class="container">
 		{#if value}
-			<p class="live-text">{@html $liveText}</p>
+			<LiveText text={$parsedText} />
 		{/if}
 		<label for="editor"> Editor </label>
-
 		<textarea id="editor" name="editor" class="text-input" bind:value />
 	</div>
 </div>
@@ -35,15 +35,6 @@
 			position: relative;
 			width: 60%;
 			height: inherit;
-			.live-text {
-				position: absolute;
-				z-index: 1;
-				top: 0;
-				pointer-events: none;
-				width: 100%;
-				height: inherit;
-				word-wrap: break-word;
-			}
 			.text-input {
 				position: absolute;
 				top: 0;

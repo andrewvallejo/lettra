@@ -4,7 +4,7 @@ import { replaceNewlines, wrapWords } from "../lib/editor";
 
 export const text = writable<string>('');
 
-export const liveText = derived(
+export const parsedText = derived(
 	text,
 	$text => {
     const parsed = replaceNewlines($text)
