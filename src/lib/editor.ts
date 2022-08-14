@@ -1,4 +1,4 @@
-import { matchedWords } from "./../store/text";
+import { matchedWords } from "../store/text";
 
 const regex = /\\(.*?)\b\\/g;
 
@@ -25,7 +25,7 @@ export const replaceNewlines = (str: string) => {
 };
 
 export const addMatchedWords = (str: string) => {
-	matchedWords.subscribe((words) => wordiables = words);
+matchedWords.subscribe((words) => wordiables = words);
 	const matches = str.match(regex);
 	if (matches) updateMatches(matches);
 	return str;

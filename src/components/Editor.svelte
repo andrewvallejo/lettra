@@ -5,7 +5,6 @@
 	import LiveText from './LiveText.svelte';
 
 	let value: string = '';
-
 	$: text.set(value);
 	$: addMatchedWords(value);
 </script>
@@ -15,7 +14,7 @@
 		{#if value}
 			<LiveText text={$parsedText} />
 		{/if}
-		<label for="editor"> Editor </label>
+		<label for="editor">Editor</label>
 		<textarea id="editor" name="editor" class="text-input" bind:value />
 	</div>
 </div>

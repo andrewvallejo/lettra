@@ -2,7 +2,7 @@ import { derived, writable } from "svelte/store";
 
 import { replaceNewlines, wrapWords } from "../lib/editor";
 
-export const text = writable<string>('');
+export const text = writable('');
 
 export const parsedText = derived(
 	text,
@@ -12,7 +12,6 @@ export const parsedText = derived(
   }
 );
 
-
-export const matchedWords = writable<string[]>([]);
+export const matchedWords = writable([]);
 
 
