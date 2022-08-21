@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { addMatchedWords } from '../lib/editor';
-
 	import { parsedText, text } from '../store/text';
 	import LiveText from './LiveText.svelte';
 
 	let value: string = '';
+
 	$: text.set(value);
 	$: addMatchedWords(value);
 </script>

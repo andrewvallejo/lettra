@@ -1,4 +1,4 @@
-import { matchedWords } from "../store/text";
+import { matchedWords } from '../store/text';
 
 const regex = /\\(.*?)\b\\/g;
 
@@ -25,7 +25,7 @@ export const replaceNewlines = (str: string) => {
 };
 
 export const addMatchedWords = (str: string) => {
-matchedWords.subscribe((words) => wordiables = words);
+	matchedWords.subscribe((words) => (wordiables = words));
 	const matches = str.match(regex);
 	if (matches) updateMatches(matches);
 	return str;
@@ -34,27 +34,26 @@ matchedWords.subscribe((words) => wordiables = words);
 const updateMatches = (str: string[]) => {
 	if (str.length < 2) return;
 	removeMatchedWords(str);
-	checkForWorthiness(str)
+	checkForWorthiness(str);
 	reSortMatchedWords(str);
 };
 
 const checkForWorthiness = (str: string[]) => {
 	str.forEach((word) => {
-	const isNotInWordiables = !wordiables.includes(word);
-	const hasOnlyTwoForwardSlashes = word.match(/\\/g).length === 2;
-	const isWorthy = isNotInWordiables && hasOnlyTwoForwardSlashes;
+		const isNotInWordiables = !wordiables.includes(word);
+		const hasOnlyTwoForwardSlashes = word.match(/\\/g).length === 2;
+		const isWorthy = isNotInWordiables && hasOnlyTwoForwardSlashes;
 		if (isWorthy) matchedWords.set([...wordiables, word]);
 	});
 };
 
- const removeMatchedWords = (str: string[]) => {
+const removeMatchedWords = (str: string[]) => {
 	wordiables.forEach((word) => {
-		if (!str.includes(word))
-			matchedWords.set(wordiables.filter((w) => w !== word));
+		if (!str.includes(word)) matchedWords.set(wordiables.filter((w) => w !== word));
 	});
 };
 
- const reSortMatchedWords = (str: string[]) => {
+const reSortMatchedWords = (str: string[]) => {
 	wordiables.sort((a, b) => {
 		const aIndex = str.indexOf(a);
 		const bIndex = str.indexOf(b);
