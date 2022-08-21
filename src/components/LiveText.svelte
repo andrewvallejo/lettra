@@ -1,8 +1,22 @@
 <script lang="ts">
+	import { regex } from '$lib/editor';
+
+	import Wordiables from './Wordiables.svelte';
+
 	export let text: string = '';
+
+	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex);
 </script>
 
-<p class="live-text">{@html text}</p>
+<p class="live-text">
+	{#each text.split(' ') as word}
+		{#if isWordiable(word)}
+			<Wordiables>{`${word} `}</Wordiables>
+		{:else}
+			{`${word} `}
+		{/if}
+	{/each}
+</p>
 
 <style lang="scss">
 	.live-text {

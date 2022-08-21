@@ -1,12 +1,9 @@
 import { derived, writable } from 'svelte/store';
 
-import { replaceNewlines, wrapWords } from '../lib/editor';
+import { replaceNewlines } from '../lib/editor';
 
 export const text = writable('');
 
-export const parsedText = derived(text, ($text) => {
-	const parsed = replaceNewlines($text);
-	return wrapWords(parsed);
-});
+export const parsedText = derived(text, ($text) => replaceNewlines($text));
 
 export const wordiables = writable([]);

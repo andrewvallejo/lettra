@@ -1,24 +1,8 @@
 import { wordiables } from '../store/text';
 
-const regex = /\\(.*?)\b\\/g;
+export const regex = /\\(.*?)\b\\/g;
 
 let matchedWords: string[] = [];
-
-export const wrapWords = (str: string) => {
-	const words = str.split(' ');
-	const wrapped = words
-		.map((word) => {
-			const matches = word.match(regex);
-			if (matches) {
-				return matches.reduce((acc, match) => {
-					return acc.replace(match, `<strong>${match}</strong>`);
-				}, word);
-			}
-			return word;
-		})
-		.join(' ');
-	return wrapped;
-};
 
 export const replaceNewlines = (str: string) => {
 	return str.replace(/\n/g, '<br>');
