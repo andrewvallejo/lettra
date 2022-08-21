@@ -9,4 +9,4 @@ export const parsedText = derived(text, ($text) => {
 	return wrapWords(parsed);
 });
 
-export const matchedWords = writable([]);
+export const wordiables = writable([]);
