@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { addMatchedWords } from '../lib/editor';
 	import { parsedText, text } from '../store/text';
-	import LiveText from './LiveText.svelte';
+	import LiveText from './text/LiveText.svelte';
 
 	let value: string = '';
 

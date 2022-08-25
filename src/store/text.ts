@@ -6,4 +6,4 @@ export const text = writable('');
 
 export const parsedText = derived(text, ($text) => replaceNewlines($text));
 
-export const wordiables = writable([]);
+export const wordiables: never = writable([]);

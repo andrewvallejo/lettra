@@ -1,19 +1,20 @@
 <script lang="ts">
 	import { regex } from '$lib/editor';
-
-	import Wordiables from './Wordiables.svelte';
+	import Wordiables from '../text/Wordiables.svelte';
+	import Word from '../text/Word.svelte';
 
 	export let text: string = '';
 
+	$: words = text.split(' ');
 	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex);
 </script>
 
 <p class="live-text">
-	{#each text.split(' ') as word}
+	{#each words as word}
 		{#if isWordiable(word)}
-			<Wordiables>{`${word} `}</Wordiables>
+			<Wordiables {word} />
 		{:else}
-			{`${word} `}
+			<Word {word} />
 		{/if}
 	{/each}
 </p>

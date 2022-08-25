@@ -16,7 +16,7 @@ export const addMatchedWords = (str: string) => {
 };
 
 const updateMatches = (str: string[]) => {
-	if (str.length < 2) return;
+	if (str.length < 1) return;
 	removeMatchedWords(str);
 	checkForWorthiness(str);
 	reSortMatchedWords(str);
