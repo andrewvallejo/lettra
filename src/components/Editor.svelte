@@ -43,7 +43,7 @@
 				padding: 0;
 				height: inherit;
 				width: 100%;
-				color: transparent;
+				// color: transparent;
 				caret-color: black;
 			}
 		}

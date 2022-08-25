@@ -29,5 +29,6 @@
 		width: 100%;
 		height: inherit;
 		word-wrap: break-word;
+		//TODO white-space: pre-wrap;
 	}
 </style>
