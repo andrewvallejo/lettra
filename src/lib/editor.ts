@@ -1,34 +1,26 @@
 import { wordiables } from '../store/text';
 
-export const regex = /\\(.*?)\b\\/g;
-
 let matchedWords: string[] = [];
-
-export const replaceNewlines = (str: string) => {
-	return str.replace(/\n/g, '<br>');
-};
-
-export const addMatchedWords = (str: string) => {
-	wordiables.subscribe((words) => (matchedWords = words));
-	const matches = str.match(regex);
-	if (matches) updateMatches(matches);
-	return str;
-};
 
 const updateMatches = (str: string[]) => {
 	if (str.length < 1) return;
+	const wordiable = findWordiables(str);
+	setWordiables(wordiable);
 	removeMatchedWords(str);
-	checkForWorthiness(str);
 	reSortMatchedWords(str);
 };
 
-const checkForWorthiness = (str: string[]) => {
-	str.forEach((word) => {
+const findWordiables = (str: string[]) => {
+	return str.find((word) => {
 		const isNotInMatchedWords = !matchedWords.includes(word);
 		const hasOnlyTwoForwardSlashes = word.match(/\\/g).length === 2;
-		const isWorthy = isNotInMatchedWords && hasOnlyTwoForwardSlashes;
-		if (isWorthy) wordiables.set([...matchedWords, word]);
+		const isWordiable = isNotInMatchedWords && hasOnlyTwoForwardSlashes;
+		if (isWordiable) return word;
 	});
+};
+
+const setWordiables = (word) => {
+	wordiables.set([...matchedWords, word]);
 };
 
 const removeMatchedWords = (str: string[]) => {
@@ -43,4 +35,19 @@ const reSortMatchedWords = (str: string[]) => {
 		const bIndex = str.indexOf(b);
 		return aIndex - bIndex;
 	});
+};
+
+export const regex = /\\(.*?)\b\\/g;
+
+export const splitText = (text) => text.split(' ');
+
+export const replaceNewlines = (str: string) => {
+	return str.replace(/\n/g, '<br>');
+};
+
+export const addMatchedWords = (str: string) => {
+	wordiables.subscribe((words) => (matchedWords = words));
+	const matches = str.match(regex);
+	if (matches) updateMatches(matches);
+	return str;
 };
