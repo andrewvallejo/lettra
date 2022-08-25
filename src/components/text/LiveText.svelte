@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { regex } from '$lib/editor';
+	import { regex, splitText } from '$lib/editor';
 	import Wordiables from '../text/Wordiables.svelte';
 	import Word from '../text/Word.svelte';
 
 	export let text: string = '';
 
-	$: words = text.split(' ');
 	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex);
+
+	$: words = splitText(text);
 </script>
 
 <p class="live-text">
