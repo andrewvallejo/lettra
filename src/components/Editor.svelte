@@ -3,6 +3,10 @@
 	import { parsedText, text } from '../store/text';
 	import LiveText from './text/LiveText.svelte';
 
+	/**
+	 * @param string
+	 * @description user text input (invisible)
+	 */
 	let value: string = '';
 
 	$: text.set(value);

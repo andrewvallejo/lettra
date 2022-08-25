@@ -3,6 +3,10 @@
 	import Wordiables from '../text/Wordiables.svelte';
 	import Word from '../text/Word.svelte';
 
+	/**
+	 * @param {string} - text
+	 * @description: user text input (visible)
+	 */
 	export let text: string = '';
 
 	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex);
@@ -29,6 +33,5 @@
 		width: 100%;
 		height: inherit;
 		word-wrap: break-word;
-		//TODO white-space: pre-wrap;
 	}
 </style>
