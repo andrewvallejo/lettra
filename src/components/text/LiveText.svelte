@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { regex, splitText } from '$lib/editor';
+	import { regex, space, splitText } from '$lib/editor';
 	import Wordiables from '../text/Wordiables.svelte';
 	import Word from '../text/Word.svelte';
+	import { wordiables } from '../../store/text';
 
 	/**
 	 * @param {string} - text
@@ -9,7 +10,7 @@
 	 */
 	export let text: string = '';
 
-	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex);
+	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
 
 	$: words = splitText(text);
 </script>
@@ -17,9 +18,11 @@
 <p class="live-text">
 	{#each words as word}
 		{#if isWordiable(word)}
-			<Wordiables {word} />
-		{:else}
+			<Wordiables {word} index={$wordiables.indexOf(word)} />
+		{:else if word.length}
 			<Word {word} />
+		{:else}
+			{@html space}
 		{/if}
 	{/each}
 </p>
