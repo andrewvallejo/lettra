@@ -2,7 +2,6 @@
 	import { wordiables } from '../../store/text';
 
 	/**
-	 * @name
 	 * @param {string} - word
 	 * @description - string to be rendered as wordiable
 	 */
@@ -10,9 +9,9 @@
 
 	const rainbow: string[] = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
-	let wordiableIndex: number = $wordiables.indexOf(word);
+	export let index: number = 0;
 
-	let color: string = rainbow[wordiableIndex];
+	let color: string = rainbow[index];
 </script>
 
 <strong style:color>
