@@ -3,10 +3,6 @@
 	import { parsedText, text } from '../store/text';
 	import LiveText from './text/LiveText.svelte';
 
-	/**
-	 * @param string
-	 * @description user text input (invisible)
-	 */
 	let value: string = '';
 
 	$: text.set(value);
@@ -15,9 +11,11 @@
 
 <div class="editor">
 	<div class="container">
-		{#if value}
-			<LiveText text={$parsedText} />
-		{/if}
+		{#key value}
+			{#if value}
+				<LiveText text={$parsedText} />
+			{/if}
+		{/key}
 		<label for="editor">Editor</label>
 		<textarea id="editor" name="editor" class="text-input" bind:value />
 	</div>
@@ -47,7 +45,7 @@
 				padding: 0;
 				height: inherit;
 				width: 100%;
-				// color: transparent;
+				color: transparent;
 				caret-color: black;
 			}
 		}
