@@ -69,11 +69,14 @@ const reSortMatchedWords = (str: string[]) => {
 };
 
 /**
+ * Todo fix this jsdoc
  * @constant Regex @implements /\\(.*?)\b\\/g
  * @description Checks for words that are wrapped in \backslashes\
  */
+export const regex = {
+	wordiables: /\\(.*?)\b\\/g
+};
 
-export const regex = /\B\\[^,.?!;:|\\n]*\\/gi;
 /**
  * @function splitText
  * @description splits string by spaces
@@ -98,7 +101,9 @@ export const replaceNewlines = (str: string): string => {
  */
 export const addMatchedWords = (str: string): string => {
 	wordiables.subscribe((words) => (matchedWords = words));
-	const matches = str.match(regex);
+	const matches = str.match(regex.wordiables);
 	if (matches) syncMatches(matches);
 	return str;
 };
+
+export const space = '&nbsp;';
