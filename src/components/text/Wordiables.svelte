@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { wordiables } from '../../store/text';
 	import Word from './Word.svelte';
 
 	/**
@@ -8,9 +7,13 @@
 	 */
 	export let word: string = '';
 
-	const rainbow: string[] = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-
+	/**
+	 * @param {number} - index
+	 * @description - index of wordiable
+	 */
 	export let index: number = 0;
+
+	const rainbow: string[] = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
 	let color: string = rainbow[index];
 	let isWordiable: boolean = index > -1;
