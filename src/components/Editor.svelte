@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { addMatchedWords } from '../lib/editor';
+	import { checkForWordiables } from '../lib/editor';
 	import { parsedText, text } from '../store/text';
 	import LiveText from './text/LiveText.svelte';
 
 	let value: string = '';
 
 	$: text.set(value);
-	$: addMatchedWords(value);
+	$: checkForWordiables(value);
 </script>
 
 <div class="editor">

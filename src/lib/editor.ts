@@ -7,19 +7,6 @@ import { wordiables } from '../store/text';
 let matchedWords: string[] = [];
 
 /**
- * @function syncMatches
- * @description Updates, removes, and resorts matching words
- * @param {string[]} text
- */
-const syncMatches = (text: string[]) => {
-	if (text.length < 1) return;
-	const wordiable = findWordiables(text);
-	setWordiables(wordiable);
-	removeMatchedWords(text);
-	reSortMatchedWords(text);
-};
-
-/**
  * @function findWordiables
  * @description checks text for wordiables
  * @param {string} text
@@ -74,7 +61,7 @@ const reSortMatchedWords = (str: string[]) => {
  * @description Checks for words that are wrapped in \backslashes\
  */
 export const regex = {
-	wordiables: /\\(.*?)\b\\/g
+	wordiables: /\\(.*?)\\/g
 };
 
 /**
@@ -93,17 +80,34 @@ export const replaceNewlines = (str: string): string => {
 	return str.replace(/\n/g, ' <br> ');
 };
 
+export let hasMatches = false;
 /**
  * @function addMatchedWords
  * @param {string} - str
  * @returns {string} string
  * @description Checks for \n and returns replaces it with <br>
  */
-export const addMatchedWords = (str: string): string => {
+export const checkForWordiables = (text: string): string => {
 	wordiables.subscribe((words) => (matchedWords = words));
-	const matches = str.match(regex.wordiables);
-	if (matches) syncMatches(matches);
-	return str;
+	const matches = text.match(regex.wordiables);
+	if (matches || hasMatches) {
+		hasMatches = true;
+		syncMatches(matches);
+	}
+	return text;
+};
+
+/**
+ * @function syncMatches
+ * @description Updates, removes, and resorts matching words
+ * @param {string[]} text
+ */
+export const syncMatches = (text: string[]) => {
+	if (text.length < 1) return;
+	const wordiable = findWordiables(text);
+	setWordiables(wordiable);
+	removeMatchedWords(text);
+	reSortMatchedWords(text);
 };
 
 export const space = '&nbsp;';
