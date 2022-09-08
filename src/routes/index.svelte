@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import Table from '../components/Table.svelte';
 	import Editor from '../components/Editor.svelte';
 </script>
 
@@ -16,6 +17,7 @@
 		</div>
 	</header>
 	<Editor />
+	<Table />
 </div>
 
 <style lang="scss">
