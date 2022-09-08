@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { wordiables } from '../../store/text';
+	import Word from './Word.svelte';
 
 	/**
 	 * @param {string} - word
@@ -12,11 +13,16 @@
 	export let index: number = 0;
 
 	let color: string = rainbow[index];
+	let isWordiable: boolean = index > -1;
 </script>
 
-<strong style:color>
-	{`${word} `}
-</strong>
+{#if isWordiable}
+	<strong style:color>
+		{`${word} `}
+	</strong>
+{:else}
+	<Word {word} />
+{/if}
 
 <style lang="scss">
 </style>
