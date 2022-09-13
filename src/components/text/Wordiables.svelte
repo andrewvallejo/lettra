@@ -13,7 +13,16 @@
 	 */
 	export let index: number = 0;
 
-	const rainbow: string[] = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+	const rainbow: string[] = [
+		'red',
+		'orange',
+		'yellow',
+		'green',
+		'blue',
+		'indigo',
+		'violet',
+		'black'
+	];
 
 	let color: string = rainbow[index];
 	let isWordiable: boolean = index > -1;

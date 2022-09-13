@@ -80,9 +80,8 @@ export const replaceNewlines = (str: string): string => {
 	return str.replace(/\n/g, ' <br> ');
 };
 
-export let hasMatches = false;
 /**
- * @function addMatchedWords
+ * @function checkForWordiables
  * @param {string} - str
  * @returns {string} string
  * @description Checks for \n and returns replaces it with <br>
@@ -90,10 +89,7 @@ export let hasMatches = false;
 export const checkForWordiables = (text: string): string => {
 	wordiables.subscribe((words) => (matchedWords = words));
 	const matches = text.match(regex.wordiables);
-	if (matches || hasMatches) {
-		hasMatches = true;
-		syncMatches(matches);
-	}
+	if (matches) syncMatches(matches);
 	return text;
 };
 
