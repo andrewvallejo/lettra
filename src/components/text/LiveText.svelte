@@ -1,18 +1,26 @@
 <script lang="ts">
-	import { regex, space, splitText } from '$lib/editor';
-	import Wordiables from '../text/Wordiables.svelte';
-	import Word from '../text/Word.svelte';
+	import { regex, space, splitText, type WordI } from '$lib/editor';
 	import { wordiables } from '../../store/text';
+	import Word from '../text/Word.svelte';
+	import Wordiables from '../text/Wordiables.svelte';
 
 	/**
 	 * @param {string} - text
 	 * @description: user text input (visible)
 	 */
-	export let text: string = '';
+	export let text: any[] = [];
 
+	let stringText: string = '';
+
+	$: stringText = text.reduce((acc: string, t: WordI): string => {
+		acc += ` ${t.string}`;
+		return acc;
+	}, '');
+
+	$: console.log('stringText', stringText);
 	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
 
-	$: words = splitText(text);
+	$: words = splitText(stringText);
 </script>
 
 <p class="live-text">

@@ -107,3 +107,27 @@ export const syncMatches = (text: string[]) => {
 };
 
 export const space = '&nbsp;';
+
+export type WordI = {
+	string: string;
+	index: number;
+	wordiable: boolean;
+	color: string;
+	wordiablePos: null | number;
+};
+
+export const objectifyWord = (text) => {
+	const splitText = text.split(' ');
+	return splitText.reduce((acc, word, index) => {
+		const wordExpanded: WordI = {
+			string: word,
+			index: index + 1,
+			wordiable: false,
+			color: 'black',
+			wordiablePos: null
+		};
+
+		acc = [...acc, wordExpanded];
+		return acc;
+	}, []);
+};

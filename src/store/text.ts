@@ -1,6 +1,6 @@
 import { derived, writable } from 'svelte/store';
 
-import { replaceNewlines } from '../lib/editor';
+import { objectifyWord } from '../lib/editor';
 
 export const text = writable('');
 
@@ -9,7 +9,7 @@ export const text = writable('');
  * @summary - parses newLines from text
  * // !- this above summary cant be seen. look up how to view stores in jsdocs
  */
-export const parsedText = derived(text, ($text) => replaceNewlines($text));
+export const parsedText = derived(text, ($text) => objectifyWord($text));
 
 export const wordiables: never = writable([]);
 
