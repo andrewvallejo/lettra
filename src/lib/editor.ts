@@ -1,4 +1,4 @@
-import { wordiables } from '../store/text';
+import { wordiables } from '$stores/text';
 
 /**
  * @constant {string[]} matchedWords

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { checkForWordiables } from '../lib/editor';
-	import { parsedText, text } from '../store/text';
-	import LiveText from './text/LiveText.svelte';
+	import { checkForWordiables } from '$src/lib/editor';
+	import { parsedText, text } from '$stores/text';
+	import LiveText from '$text/LiveText.svelte';
 
 	let value: string = '';
 

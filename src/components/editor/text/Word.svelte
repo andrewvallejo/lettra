@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { text } from '../../store/text';
+	import { text } from '$stores/text';
 
 	export let word: string = '';
 

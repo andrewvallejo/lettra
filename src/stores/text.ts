@@ -1,14 +1,9 @@
 import { derived, writable } from 'svelte/store';
 
-import { objectifyWord } from '../lib/editor';
+import { objectifyWord } from '$src/lib/editor';
 
 export const text = writable('');
 
-/**
- * @constant {string} - parsedText
- * @summary - parses newLines from text
- * // !- this above summary cant be seen. look up how to view stores in jsdocs
- */
 export const parsedText = derived(text, ($text) => objectifyWord($text));
 
 export const wordiables: never = writable([]);

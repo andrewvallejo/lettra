@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import Table from '../components/Table.svelte';
-	import Editor from '../components/Editor.svelte';
+	import Table from '$components/Table.svelte';
+	import Editor from '$components/editor/Editor.svelte';
 </script>
 
 <svelte:head>
@@ -10,7 +9,7 @@
 
 <div class="wrapper">
 	<header>
-		<img class="logo" src={`${base}/favicon.png`} alt="Lettra's Logo" />
+		<img class="logo" src={`favicon.png`} alt="Lettra's Logo" />
 		<div class="title">
 			<h1>Lettra</h1>
 			<h2>by Andrew Vallejo</h2>

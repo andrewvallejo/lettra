@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { regex, space, splitText, type WordI } from '$lib/editor';
-	import { wordiables } from '../../store/text';
-	import Word from '../text/Word.svelte';
-	import Wordiables from '../text/Wordiables.svelte';
+	import { regex, space, splitText, type WordI } from '$src/lib/editor';
+	import { wordiables } from '$stores/text';
+	import Word from '$text/Word.svelte';
+	import Wordiables from '$text/Wordiables.svelte';
 
 	/**
 	 * @param {string} - text
@@ -17,7 +17,6 @@
 		return acc;
 	}, '');
 
-	$: console.log('stringText', stringText);
 	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
 
 	$: words = splitText(stringText);
