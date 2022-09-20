@@ -63,7 +63,7 @@ export const objectifyWord = (text) => {
 		const wordExpanded: WordI = {
 			string: replaceNewlines(word),
 			index: index + 1,
-			wordiable: false,
+			isWordiable: false,
 			color: 'black',
 			wordiablePos: null
 		};
@@ -72,12 +72,17 @@ export const objectifyWord = (text) => {
 		return acc;
 	}, []);
 };
+
+const rainbow: string[] = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'];
+
 const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
 
 export const powerWordiables = (text: object[]): never => {
 	text.map((t) => {
 		if (isWordiable(t.string)) {
 			t.wordiable = true;
+			t.wordiablePos = matchedWords.indexOf(t.string);
+			t.color = rainbow[t.wordiablePos];
 		}
 	});
 };

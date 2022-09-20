@@ -17,17 +17,17 @@
 		return acc;
 	}, '');
 
-	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
 	$: powerWordiables(text);
+
 	$: words = splitText(stringText);
 </script>
 
 <p class="live-text">
-	{#each words as word}
-		{#if isWordiable(word)}
-			<Wordiables {word} index={$wordiables.indexOf(word)} />
-		{:else if word.length}
-			<Word {word} />
+	{#each words as word, i}
+		{#if text[i]?.isWordiable && text[i]?.string.includes(word)}
+			<Word word={text[i]} />
+		{:else if text[i]?.string.length}
+			<Word word={text[i]} />
 		{:else}
 			{@html space}
 		{/if}

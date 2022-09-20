@@ -1,7 +1,7 @@
 export type WordI = {
 	string: string;
 	index: number;
-	wordiable: boolean;
+	isWordiable: boolean;
 	color: string;
 	wordiablePos: null | number;
 };

@@ -1,13 +1,22 @@
 <script lang="ts">
-	import { text } from '$stores/text';
+	import type { WordI } from '$src/types';
 
-	export let word: string = '';
+	export let word: WordI = {
+		string: '',
+		index: 0,
+		isWordiable: false,
+		color: 'black',
+		wordiablePos: null
+	};
 
-	export let index: number = 0;
+	let color: string = word.color;
 
-	$: index <= $text.length && (word = `${word} `);
+	let text = ` ${word.string}`;
 </script>
 
-<span>
-	{@html word}
+<span style:color>
+	{@html text}
 </span>
+
+<style lang="scss">
+</style>
