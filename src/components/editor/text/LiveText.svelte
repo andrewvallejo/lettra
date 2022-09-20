@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { regex, space, splitText, type WordI } from '$src/lib/editor';
+	import { regex, space, splitText } from '$src/lib/editor';
 	import { wordiables } from '$stores/text';
 	import Word from '$text/Word.svelte';
 	import Wordiables from '$text/Wordiables.svelte';
-
+	import type { WordI } from '$src/types';
 	/**
 	 * @param {string} - text
 	 * @description: user text input (visible)

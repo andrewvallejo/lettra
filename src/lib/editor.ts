@@ -1,18 +1,13 @@
 import { wordiables } from '$stores/text';
+import type { RegexI } from '$src/types';
 
-/**
- * @constant {string[]} matchedWords
- * @description staging for wordiables
- */
 let matchedWords: string[] = [];
 
-/**
- * @function findWordiables
- * @description checks text for wordiables
- * @param {string} text
- * @return {string} wordiable
- */
-const findWordiables = (text: string[]) => {
+const replaceNewlines = (str: string): string => {
+	return str.replace(/\n/g, ' <br> ');
+};
+
+const findWordiables = (text: string[]): string => {
 	return text.find((word) => {
 		const isNotInMatchedWords = !matchedWords.includes(word);
 		const hasOnlyTwoForwardSlashes = word.match(/\\/g).length === 2;
@@ -21,33 +16,17 @@ const findWordiables = (text: string[]) => {
 	});
 };
 
-/**
- * @function setWordiables
- * @description Updates wordiables store with new wordiables
- * @param {string} - word
- */
-const setWordiables = (word) => {
+const setWordiables = (word: string): never => {
 	wordiables.set([...matchedWords, word]);
 };
 
-/**
- * @function removeMatchedWords
- * @description Remove words no longer matched //! <-- Questionable
- * @param {string} - str
- */
-// TODO - Test removeMatchedWords and see if description is accurate
-const removeMatchedWords = (str: string[]) => {
+const syncWordiables = (str: string[]): never => {
 	matchedWords.forEach((word) => {
 		if (!str.includes(word)) wordiables.set(matchedWords.filter((w) => w !== word));
 	});
 };
 
-/**
- * @function reSortMatchedWords
- * @description Sorts words based on first occurences
- * @param {string}
- */
-const reSortMatchedWords = (str: string[]) => {
+const sortMatchedWords = (str: string[]): never => {
 	matchedWords.sort((a, b) => {
 		const aIndex = str.indexOf(a);
 		const bIndex = str.indexOf(b);
@@ -55,72 +34,34 @@ const reSortMatchedWords = (str: string[]) => {
 	});
 };
 
-/**
- * Todo fix this jsdoc
- * @constant Regex @implements /\\(.*?)\b\\/g
- * @description Checks for words that are wrapped in \backslashes\
- */
-export const regex = {
-	wordiables: /\\(.*?)\\/g
-};
-
-/**
- * @function splitText
- * @description splits string by spaces
- * @returns ['an','array','of','strings']
- */
-export const splitText = (text: string): string[] => text.split(' ');
-
-/**
- * @function replaceNewlines
- * @description Checks for \n and returns replaces it with <br>
- * @returns <br>
- */
-export const replaceNewlines = (str: string): string => {
-	return str.replace(/\n/g, ' <br> ');
-};
-
-/**
- * @function checkForWordiables
- * @param {string} - str
- * @returns {string} string
- * @description Checks for \n and returns replaces it with <br>
- */
-export const checkForWordiables = (text: string): string => {
-	wordiables.subscribe((words) => (matchedWords = words));
-	const matches = text.match(regex.wordiables);
-	if (matches) syncMatches(matches);
-	return text;
-};
-
-/**
- * @function syncMatches
- * @description Updates, removes, and resorts matching words
- * @param {string[]} text
- */
-export const syncMatches = (text: string[]) => {
+const syncMatches = (text: string[]): never => {
 	if (text.length < 1) return;
-	const wordiable = findWordiables(text);
+	const wordiable: string = findWordiables(text);
 	setWordiables(wordiable);
-	removeMatchedWords(text);
-	reSortMatchedWords(text);
+	syncWordiables(text);
+	sortMatchedWords(text);
+};
+
+export const regex: RegexI = {
+	wordiables: /\\(.*?)\\/g
 };
 
 export const space = '&nbsp;';
 
-export type WordI = {
-	string: string;
-	index: number;
-	wordiable: boolean;
-	color: string;
-	wordiablePos: null | number;
+export const splitText = (text: string): string[] => text.split(' ');
+
+export const checkForWordiables = (text: string): string => {
+	wordiables.subscribe((words) => (matchedWords = words));
+	const matches: string[] = text.match(regex.wordiables);
+	if (matches) syncMatches(matches);
+	return text;
 };
 
 export const objectifyWord = (text) => {
 	const splitText = text.split(' ');
 	return splitText.reduce((acc, word, index) => {
 		const wordExpanded: WordI = {
-			string: word,
+			string: replaceNewlines(word),
 			index: index + 1,
 			wordiable: false,
 			color: 'black',
