@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { regex, space, splitText } from '$src/lib/editor';
+	import { powerWordiables, regex, space, splitText } from '$src/lib/editor';
 	import { wordiables } from '$stores/text';
 	import Word from '$text/Word.svelte';
 	import Wordiables from '$text/Wordiables.svelte';
@@ -18,7 +18,7 @@
 	}, '');
 
 	const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
-
+	$: powerWordiables(text);
 	$: words = splitText(stringText);
 </script>
 

@@ -72,3 +72,12 @@ export const objectifyWord = (text) => {
 		return acc;
 	}, []);
 };
+const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
+
+export const powerWordiables = (text: object[]): never => {
+	text.map((t) => {
+		if (isWordiable(t.string)) {
+			t.wordiable = true;
+		}
+	});
+};
