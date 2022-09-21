@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { powerWordiables, regex, space, splitText } from '$src/lib/editor';
-	import { wordiables } from '$stores/text';
-	import Word from '$text/Word.svelte';
-	import Wordiables from '$text/Wordiables.svelte';
+	import { powerWordiables, space, splitText } from '$src/lib/editor';
 	import type { WordI } from '$src/types';
+	import Word from '$text/Word.svelte';
 	/**
 	 * @param {string} - text
 	 * @description: user text input (visible)
