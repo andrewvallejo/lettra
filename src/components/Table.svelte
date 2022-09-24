@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { wordiables } from '../store/text';
+	import { wordiables } from '$stores/text';
 </script>
 
 <div>

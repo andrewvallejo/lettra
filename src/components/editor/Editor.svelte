@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { checkForWordiables } from '../lib/editor';
-	import { parsedText, text } from '../store/text';
-	import LiveText from './text/LiveText.svelte';
+	import { parsedText, text } from '$stores/text';
+	import LiveText from '$text/LiveText.svelte';
 
 	let value: string = '';
 
 	$: text.set(value);
-	$: checkForWordiables(value);
 </script>
 
 <div class="editor">
@@ -42,9 +40,9 @@
 				outline: none;
 				resize: none;
 				border: 1px solid lightgray;
-				padding: 0;
 				height: inherit;
 				width: 100%;
+				padding: 0;
 				color: transparent;
 				caret-color: black;
 			}
