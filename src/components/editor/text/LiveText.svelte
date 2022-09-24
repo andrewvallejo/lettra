@@ -37,6 +37,6 @@
 		pointer-events: none;
 		width: 100%;
 		height: inherit;
-		word-wrap: break-word;
+		overflow-wrap: break-word;
 	}
 </style>
