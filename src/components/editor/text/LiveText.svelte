@@ -1,20 +1,14 @@
 <script lang="ts">
-	import { powerWordiables, space, splitText } from '$src/lib/editor';
+	import { getStringFromText, splitText } from '$src/lib/editor';
+	import { powerWordiables } from '$src/lib/wordiables';
 	import type { WordI } from '$src/types';
 	import Word from '$text/Word.svelte';
 
-	export let text: any[] = [];
-
-	let stringText: string = '';
-
-	$: stringText = text.reduce((acc: string, t: WordI): string => {
-		acc += ` ${t.string}`;
-		return acc;
-	}, '');
+	export let text: WordI[] = [];
 
 	$: powerWordiables(text);
 
-	$: words = splitText(stringText);
+	$: words = splitText(getStringFromText(text));
 </script>
 
 <p class="live-text">
@@ -23,8 +17,6 @@
 			<Word word={text[i]} />
 		{:else if text[i]?.string.length}
 			<Word word={text[i]} />
-		{:else}
-			{@html space}
 		{/if}
 	{/each}
 </p>

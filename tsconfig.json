@@ -17,7 +17,9 @@
 			"$src/*": ["src/*"],
 			"$stores/*": ["src/stores/*"],
 			"$components/*": ["src/components/*"],
-			"$text/*": ["src/components/editor/text/*"]
+			"$text/*": ["src/components/editor/text/*"],
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"]
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]

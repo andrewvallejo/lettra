@@ -40,9 +40,9 @@
 				outline: none;
 				resize: none;
 				border: 1px solid lightgray;
-				padding: 0;
 				height: inherit;
 				width: 100%;
+				padding: 0;
 				color: transparent;
 				caret-color: black;
 			}

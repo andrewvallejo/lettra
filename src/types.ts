@@ -8,4 +8,6 @@ export type WordI = {
 
 export type RegexI = {
 	wordiables: RegExp;
+	backslash: RegExp;
+	newline: RegExp;
 };
