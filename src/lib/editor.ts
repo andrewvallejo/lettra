@@ -12,7 +12,7 @@ const findWordiables = (text: string[]): string => {
 		const isNotInMatchedWords = !matchedWords.includes(word);
 		const hasOnlyTwoForwardSlashes = word.match(/\\/g).length === 2;
 		const isWordiable = isNotInMatchedWords && hasOnlyTwoForwardSlashes;
-		if (isWordiable) return word;
+		if (isWordiable) setWordiables(word);
 	});
 };
 
@@ -36,8 +36,7 @@ const sortMatchedWords = (str: string[]): never => {
 
 const syncMatches = (text: string[]): never => {
 	if (text.length < 1) return;
-	const wordiable: string = findWordiables(text);
-	setWordiables(wordiable);
+	findWordiables(text);
 	syncWordiables(text);
 	sortMatchedWords(text);
 };
@@ -58,8 +57,8 @@ export const checkForWordiables = (text: string): string => {
 };
 
 export const objectifyWord = (text) => {
-	const splitText = text.split(' ');
-	return splitText.reduce((acc, word, index) => {
+	const words = splitText(replaceNewlines(text));
+	return words.reduce((acc, word, index) => {
 		const wordExpanded: WordI = {
 			string: replaceNewlines(word),
 			index: index + 1,
@@ -69,18 +68,22 @@ export const objectifyWord = (text) => {
 		};
 
 		acc = [...acc, wordExpanded];
+		console.log(acc);
 		return acc;
 	}, []);
 };
 
 const rainbow: string[] = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'];
 
-const isWordiable = (word: string): RegExpMatchArray | null => word.match(regex.wordiables);
+const isWordiableWithSlashes = (word: string): RegExpMatchArray | null =>
+	word.match(regex.wordiables);
+
+const isWordiable = (word: string): boolean => matchedWords.includes(word);
 
 export const powerWordiables = (text: object[]): never => {
-	text.map((t) => {
-		if (isWordiable(t.string)) {
-			t.wordiable = true;
+	text.forEach((t) => {
+		if (isWordiable(t.string) || isWordiableWithSlashes(t.string)) {
+			t.iswordiable = true;
 			t.wordiablePos = matchedWords.indexOf(t.string);
 			t.color = rainbow[t.wordiablePos];
 		}
