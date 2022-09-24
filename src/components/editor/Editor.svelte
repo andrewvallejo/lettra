@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { checkForWordiables } from '$src/lib/editor';
 	import { parsedText, text } from '$stores/text';
 	import LiveText from '$text/LiveText.svelte';
 
 	let value: string = '';
 
 	$: text.set(value);
-	$: checkForWordiables(value);
 </script>
 
 <div class="editor">
