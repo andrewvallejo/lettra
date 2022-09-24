@@ -29,10 +29,6 @@
 		color: black;
 	}
 
-	:global(strong) {
-		color: green;
-		font-weight: normal;
-	}
 	.wrapper {
 		flex-direction: column;
 		align-items: center;

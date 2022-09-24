@@ -2,10 +2,7 @@
 	import { powerWordiables, space, splitText } from '$src/lib/editor';
 	import type { WordI } from '$src/types';
 	import Word from '$text/Word.svelte';
-	/**
-	 * @param {string} - text
-	 * @description: user text input (visible)
-	 */
+
 	export let text: any[] = [];
 
 	let stringText: string = '';
