@@ -19,7 +19,9 @@
 			"$components/*": ["src/components/*"],
 			"$text/*": ["src/components/editor/text/*"],
 			"$lib": ["src/lib"],
-			"$lib/*": ["src/lib/*"]
+			"$lib/*": ["src/lib/*"],
+			"$types": ["src/types"],
+			"$editor/*": ["src/lib/editor/*"]
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]

@@ -10,7 +10,9 @@ export default defineConfig({
 			$src: path.resolve('/src'),
 			$stores: path.resolve('/src/stores'),
 			$components: path.resolve('/src/components'),
-			$text: path.resolve('/src/components/editor/text')
+			$text: path.resolve('/src/components/editor/text'),
+			$types: path.resolve('/src/types'),
+			$editor: path.resolve('/src/lib/editor')
 		}
 	}
 });
