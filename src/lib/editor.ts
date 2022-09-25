@@ -1,4 +1,5 @@
 import { regex } from '$lib/regex';
+import type { WordI } from '$lib/types';
 
 export const replaceNewlines = (str: string): string => {
 	return str.replace(regex.newline, ' <br> ');
@@ -15,16 +16,14 @@ export const getStringFromText = (text: WordI[]): string => {
 	}, '');
 };
 
-export const objectifyWords = (words: string[]): WordI => {
-	return words.reduce((acc, word, index) => {
-		const wordExpanded: WordI = {
-			string: replaceNewlines(word),
-			index: index + 1,
+export const objectifyWords = (words: string[]): WordI[] => {
+	return words.map((word: string, index: number): WordI => {
+		return {
+			string: word,
+			index,
 			isWordiable: false,
-			color: 'black',
-			wordiablePos: null
+			color: '',
+			wordiablePos: -1
 		};
-		acc.push(wordExpanded);
-		return acc;
-	}, []);
+	});
 };

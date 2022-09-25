@@ -2,7 +2,7 @@
 	import { parsedText, text } from '$stores/text';
 	import LiveText from '$text/LiveText.svelte';
 
-	let value: string = '';
+	let value = '';
 
 	$: text.set(value);
 </script>

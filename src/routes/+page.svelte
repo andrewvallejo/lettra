@@ -15,8 +15,10 @@
 			<h2>by Andrew Vallejo</h2>
 		</div>
 	</header>
-	<Editor />
-	<Table />
+	<main class="layout">
+		<Table />
+		<Editor />
+	</main>
 </div>
 
 <style lang="scss">
@@ -53,5 +55,11 @@
 			align-items: center;
 			display: flex;
 		}
+	}
+
+	.layout {
+		display: flex;
+		width: 100%;
+		height: 100%;
 	}
 </style>
