@@ -1,6 +1,6 @@
 import { wordiables } from '$stores/text';
 import { regex } from '$lib/regex';
-import type { WordI } from '$lib/types';
+import type { WordI } from '$types';
 
 let matchedWords: string[] = [];
 
@@ -55,6 +55,8 @@ const getWordiablePos = (word: string): number => {
 };
 
 export const powerWordiables = (text: WordI[]): void => {
+	const str = text.map((word) => word.string);
+	syncMatches(str);
 	text.forEach((t) => {
 		if (isWordiable(t.string)) {
 			t.isWordiable = true;
