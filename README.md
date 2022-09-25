@@ -11,7 +11,7 @@
  
  <sub>**_Application is currently in its alpha stage_**.</sub>
 
-</div> 
+</div>
 
 ## Features
 
@@ -22,13 +22,11 @@
    
   </summary>
 
-  > - Words in the document with `\ backslashes \` surrounding it will be a Wordiable.
-  > - Up to seven Wordibles can be created, each with its assigned color.
-  > - Colors are applied to each iteration of the word in the document.
- 
+> - Words in the document with `\ backslashes \` surrounding it will be a Wordiable.
+> - Up to seven Wordibles can be created, each with its assigned color.
+> - Colors are applied to each iteration of the word in the document.
+
 </details>
-
-
 
 <details>
   <summary>
@@ -37,7 +35,7 @@
    
   </summary>
 
- > A table of the selected words will show the order in which the Wordibles first occur, how many times they appear on the document, and its associated color. Selecting a word from here will highlight the Wordiable from the document and allow you to update all occurrences at once.  <sub>_feature in progress!_</sub>    
+> A table of the selected words will show the order in which the Wordibles first occur, how many times they appear on the document, and its associated color. Selecting a word from here will highlight the Wordiable from the document and allow you to update all occurrences at once. <sub>_feature in progress!_</sub>
 
 </details>
 
@@ -45,30 +43,28 @@
  
 ## Wireframe
 
- 
 > Feel free to explore my wireframe and thoughts on [Figma](https://www.figma.com/file/gQ7y0NcZqBecv25aPrDzOI/Lettra?node-id=0%3A1)
- 
 
 ![lettra](https://user-images.githubusercontent.com/17935770/165384152-b341c29a-24f2-437a-8f36-b065a66c115a.png)
- </div>
 
+ </div>
 
 ## Installation
 
 You can visit [Lettra's website](https://lettra.vercel.app) or clone the repo.
 
-1. Clone the repo and update the dependency with your preferred package manager. <sub>(*yarn, pnpm, etc.*)</sub>
+1. Clone the repo and update the dependency with your preferred package manager. <sub>(_yarn, pnpm, etc._)</sub>
 
-    ```jsx
-    git clone
-    npm install
-    ```
+   ```jsx
+   git clone
+   npm install
+   ```
 
 2. Run the development environment to start the server.
 
-    ```jsx
-    npm run dev
-    ```
+   ```jsx
+   npm run dev
+   ```
 
 3. Once started, visit [localhost:5173](http://localhost::5173) on your browser.
 
@@ -76,7 +72,7 @@ You can visit [Lettra's website](https://lettra.vercel.app) or clone the repo.
 
 Insert your cover letter and then wrap backslashes (`\`) behind _and_ in front of the words you want to convert into a Wordiable.<sup>(word variable)</sup>
 
-> **For example**: `Dear OmniBark Hirer,` should look like `Dear \OmniBark\ Hirer,`  
+> **For example**: `Dear OmniBark Hirer,` should look like `Dear \OmniBark\ Hirer,`
 
 Do this to each word you would like to swap out for another easily, up to seven unique words.
 
@@ -86,7 +82,7 @@ In the previous example, every iteration of `\OmniBark\` will turn red. If you w
 
 > **For Example**: `\Dear\ \OmniBark\ Hirer,`
 
-In this example,`\Dear\`  (and any of the following iterations of the word) will turn red, and all instances of `OmniBark` will now be orange.
+In this example,`\Dear\` (and any of the following iterations of the word) will turn red, and all instances of `OmniBark` will now be orange.
 
 <!-- Not a feature yet: You only need to do this to the first iteration of the word seen in your document; then, every iteration afterward will become a **Wordiable** and can be manipulated all at once. -->
 
@@ -94,6 +90,7 @@ In this example,`\Dear\`  (and any of the following iterations of the word) will
  Dear \OmniBark\ Hirer,
  I would love to work at \OmniBark\ because...
 ```
+
 <!-- This is not a feature yet
 Select OmniBark from the Wordiable Table, or edit the word without removing the `\` (in any order), which will update the appearances of all the other words that are the same. If you replace `\OmniBark\` with `\UniMeows\` will automatically change the document from
 
@@ -112,11 +109,9 @@ to
   - Wordiables will be consistent in each stored paragraph to further increase the efficiency of creating versions of cover letters for when applying to companies with different core values or positions.
 - Add 'auto-detect Wordiables' feature that will try and determine which words are the ones the job-seeker would've chosen manually.
 
-
 <div align='center'>
 
 ## Technologies
-
 
 <img src="https://img.shields.io/badge/Svelte-FF3E00?logo=svelte&logoColor=fff&style=flat" alt="Svelte Badge">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat-square" alt="TypeScript Badge">
@@ -129,8 +124,6 @@ to
 <div align="center">
 
 ---
- 
- 
 
 ### Created by **Andrew Vallejo**
 

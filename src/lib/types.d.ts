@@ -3,7 +3,7 @@ export type WordI = {
 	index: number;
 	isWordiable: boolean;
 	color: string;
-	wordiablePos: null | number;
+	wordiablePos: number;
 };
 
 export type RegexI = {

@@ -1,15 +1,17 @@
 import { derived, writable } from 'svelte/store';
-import { objectifyWords, splitText, replaceNewlines } from '$src/lib/editor';
-import { checkForWordiables } from '$src/lib/wordiables';
+import { objectifyWords, splitText, replaceNewlines } from '$lib/editor';
+import { checkForWordiables } from '$lib/wordiables';
+import type { WordI } from '$lib/types';
+import type { Writable } from 'svelte/store';
 
-export const text = writable('');
+export const text: Writable<string> = writable('');
 
-export const parsedText = derived(text, ($text) => {
+export const parsedText = derived(text, ($text): WordI[] => {
 	checkForWordiables($text);
 	const words = splitText(replaceNewlines($text));
 	return objectifyWords(words);
 });
 
-export const wordiables: never = writable([]);
+export const wordiables: Writable<string[]> = writable([]);
 
-export const isSync = writable(true);
+export const isSync: Writable<boolean> = writable(true);

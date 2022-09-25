@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { WordI } from '$src/types';
+	import type { WordI } from '$lib/types';
 
 	export let word: WordI;
 	let color: string = word.color;
