@@ -9,5 +9,10 @@ export type WordI = {
 export type RegexI = {
 	wordiables: RegExp;
 	backslash: RegExp;
-	newline: RegExp;
+	newLine: RegExp;
+	newTab: RegExp;
+};
+
+export type PromptsI = {
+	[key: string]: string;
 };

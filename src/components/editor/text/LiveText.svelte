@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { getStringFromText, splitText } from '$lib/editor';
-	import { powerWordiables } from '$lib/wordiables';
-	import type { WordI } from '$lib/types';
+	import { getStringFromText, splitText } from '$editor/words';
+	import { powerWordiables } from '$editor/wordiables';
+	import type { WordI } from '$types';
 	import Word from '$text/Word.svelte';
 
 	export let text: WordI[] = [];
 
-	$: powerWordiables(text);
+	let words: string[] = splitText(getStringFromText(text));
 
-	$: words = splitText(getStringFromText(text));
+	$: powerWordiables(text);
 </script>
 
 <p class="live-text">

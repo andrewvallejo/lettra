@@ -1,8 +1,8 @@
 import { regex } from '$lib/regex';
-import type { WordI } from '$lib/types';
+import type { WordI } from '$types';
 
 export const replaceNewlines = (str: string): string => {
-	return str.replace(regex.newline, ' <br> ');
+	return str.replace(regex.newLine, ' <br> ');
 };
 
 export const space = '&nbsp;';

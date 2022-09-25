@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { WordI } from '$lib/types';
+	import type { WordI } from '$types';
 
 	export let word: WordI;
-	let color: string = word.color;
 
+	let color: string = word.color;
 	let text = ` ${word.string}`;
 </script>
 
