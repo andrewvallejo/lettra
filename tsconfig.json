@@ -14,13 +14,12 @@
 		"moduleResolution": "node",
 		"baseUrl": ".",
 		"paths": {
-			"$src/*": ["src/*"],
 			"$stores/*": ["src/stores/*"],
 			"$components/*": ["src/components/*"],
 			"$text/*": ["src/components/editor/text/*"],
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
-			"$types": ["src/types"],
+			"$types": ["src/types.d.ts"],
 			"$editor/*": ["src/lib/editor/*"]
 		}
 	},
