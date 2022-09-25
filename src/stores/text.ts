@@ -1,7 +1,7 @@
 import { derived, writable } from 'svelte/store';
-import { objectifyWords, splitText, replaceNewlines } from '$lib/editor';
-import { checkForWordiables } from '$lib/wordiables';
-import type { WordI } from '$lib/types';
+import { objectifyWords, splitText, replaceNewlines } from '$editor/words';
+import { checkForWordiables } from '$editor/wordiables';
+import type { WordI } from '$types';
 import type { Writable } from 'svelte/store';
 
 export const text: Writable<string> = writable('');
