@@ -1,20 +1,18 @@
 <script lang="ts">
-	import { parsedText, text } from '$src/stores/text';
+	import { parsedText, text } from '$stores/text';
 	import LiveText from '$text/LiveText.svelte';
+	//!Test Import! import { prompts } from '$stores/prompts';
 
 	let value = '';
 
-	let prompt = `Dear \\Apple\\ My name is Andrew and I am applying for the \\Software Developer\\ role at \\Apple\\. I am a recent graduate from Turing, School of Software and Design with a affination to the \\Front-end\\. I have been programming for 3 years and have experience with \\Swift\\, \\Svelte\\, \\React\\, my favorite of those is \\Svelte\\.`;
-
-	$: !value && (value = prompt);
-
+	//!Test Comment! $: !value && (value = $prompts.three);
 	$: text.set(value);
 	$: console.log($parsedText);
 </script>
 
 <div class="editor">
 	<div class="container">
-		{#key value || prompt}
+		{#key value}
 			{#if value}
 				<LiveText text={$parsedText} />
 			{/if}
