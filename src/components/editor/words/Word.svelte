@@ -12,11 +12,11 @@
 
 {#if wordiable}
 	<span class:wordiable style:color transition:fade>
-		{@html space + text}
+		{text}
 	</span>
 {:else}
 	<span>
-		{@html space + text}
+		{text}
 	</span>
 {/if}
 
