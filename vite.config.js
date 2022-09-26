@@ -9,7 +9,7 @@ export default defineConfig({
 		alias: {
 			$stores: path.resolve('/src/stores'),
 			$components: path.resolve('/src/components'),
-			$text: path.resolve('/src/components/editor/text'),
+			$words: path.resolve('/src/components/editor/words'),
 			$types: path.resolve('/src/types.d.ts'),
 			$editor: path.resolve('/src/lib/editor')
 		}
