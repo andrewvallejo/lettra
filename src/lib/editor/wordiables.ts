@@ -60,7 +60,7 @@ export const powerWordiables = (text: WordI[]): void => {
 		if (isWordiable(t.string)) {
 			t.isWordiable = true;
 			t.wordiablePos = getWordiablePos(t.string);
-			t.color = rainbow[t.wordiablePos];
+			t.color = rainbow[t.wordiablePos] || 'black';
 		}
 	});
 };
