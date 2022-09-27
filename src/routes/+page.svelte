@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Table from '$components/Table.svelte';
-	import Editor from '$components/editor/Editor.svelte';
+	import Editor from '$components/Editor.svelte';
 </script>
 
 <svelte:head>
