@@ -1,22 +1,30 @@
 <script lang="ts">
+	import { space } from '$editor/words';
 	import { parsedText, text } from '$stores/text';
-	import LiveText from '$text/LiveText.svelte';
-	//!Test Import! import { prompts } from '$stores/prompts';
+	import Wordiable from './Wordiable.svelte';
 
 	let value = '';
 
-	//!Test Comment! $: !value && (value = $prompts.three);
 	$: text.set(value);
+
 	$: console.log($parsedText);
 </script>
 
 <div class="editor">
 	<div class="container">
-		{#key value}
-			{#if value}
-				<LiveText text={$parsedText} />
-			{/if}
-		{/key}
+		{#if value}
+			{#key $parsedText}
+				<p class="live-text">
+					{#each $parsedText as word}
+						{#if word.isWordiable}
+							<Wordiable {word} /> {@html space}
+						{:else}
+							{@html word.string + space}
+						{/if}
+					{/each}
+				</p>
+			{/key}
+		{/if}
 		<label for="editor">Editor</label>
 		<textarea id="editor" name="editor" class="text-input" bind:value />
 	</div>
@@ -37,6 +45,19 @@
 			position: relative;
 			width: 60%;
 			height: inherit;
+			.live-text {
+				position: absolute;
+				z-index: 1;
+				top: 0;
+				pointer-events: none;
+				width: 100%;
+				height: inherit;
+				overflow-wrap: break-word;
+
+				.space {
+					border: 1px solid red;
+				}
+			}
 			.text-input {
 				position: absolute;
 				top: 0;
@@ -46,8 +67,10 @@
 				height: inherit;
 				width: 100%;
 				padding: 0;
+				word-spacing: 1rem;
 				color: transparent;
 				caret-color: black;
+				overflow-wrap: break-word;
 			}
 		}
 	}
