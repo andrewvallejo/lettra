@@ -10,7 +10,7 @@
 </script>
 
 <strong class:wordiable style:color transition:fade>
-	{text}
+	{@html text}
 </strong>
 
 <style lang="scss">

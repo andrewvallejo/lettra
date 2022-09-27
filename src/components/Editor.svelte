@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { space } from '$editor/words';
+	import { linebreak, space } from '$editor/words';
 	import { parsedText, text, wordiables } from '$stores/text';
 	import Wordiable from './Wordiable.svelte';
 
 	let value: string;
-	$: console.log('value', value);
 	$: text.set(value || '');
 	$: !value && wordiables.set([]);
 	$: console.log($parsedText);
@@ -16,11 +15,13 @@
 			{#key $parsedText}
 				<p class="live-text">
 					{#each $parsedText as word}
-						{#if word.isWordiable}
-							<Wordiable {word} /> {@html space}
-						{:else if word.string === 'l9br8k'}
+						{#if word.string === space}
+							<p class="space" />
+						{:else if word.isWordiable}
+							<Wordiable {word} />
+						{:else if word.string === linebreak}
 							<p class="linebreak" />
-						{:else}
+						{:else if word.string !== space || linebreak}
 							<span class="word">
 								{@html word.string}
 							</span>
@@ -80,5 +81,10 @@
 
 	.linebreak {
 		line-height: calc(1rem + 0.5rem);
+	}
+	.space {
+		width: 1rem;
+		height: 1rem;
+		border: 1px solid pink;
 	}
 </style>
