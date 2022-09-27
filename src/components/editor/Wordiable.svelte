@@ -10,15 +10,9 @@
 	let wordiable: boolean = word.isWordiable;
 </script>
 
-{#if wordiable}
-	<span class:wordiable style:color transition:fade>
-		{text}
-	</span>
-{:else}
-	<span>
-		{text}
-	</span>
-{/if}
+<span class:wordiable style:color transition:fade>
+	{text}
+</span>
 
 <style lang="scss">
 	.wordiable {
