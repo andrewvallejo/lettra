@@ -16,7 +16,6 @@
 		"paths": {
 			"$stores/*": ["src/stores/*"],
 			"$components/*": ["src/components/*"],
-			"$words/*": ["src/components/editor/words/*"],
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
 			"$types": ["src/types.d.ts"],
