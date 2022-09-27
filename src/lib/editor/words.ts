@@ -2,7 +2,7 @@ import { regex } from '$lib/regex';
 import type { WordI } from '$types';
 
 export const replaceNewlines = (str: string): string => {
-	return str.replace(regex.newLine, ' <br> ');
+	return str.replace(regex.newLine, ' l9br8k ');
 };
 
 export const space = '&nbsp;';
