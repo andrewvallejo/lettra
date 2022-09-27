@@ -11,7 +11,7 @@ export const splitText = (text: string): string[] => text.split(' ');
 
 export const getStringFromText = (text: WordI[]): string => {
 	return text.reduce((acc: string, t: WordI): string => {
-		acc += ` ${t.string}`;
+		acc += t.string;
 		return acc;
 	}, '');
 };
