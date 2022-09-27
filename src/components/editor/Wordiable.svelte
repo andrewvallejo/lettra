@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { space } from '$lib/editor/words';
 	import type { WordI } from '$types';
 	import { fade } from 'svelte/transition';
 
@@ -10,13 +9,15 @@
 	let wordiable: boolean = word.isWordiable;
 </script>
 
-<span class:wordiable style:color transition:fade>
+<strong class:wordiable style:color transition:fade>
 	{text}
-</span>
+</strong>
 
 <style lang="scss">
 	.wordiable {
 		position: relative;
 		z-index: 1;
+		font-weight: normal;
+		text-shadow: 3px 3px 3px rgba(74, 66, 66, 0.2), 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	}
 </style>
