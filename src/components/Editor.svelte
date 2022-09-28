@@ -1,10 +1,13 @@
 <script lang="ts">
+	import { powerWordiables } from '$lib/wordiables';
+	import { getStringFromText, splitText } from '$lib/words';
 	import { parsedText, text } from '$stores/text';
-	import LiveText from './LiveText.svelte';
+	import Word from './Word.svelte';
 
 	let value = '';
-
 	$: text.set(value);
+	$: words = $parsedText;
+	$: powerWordiables(words);
 	$: console.log($parsedText);
 </script>
 
@@ -12,7 +15,15 @@
 	<div class="container">
 		{#key value}
 			{#if value}
-				<LiveText text={$parsedText} />
+				<p class="live-text">
+					{#each words as word, i}
+						{#if word?.isWordiable && word?.string.includes(word.string)}
+							<Word {word} />
+						{:else if word?.string.length}
+							<Word {word} />
+						{/if}
+					{/each}
+				</p>
 			{/if}
 		{/key}
 		<label for="editor">Editor</label>
@@ -35,6 +46,15 @@
 			position: relative;
 			width: 60%;
 			height: inherit;
+			.live-text {
+				position: absolute;
+				z-index: 1;
+				top: 0;
+				pointer-events: none;
+				width: 100%;
+				height: inherit;
+				overflow-wrap: break-word;
+			}
 			.text-input {
 				position: absolute;
 				top: 0;
