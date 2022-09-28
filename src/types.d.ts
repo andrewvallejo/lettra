@@ -4,6 +4,8 @@ export type WordI = {
 	isWordiable: boolean;
 	color: string;
 	wordiablePos: number;
+	isSpace: boolean;
+	isLinebreak: boolean;
 };
 
 export type RegexI = {

@@ -9,7 +9,7 @@
 	let wordiable: boolean = word.isWordiable;
 </script>
 
-<strong class:wordiable style:color transition:fade>
+<strong class:wordiable style:color>
 	{@html text}
 </strong>
 

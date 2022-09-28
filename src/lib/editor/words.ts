@@ -1,11 +1,17 @@
 import { regex } from '$lib/regex';
 import type { WordI } from '$types';
 
+export const linebreak = `&l9br8k;`;
+
+export const space = `&l0cus;`;
+
 export const replaceNewlines = (str: string): string => {
-	return str.replace(regex.newLine, ' l9br8k ');
+	return str.replace(regex.newLine, ' ' + linebreak + ' ');
 };
 
-export const space = '&nbsp;';
+export const replaceSpaces = (str: string): string => {
+	return str.replace(regex.space, ' ' + space + ' ');
+};
 
 export const splitText = (text: string): string[] => text.split(' ');
 
@@ -23,7 +29,9 @@ export const objectifyWords = (words: string[]): WordI[] => {
 			index,
 			isWordiable: false,
 			color: '',
-			wordiablePos: -1
+			wordiablePos: -1,
+			isSpace: false,
+			isLinebreak: false
 		};
 	});
 };

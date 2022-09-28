@@ -3,7 +3,8 @@
 	import { parsedText, text, wordiables } from '$stores/text';
 	import Wordiable from './Wordiable.svelte';
 
-	let value: string;
+	let value: string = '';
+
 	$: text.set(value || '');
 	$: !value && wordiables.set([]);
 	$: console.log($parsedText);
@@ -16,14 +17,14 @@
 				<p class="live-text">
 					{#each $parsedText as word}
 						{#if word.string === space}
-							<p class="space" />
+							<span class="space" />
 						{:else if word.isWordiable}
 							<Wordiable {word} />
 						{:else if word.string === linebreak}
-							<p class="linebreak" />
+							<pre class="linebreak" />
 						{:else if word.string !== space || linebreak}
 							<span class="word">
-								{@html word.string}
+								{word.string}
 							</span>
 						{/if}
 					{/each}
@@ -56,8 +57,6 @@
 				top: 0;
 				pointer-events: none;
 				width: 100%;
-				line-break: auto;
-
 				height: inherit;
 				overflow-wrap: break-word;
 			}
@@ -70,21 +69,17 @@
 				height: inherit;
 				width: 100%;
 				padding: 0;
-				word-spacing: 0.4rem;
-				color: transparent;
+				// color: transparent;
 				caret-color: black;
 				overflow-wrap: break-word;
-				line-break: unset;
 			}
 		}
 	}
 
-	.linebreak {
-		line-height: calc(1rem + 0.5rem);
-	}
 	.space {
-		width: 1rem;
-		height: 1rem;
-		border: 1px solid pink;
+		&::after {
+			content: ' ';
+		}
+		// border: px solid pink;
 	}
 </style>
