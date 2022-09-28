@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { getStringFromText, splitText } from '$editor/words';
-	import { powerWordiables } from '$editor/wordiables';
+	import { getStringFromText, splitText } from '$lib/words';
+	import { powerWordiables } from '$lib/wordiables';
 	import type { WordI } from '$types';
-	import Word from '$text/Word.svelte';
+	import Word from './Word.svelte';
 
 	export let text: WordI[] = [];
 

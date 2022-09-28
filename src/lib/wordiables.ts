@@ -1,5 +1,5 @@
 import { wordiables } from '$stores/text';
-import { regex } from '$lib/regex';
+import { regex } from './regex';
 import type { WordI } from '$types';
 
 let matchedWords: string[] = [];

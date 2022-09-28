@@ -1,6 +1,6 @@
 import { derived, writable } from 'svelte/store';
-import { objectifyWords, splitText, replaceNewlines } from '$editor/words';
-import { checkForWordiables } from '$editor/wordiables';
+import { objectifyWords, splitText, replaceNewlines } from '$lib/words';
+import { checkForWordiables } from '$lib/wordiables';
 import type { WordI } from '$types';
 import type { Writable } from 'svelte/store';
 

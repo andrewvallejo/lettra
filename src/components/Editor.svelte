@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { parsedText, text } from '$stores/text';
-	import LiveText from '$text/LiveText.svelte';
-	//!Test Import! import { prompts } from '$stores/prompts';
+	import LiveText from './LiveText.svelte';
 
 	let value = '';
 
-	//!Test Comment! $: !value && (value = $prompts.three);
 	$: text.set(value);
 	$: console.log($parsedText);
 </script>
