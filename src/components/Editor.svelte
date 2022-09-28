@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { powerWordiables } from '$lib/wordiables';
-	import { getStringFromText, splitText } from '$lib/words';
 	import { parsedText, text } from '$stores/text';
 	import Word from './Word.svelte';
 
-	let value = '';
+	let value: string = '';
+
 	$: text.set(value);
-	$: words = $parsedText;
-	$: powerWordiables(words);
-	$: console.log($parsedText);
 </script>
 
 <div class="editor">
@@ -16,12 +12,8 @@
 		{#key value}
 			{#if value}
 				<p class="live-text">
-					{#each words as word, i}
-						{#if word?.isWordiable && word?.string.includes(word.string)}
-							<Word {word} />
-						{:else if word?.string.length}
-							<Word {word} />
-						{/if}
+					{#each $parsedText as word}
+						<Word {word} />
 					{/each}
 				</p>
 			{/if}
