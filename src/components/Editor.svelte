@@ -1,23 +1,31 @@
 <script lang="ts">
 	import { parsedText, text } from '$stores/text';
 	import Word from './Word.svelte';
+	import Wordiable from './Wordiable.svelte';
 
 	let value: string = '';
 
 	$: text.set(value);
+	$: console.log($parsedText);
 </script>
 
 <div class="editor">
 	<div class="container">
-		{#key value}
-			{#if value}
-				<p class="live-text">
-					{#each $parsedText as word}
-						<Word {word} />
-					{/each}
-				</p>
-			{/if}
-		{/key}
+		{#if value}
+			<p class="live-text">
+				{#each $parsedText as word}
+					{#if word.isWordiable}
+						{#key word.color}
+							<Wordiable {word} />
+						{/key}
+					{:else}
+						{#key word}
+							<Word {word} />
+						{/key}
+					{/if}
+				{/each}
+			</p>
+		{/if}
 		<label for="editor">Editor</label>
 		<textarea id="editor" name="editor" class="text-input" bind:value />
 	</div>
