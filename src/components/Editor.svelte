@@ -15,18 +15,20 @@
 		{#if value}
 			<p class="live-text">
 				{#each $parsedText as word}
-					{#if word.isWordiable}
-						{#key word.string && word.color}
-							<Wordiable {word} />
-						{/key}
-					{:else}
-						{#key word}
-							<Word {word} />
-						{/key}
-					{/if}
-					{#if word.string !== '<br>'}
-						{@html space}
-					{/if}
+					{#key word.string}
+						{#if word.isWordiable}
+							{#key word.string && word.color}
+								<Wordiable {word} />
+							{/key}
+						{:else}
+							{#key word}
+								<Word {word} />
+							{/key}
+						{/if}
+						{#if word.string !== '<br>'}
+							{@html space}
+						{/if}
+					{/key}
 				{/each}
 			</p>
 		{/if}
