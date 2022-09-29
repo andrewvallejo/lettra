@@ -15,7 +15,7 @@
 			<p class="live-text">
 				{#each $parsedText as word}
 					{#if word.isWordiable}
-						{#key word.color}
+						{#key word.string && word.color}
 							<Wordiable {word} />
 						{/key}
 					{:else}
