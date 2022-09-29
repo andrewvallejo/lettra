@@ -4,7 +4,7 @@
 	export let word: WordI;
 
 	let color: string = word.color;
-	let text = ` ${word.string}`;
+	let text: string = word.string;
 </script>
 
 <span style:color>

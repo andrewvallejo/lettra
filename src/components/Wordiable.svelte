@@ -6,7 +6,7 @@
 
 	let color: string = word.color;
 
-	let text = ` ${word.string}`;
+	$: text = word.string;
 </script>
 
 <span style:color in:fade>

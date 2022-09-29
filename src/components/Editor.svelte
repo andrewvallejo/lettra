@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { space } from '$lib/words';
 	import { parsedText, text } from '$stores/text';
 	import Word from './Word.svelte';
 	import Wordiable from './Wordiable.svelte';
@@ -22,6 +23,9 @@
 						{#key word}
 							<Word {word} />
 						{/key}
+					{/if}
+					{#if word.string !== '<br>'}
+						{@html space}
 					{/if}
 				{/each}
 			</p>
@@ -57,14 +61,16 @@
 			}
 			.text-input {
 				position: absolute;
-				top: 0;
+				// top: 0rem;
+				bottom: 0.05rem;
 				outline: none;
 				resize: none;
 				border: 1px solid lightgray;
 				height: inherit;
 				width: 100%;
 				padding: 0;
-				color: transparent;
+				word-spacing: 0.41rem;
+				// color: transparent;
 				caret-color: black;
 			}
 		}
