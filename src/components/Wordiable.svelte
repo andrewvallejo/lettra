@@ -9,7 +9,7 @@
 	$: text = word.string;
 </script>
 
-<span style:color in:fade>
+<span style:color in:fade={{ delay: 100 }}>
 	{@html text}
 </span>
 
