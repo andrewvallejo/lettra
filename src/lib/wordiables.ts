@@ -54,8 +54,8 @@ const getWordiablePos = (word: string): number => {
 };
 
 export const powerWordiables = (text: WordI[]): void => {
-	const str = text.map(({ string }) => string);
-	syncMatches(str);
+	const words = text.map(({ string }) => string);
+	syncMatches(words);
 	text.forEach((t) => {
 		if (isWordiable(t.string)) {
 			t.isWordiable = true;
