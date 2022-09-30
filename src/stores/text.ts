@@ -15,5 +15,3 @@ export const parsedText = derived(text, ($text): WordI[] => {
 });
 
 export const wordiables: Writable<string[]> = writable([]);
-
-export const isSync: Writable<boolean> = writable(true);
