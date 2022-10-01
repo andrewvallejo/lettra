@@ -1,10 +1,8 @@
 <script lang="ts">
-	import type { WordI } from '$types';
-	import { fade } from 'svelte/transition';
-	import { tweened, type Tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
 	import { rainbow } from '$lib/wordiables';
+	import type { WordI } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
+	import { tweened } from 'svelte/motion';
 
 	export let word: WordI;
 

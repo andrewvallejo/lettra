@@ -2,11 +2,11 @@
 	import { space } from '$lib/words';
 	import { parsedText, text } from '$stores/text';
 	import Word from './Word.svelte';
-	import Wordiable from './Wordiable.svelte';
 
 	let value: string = '';
 
 	$: text.set(value);
+
 	$: console.log($parsedText);
 </script>
 
@@ -16,15 +16,7 @@
 			<p class="live-text">
 				{#each $parsedText as word}
 					{#key word.string}
-						{#if word.isWordiable}
-							{#key word.string && word.color}
-								<Wordiable {word} />
-							{/key}
-						{:else}
-							{#key word}
-								<Word {word} />
-							{/key}
-						{/if}
+						<Word {word} />
 						{#if word.string !== '<br>'}
 							{@html space}
 						{/if}
@@ -39,41 +31,46 @@
 
 <style lang="scss">
 	.editor {
+		position: absolute;
+		top: 0.75rem;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		display: flex;
-		width: 100%;
-		height: 100%;
+		border: 20px solid #e5e5e5;
+		border-radius: 7px;
+		width: 30rem;
+		height: clamp(30rem, 96.5%, 45rem);
+
 		label[for='editor'] {
 			font-size: 0;
 		}
 		.container {
 			position: relative;
-			width: 60%;
-			height: inherit;
+			width: 100%;
+			height: 100%;
 			.live-text {
 				position: absolute;
 				z-index: 1;
-				top: 0;
+				top: 0.1rem;
+				left: 0.1rem;
 				pointer-events: none;
 				width: 100%;
-				height: inherit;
+				height: 100%;
+
 				overflow-wrap: break-word;
 			}
 			.text-input {
 				position: absolute;
-				// top: 0rem;
-				bottom: 0.05rem;
 				outline: none;
 				resize: none;
-				border: 1px solid lightgray;
-				height: inherit;
+				border: 2.5px solid grey;
 				width: 100%;
+				height: inherit;
 				padding: 0;
-				word-spacing: 0.41rem;
-				// color: transparent;
+				word-spacing: 0.3rem;
 				caret-color: black;
+				color: transparent;
 			}
 		}
 	}

@@ -4,7 +4,7 @@ import type { WordI } from '$types';
 
 let matchedWords: string[] = [];
 
-const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'];
+export const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'];
 
 const setWordiables = (word: string): void => {
 	wordiables.set([...matchedWords, word]);
