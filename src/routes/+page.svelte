@@ -17,26 +17,26 @@
 <style lang="scss">
 	:global(*) {
 		box-sizing: border-box;
-		overflow: hidden;
 		margin: 0;
 		padding: 0;
+		overflow: hidden;
+		color: black;
 		font-size: 1.5rem;
 		font-family: Roboto, sans-serif;
-		color: black;
 	}
 
 	.wrapper {
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
 		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
 	}
 
 	.layout {
-		justify-content: center;
 		display: flex;
-		overflow: hidden;
+		justify-content: center;
 		width: 100%;
 		height: 100%;
+		overflow: hidden;
 	}
 </style>

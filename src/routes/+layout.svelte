@@ -11,28 +11,28 @@
 
 <style lang="scss">
 	header {
+		display: flex;
 		position: relative;
 		flex-direction: row;
-		align-items: center;
 		justify-content: space-between;
-		display: flex;
+		align-items: center;
 		width: 100%;
 		border-bottom: 3px solid grey;
 
 		&::before {
 			content: '';
+			z-index: -1;
 			position: absolute;
+			top: 0;
 			width: 100%;
 			height: 100%;
-			top: 0;
 			background-color: #c4c4c4;
-			z-index: -1;
 		}
 
 		.title {
+			display: flex;
 			flex-direction: column;
 			align-items: center;
-			display: flex;
 			padding-inline: 1rem;
 		}
 		.logo {
