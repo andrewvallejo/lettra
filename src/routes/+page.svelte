@@ -7,12 +7,15 @@
 	<title>Lettra</title>
 </svelte:head>
 
-<div class="wrapper">
-	<main class="layout">
+<main class="layout">
+	<section class="pane left">
 		<Table />
-		<Editor />
-	</main>
-</div>
+	</section>
+
+	<Editor />
+
+	<section class="pane right" />
+</main>
 
 <style lang="scss">
 	:global(*) {
@@ -28,18 +31,20 @@
 		background: none;
 		border: none;
 	}
-	.wrapper {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
-	}
 
 	.layout {
+		position: absolute;
+		top: 0.75rem;
 		display: flex;
 		justify-content: center;
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
+		.pane {
+			align-self: flex-end;
+			width: 100%;
+			height: calc(100% - 1.25rem);
+			border: 1px solid red;
+		}
 	}
 </style>

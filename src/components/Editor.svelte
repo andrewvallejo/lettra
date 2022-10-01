@@ -36,12 +36,10 @@
 <style lang="scss">
 	.editor {
 		display: flex;
-		position: absolute;
-		top: 0.75rem;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 30rem;
+		width: 100rem;
 		height: clamp(30rem, 96.5%, 45rem);
 		border: 20px solid #e5e5e5;
 		border-radius: 7px;
