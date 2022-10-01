@@ -1,65 +1,58 @@
 <script lang="ts">
+	import Editor from '$components/Editor.svelte';
 	import Table from '$components/Table.svelte';
-	import Editor from '$components/editor/Editor.svelte';
 </script>
 
 <svelte:head>
 	<title>Lettra</title>
 </svelte:head>
 
-<div class="wrapper">
-	<header>
-		<img class="logo" src={`favicon.png`} alt="Lettra's Logo" />
-		<div class="title">
-			<h1>Lettra</h1>
-			<h2>by Andrew Vallejo</h2>
-		</div>
-	</header>
-	<main class="layout">
+<main class="layout">
+	<section class="pane left">
 		<Table />
-		<Editor />
-	</main>
-</div>
+	</section>
+
+	<Editor />
+
+	<section class="pane right" />
+</main>
 
 <style lang="scss">
 	:global(*) {
 		box-sizing: border-box;
 		margin: 0;
 		padding: 0;
-		font-size: 1.5rem;
-		font-family: Roboto, sans-serif;
+		overflow: hidden;
 		color: black;
+		font-size: 1.3rem;
+		font-family: Roboto, sans-serif;
+		font-family: Courier New, monospace;
+		background: eggshell;
 	}
-
-	.wrapper {
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
-		display: flex;
-		height: 100vh;
-	}
-
-	.logo {
-		width: 100px;
-		height: 100px;
-	}
-
-	header {
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-around;
-		display: flex;
-		width: 100%;
-		.title {
-			flex-direction: column;
-			align-items: center;
-			display: flex;
-		}
+	:global(button) {
+		border: none;
+		background: none;
 	}
 
 	.layout {
 		display: flex;
+		position: absolute;
+		top: 0.75rem;
+		justify-content: center;
 		width: 100%;
 		height: 100%;
+		overflow: hidden;
+		.pane {
+			align-self: flex-end;
+			width: 100%;
+			height: calc(100% - 1.9rem);
+		}
+	}
+	.left {
+		display: flex;
+		justify-content: center;
+		width: 20%;
+		height: 100%;
+		padding-block-start: 1rem;
 	}
 </style>
