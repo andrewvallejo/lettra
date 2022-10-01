@@ -1,6 +1,6 @@
 {
 	"name": "lettra-client",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -16,6 +16,7 @@
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@tsconfig/svelte": "^3.0.0",
+		"@types/d3-interpolate": "^3.0.1",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
 		"eslint": "^8.16.0",
@@ -32,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"d3-interpolate": "^3.0.1",
 		"sass": "^1.54.0"
 	}
 }
