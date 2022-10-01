@@ -1,6 +1,7 @@
 import { wordiables } from '$stores/text';
 import { regex } from './regex';
 import type { WordI } from '$types';
+import { onDestroy } from 'svelte';
 
 let matchedWords: string[] = [];
 
@@ -66,8 +67,9 @@ export const powerWordiables = (text: WordI[]): void => {
 };
 
 export const checkForWordiables = (text: string): string => {
-	wordiables.subscribe((words) => (matchedWords = words));
+	const unsubscribe = wordiables.subscribe((words) => (matchedWords = words));
 	const matches = text.match(regex.wordiables);
 	if (matches) syncMatches(matches);
+	onDestroy(unsubscribe);
 	return text;
 };
