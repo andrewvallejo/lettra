@@ -16,7 +16,11 @@
 			<p class="live-text">
 				{#each $parsedText as word}
 					{#key word.string}
-						<Word {word} />
+						{#if word.string === '<br>'}
+							<br />
+						{:else}
+							<Word {word} />
+						{/if}
 						{#if word.string !== '<br>'}
 							{@html space}
 						{/if}

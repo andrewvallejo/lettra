@@ -24,7 +24,10 @@
 		font-size: 1.5rem;
 		font-family: Roboto, sans-serif;
 	}
-
+	:global(button) {
+		background: none;
+		border: none;
+	}
 	.wrapper {
 		display: flex;
 		flex-direction: column;
