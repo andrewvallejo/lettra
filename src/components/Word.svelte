@@ -9,7 +9,8 @@
 	let text: string = word.string;
 
 	let color: Tweened<string> = tweened(rainbow[7], {
-		duration: 500,
+		duration: 350,
+		delay: 250,
 		interpolate: interpolateLab
 	});
 
@@ -20,13 +21,11 @@
 	$: color.set(rainbow[word.wordiablePos]);
 </script>
 
-{#key word.string}
-	<span>
-		<button on:click={handleClick} style="color: {$color}">
-			{@html text}
-		</button>
-	</span>
-{/key}
+<span>
+	<button on:click={handleClick} style="color: {$color}">
+		{text}
+	</button>
+</span>
 
 <style lang="scss">
 	span {

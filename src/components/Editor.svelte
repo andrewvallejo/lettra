@@ -1,13 +1,12 @@
 <script lang="ts">
+	import { checkForWordiables } from '$lib/wordiables';
 	import { space } from '$lib/words';
 	import { parsedText, text } from '$stores/text';
 	import Word from './Word.svelte';
 
 	let value: string = '';
-
+	$: checkForWordiables(value);
 	$: text.set(value);
-
-	$: console.log($parsedText);
 </script>
 
 <div class="editor">
@@ -69,7 +68,7 @@
 				border: 2.5px solid grey;
 				outline: none;
 				color: transparent;
-				word-spacing: 0.3rem;
+				word-spacing: 0.41rem;
 				resize: none;
 				caret-color: black;
 			}
