@@ -1,4 +1,4 @@
-import { regex } from './regex';
+import { regex } from '$lib/regex';
 import type { WordI } from '$types';
 
 export const replaceNewlines = (str: string): string => {

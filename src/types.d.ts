@@ -4,8 +4,6 @@ export type WordI = {
 	isWordiable: boolean;
 	color: string;
 	wordiablePos: number;
-	type: string;
-	occurence: number;
 };
 
 export type RegexI = {

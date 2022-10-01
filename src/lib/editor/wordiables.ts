@@ -1,11 +1,10 @@
 import { wordiables } from '$stores/text';
-import { regex } from './regex';
+import { regex } from '$lib/regex';
 import type { WordI } from '$types';
-import { onDestroy } from 'svelte';
 
 let matchedWords: string[] = [];
 
-export const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'];
+const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'];
 
 const setWordiables = (word: string): void => {
 	wordiables.set([...matchedWords, word]);
@@ -55,8 +54,8 @@ const getWordiablePos = (word: string): number => {
 };
 
 export const powerWordiables = (text: WordI[]): void => {
-	const words = text.map(({ string }) => string);
-	syncMatches(words);
+	const str = text.map(({ string }) => string);
+	syncMatches(str);
 	text.forEach((t) => {
 		if (isWordiable(t.string)) {
 			t.isWordiable = true;
@@ -67,9 +66,8 @@ export const powerWordiables = (text: WordI[]): void => {
 };
 
 export const checkForWordiables = (text: string): string => {
-	const unsubscribe = wordiables.subscribe((words) => (matchedWords = words));
+	wordiables.subscribe((words) => (matchedWords = words));
 	const matches = text.match(regex.wordiables);
 	if (matches) syncMatches(matches);
-	onDestroy(unsubscribe);
 	return text;
 };
