@@ -18,11 +18,13 @@
 		console.log('button works');
 	};
 
+	$: font = word.isWordiable ? 'wordiable' : 'word';
+
 	$: color.set(rainbow[word.wordiablePos]);
 </script>
 
 <span>
-	<button on:click={handleClick} style="color: {$color}">
+	<button on:click={handleClick} style="color: {$color}" class={font}>
 		{text}
 	</button>
 </span>
@@ -30,17 +32,21 @@
 <style lang="scss">
 	span {
 		pointer-events: auto;
+		.wordiable {
+			font-weight: 600;
+		}
 		button {
-			cursor: pointer;
 			position: relative;
 			border-bottom: transparent 1px solid;
+			cursor: pointer;
+
 			&:focus {
-				transition: all 1s;
 				border-bottom: black 1px solid;
+				transition: all 1s;
 			}
 			&:active {
-				transition: all 1s;
 				border-bottom: black 2px solid;
+				transition: all 1s;
 				transform: scale(1.05);
 			}
 		}

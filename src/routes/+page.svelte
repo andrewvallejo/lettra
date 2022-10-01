@@ -24,18 +24,20 @@
 		padding: 0;
 		overflow: hidden;
 		color: black;
-		font-size: 1.5rem;
+		font-size: 1.3rem;
 		font-family: Roboto, sans-serif;
+		font-family: Courier New, monospace;
+		background: eggshell;
 	}
 	:global(button) {
-		background: none;
 		border: none;
+		background: none;
 	}
 
 	.layout {
+		display: flex;
 		position: absolute;
 		top: 0.75rem;
-		display: flex;
 		justify-content: center;
 		width: 100%;
 		height: 100%;
@@ -43,8 +45,14 @@
 		.pane {
 			align-self: flex-end;
 			width: 100%;
-			height: calc(100% - 1.25rem);
-			border: 1px solid red;
+			height: calc(100% - 1.9rem);
 		}
+	}
+	.left {
+		display: flex;
+		justify-content: center;
+		width: 20%;
+		height: 100%;
+		padding-block-start: 1rem;
 	}
 </style>

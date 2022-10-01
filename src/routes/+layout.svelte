@@ -17,6 +17,8 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		height: 2.75rem;
+		padding-top: 0.3rem;
 		border-bottom: 3px solid grey;
 
 		&::before {
@@ -33,7 +35,14 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			padding-inline: 1rem;
+			padding: 1rem;
+			h1 {
+				color: grey;
+				font-weight: 300;
+				font-size: 1.25rem;
+				font-family: Courier New, monospace;
+				text-transform: lowercase;
+			}
 		}
 		.logo {
 			width: 3rem;

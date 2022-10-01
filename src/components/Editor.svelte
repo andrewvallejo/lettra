@@ -57,9 +57,11 @@
 				left: 0.1rem;
 				width: 100%;
 				height: 100%;
+				word-spacing: -0.39rem;
 				pointer-events: none;
 				overflow-wrap: break-word;
 			}
+
 			.text-input {
 				position: absolute;
 				width: 100%;
@@ -68,8 +70,8 @@
 				border: 2.5px solid grey;
 				outline: none;
 				color: transparent;
-				word-spacing: 0.41rem;
 				resize: none;
+				background: eggshell;
 				caret-color: black;
 			}
 		}
