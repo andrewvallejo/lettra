@@ -2,6 +2,10 @@
 	import { wordiables } from '$stores/text';
 	import { rainbow } from '$lib/wordiables';
 	import { fade } from 'svelte/transition';
+
+	const removeBackSlash = (word: string) => {
+		return word.replace(/\\/g, '');
+	};
 </script>
 
 <div class="container">
@@ -13,7 +17,9 @@
 	{#each $wordiables as wordiable, i}
 		<article class="wordRow">
 			<div class="declation">
-				<h3 style="color: {rainbow[i]}" transition:fade={{ delay: 250 }}>{wordiable}</h3>
+				<h3 style="color: {rainbow[i]}" transition:fade={{ delay: 250 }}>
+					{removeBackSlash(wordiable)}
+				</h3>
 				<div class="circle" style="background: {rainbow[i]}" in:fade />
 			</div>
 			<h4 transition:fade={{ delay: 250 }}>0</h4>
@@ -54,6 +60,7 @@
 				display: flex;
 				flex-direction: row-reverse;
 				align-items: center;
+				gap: 0 4px;
 			}
 			.circle {
 				width: 0.5rem;
