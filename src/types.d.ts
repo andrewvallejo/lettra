@@ -5,7 +5,7 @@ export type WordI = {
 	color: string;
 	wordiablePos: number;
 	type: string;
-	occurence: number;
+	occurrences: number;
 };
 
 export type RegexI = {

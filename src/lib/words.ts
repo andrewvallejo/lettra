@@ -23,7 +23,9 @@ export const objectifyWords = (words: string[]): WordI[] => {
 			index,
 			isWordiable: false,
 			color: '',
-			wordiablePos: -1
+			wordiablePos: -1,
+			occurrences: 1,
+			type: 'word'
 		};
 	});
 };

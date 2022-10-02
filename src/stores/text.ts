@@ -8,10 +8,10 @@ export const text: Writable<string> = writable('');
 
 export const parsedText = derived(text, ($text): WordI[] => {
 	checkForWordiables($text);
-	let words = splitText(replaceNewlines($text));
-	words = objectifyWords(words);
-	powerWordiables(words);
-	return words;
+	const words = splitText(replaceNewlines($text));
+	const objectifiedWords: WordI[] = objectifyWords(words);
+	powerWordiables(objectifiedWords);
+	return objectifiedWords;
 });
 
 export const wordiables: Writable<string[]> = writable([]);
