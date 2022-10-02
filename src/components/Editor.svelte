@@ -1,13 +1,43 @@
 <script lang="ts">
 	import { checkForWordiables } from '$lib/wordiables';
+	import { parsedText, text, wordiables } from '$stores/text';
 	import { space } from '$lib/words';
-	import { parsedText, text } from '$stores/text';
 	import Word from './Word.svelte';
+	import { instructions } from '$stores/instructions';
 
 	let value: string = '';
+
+	let instructionsActive = true;
+
+	const clearEditor = () => {
+		value = '';
+		instructionsActive = false;
+	};
+
+	const onKeyDown = (e: any) => {
+		if (!instructionsActive) return;
+		clearEditor();
+	};
+
+	$: !value && wordiables.set([]);
+
+	// splice instructions by letter and enter in the value one by one
+	const spliceInstructions = () => {
+		if (!instructionsActive) return;
+		const interval = setInterval(() => {
+			if ($instructions.length > value.length) {
+				value += $instructions[value.length];
+			} else {
+				clearInterval(interval);
+			}
+		}, 25);
+	};
+	$: !value && instructionsActive && spliceInstructions();
 	$: checkForWordiables(value);
 	$: text.set(value);
 </script>
+
+<svelte:window on:keydown={onKeyDown} />
 
 <div class="editor">
 	<div class="container">
@@ -27,12 +57,22 @@
 				{/each}
 			</p>
 		{/if}
+
 		<label for="editor">Editor</label>
 		<textarea id="editor" name="editor" class="text-input" bind:value />
 	</div>
 </div>
 
 <style lang="scss">
+	.clear {
+		// position: absolute;
+		z-index: 1;
+		height: 0;
+		width: 0;
+		border: none;
+		outline: none;
+		background: none;
+	}
 	.editor {
 		display: flex;
 		flex-direction: column;
