@@ -14,14 +14,13 @@
 		instructionsActive = false;
 	};
 
-	const onKeyDown = (e: any) => {
+	const onKeyDown = () => {
 		if (!instructionsActive) return;
 		clearEditor();
 	};
 
 	$: !value && wordiables.set([]);
 
-	// splice instructions by letter and enter in the value one by one
 	const spliceInstructions = () => {
 		if (!instructionsActive) return;
 		const interval = setInterval(() => {
@@ -64,22 +63,13 @@
 </div>
 
 <style lang="scss">
-	.clear {
-		// position: absolute;
-		z-index: 1;
-		height: 0;
-		width: 0;
-		border: none;
-		outline: none;
-		background: none;
-	}
 	.editor {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		width: 100rem;
-		height: clamp(30rem, 96.5%, 45rem);
+		height: clamp(28rem, 94%, 50rem);
 		border: 20px solid #e5e5e5;
 		border-radius: 7px;
 
