@@ -9,17 +9,17 @@
 
 	let instructionsActive = true;
 
-	const clearEditor = () => {
-		value = '';
-		instructionsActive = false;
-	};
+	let textArea: HTMLTextAreaElement;
 
-	const onKeyDown = () => {
-		if (!instructionsActive) return;
-		clearEditor();
-	};
+	const clearEditor = () => (value = '');
 
-	$: !value && wordiables.set([]);
+	const handleKeyDown = (event: KeyboardEvent): void => {
+		instructionsActive && event.preventDefault();
+		if (instructionsActive && value.length >= $instructions.length) {
+			instructionsActive = false;
+			clearEditor();
+		}
+	};
 
 	const spliceInstructions = () => {
 		if (!instructionsActive) return;
@@ -31,13 +31,15 @@
 			}
 		}, 25);
 	};
-	$: !value && instructionsActive && spliceInstructions();
+
 	$: checkForWordiables(value);
+	$: !value && instructionsActive && spliceInstructions();
+	$: !value && wordiables.set([]);
 	$: text.set(value);
+	$: !instructionsActive && textArea && textArea.focus();
 </script>
 
-<svelte:window on:keydown={onKeyDown} />
-
+<svelte:window on:keydown={handleKeyDown} />
 <div class="editor">
 	<div class="container">
 		{#if value}
@@ -58,7 +60,7 @@
 		{/if}
 
 		<label for="editor">Editor</label>
-		<textarea id="editor" name="editor" class="text-input" bind:value />
+		<textarea id="editor" name="editor" class="text-input" bind:value bind:this={textArea} />
 	</div>
 </div>
 
