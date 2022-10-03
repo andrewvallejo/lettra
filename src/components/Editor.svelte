@@ -53,7 +53,7 @@
 							<Word {word} />
 						{/if}
 						{#if word.string !== '<br>'}
-							{@html space}
+							{space}
 						{/if}
 					{/key}
 				{/each}
