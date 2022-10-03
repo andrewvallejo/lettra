@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Editor from '$components/Editor.svelte';
+	import Pane from '$components/Pane.svelte';
 	import Table from '$components/Table.svelte';
 </script>
 
@@ -8,13 +9,11 @@
 </svelte:head>
 
 <main class="layout">
-	<section class="pane left">
+	<Pane direction="left">
 		<Table />
-	</section>
-
+	</Pane>
 	<Editor />
-
-	<section class="pane right" />
+	<Pane direction="right" />
 </main>
 
 <style lang="scss">
@@ -42,17 +41,5 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		.pane {
-			align-self: flex-end;
-			width: 100%;
-			height: calc(100% - 1.9rem);
-		}
-	}
-	.left {
-		display: flex;
-		justify-content: center;
-		width: 20%;
-		height: 100%;
-		padding-block-start: 1rem;
 	}
 </style>
