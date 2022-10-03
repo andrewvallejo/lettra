@@ -19,7 +19,6 @@
 	};
 
 	$: font = word.isWordiable ? 'wordiable' : 'word';
-
 	$: color.set(rainbow[word.wordiablePos]);
 </script>
 

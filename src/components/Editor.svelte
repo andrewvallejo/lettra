@@ -32,6 +32,7 @@
 		}, 25);
 	};
 
+	let inactive: boolean = instructionsActive;
 	$: checkForWordiables(value);
 	$: !value && instructionsActive && spliceInstructions();
 	$: !value && wordiables.set([]);
@@ -40,7 +41,7 @@
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
-<div class="editor">
+<div class="editor" class:inactive>
 	<div class="container">
 		{#if value}
 			<p class="live-text">
@@ -58,7 +59,6 @@
 				{/each}
 			</p>
 		{/if}
-
 		<label for="editor">Editor</label>
 		<textarea id="editor" name="editor" class="text-input" bind:value bind:this={textArea} />
 	</div>
@@ -66,6 +66,7 @@
 
 <style lang="scss">
 	.editor {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -74,7 +75,19 @@
 		height: clamp(28rem, 94%, 50rem);
 		border: 20px solid #e5e5e5;
 		border-radius: 7px;
-
+		&.inactive {
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				cursor: text;
+				pointer-events: painted;
+			}
+		}
 		label[for='editor'] {
 			font-size: 0;
 		}
@@ -82,6 +95,7 @@
 			position: relative;
 			width: 100%;
 			height: 100%;
+
 			.live-text {
 				z-index: 1;
 				position: absolute;
