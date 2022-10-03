@@ -1,13 +1,26 @@
 import { writable } from 'svelte/store';
+import type { WordI } from '$types';
 
-function editor() {
-	const { subscribe, set, update } = writable('');
+type EditorI = {
+	parsedText: WordI[];
+	wordiables: WordI[];
+};
+
+const store: EditorI = {
+	parsedText: [],
+	wordiables: []
+};
+
+const editorStore = () => {
+	const { subscribe, set, update } = writable(store);
 
 	return {
 		subscribe,
 		set,
-		update
+		update,
+		setParsedText: (parsedText: WordI[]) => update((editor) => ({ ...editor, parsedText })),
+		setWordiables: (wordiables: WordI[]) => update((editor) => ({ ...editor, wordiables }))
 	};
-}
+};
 
-export default editor;
+export const editor = editorStore();

@@ -1,7 +1,6 @@
 import { wordiables } from '$stores/text';
 import { regex } from './regex';
 import type { WordI } from '$types';
-import { onDestroy } from 'svelte';
 
 let matchedWords: string[] = [];
 

@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { checkForWordiables } from '$lib/wordiables';
-	import { parsedText, text } from '$stores/text';
-	import { space } from '$lib/words';
-	import Word from './Word.svelte';
+	import { powerWordiables } from '$lib/wordiables';
+	import { objectifyWords, space } from '$lib/words';
+	import { editor } from '$stores/editor';
 	import { instructions } from '$stores/instructions';
+	import { parsedText, text } from '$stores/text';
+	import Word from './Word.svelte';
 
 	let instructionsActive = true;
 
@@ -35,9 +36,18 @@
 		}
 	};
 
-	$: checkForWordiables($text);
+	const parseText = () => {
+		let words = objectifyWords($text.split(' '));
+		powerWordiables(words);
+		editor.setParsedText(words);
+		const woridablesWords = words.filter((word) => word.isWordiable);
+		editor.setWordiables(woridablesWords);
+	};
+
 	$: instructionsActive && startApp();
 	$: !instructionsActive && textArea && textArea.focus();
+	$: $text && parseText();
+	$: console.log('editor', $editor);
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
