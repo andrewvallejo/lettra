@@ -11,7 +11,7 @@
 <div class="container">
 	<header class="categories">
 		<h2>wordiables</h2>
-		<h2>occurences</h2>
+		<h2 class="occurences">occurences</h2>
 	</header>
 
 	{#each $wordiables as wordiable, i}
@@ -22,24 +22,37 @@
 				</h3>
 				<div class="circle" style="background: {rainbow[i]}" in:fade />
 			</div>
-			<h4 transition:fade={{ delay: 250 }}>0</h4>
+			<h4 class="occurences" transition:fade={{ delay: 250 }}>0</h4>
 		</article>
 		<div class="line" style="background: {rainbow[i]}" in:fade />
 	{/each}
 </div>
 
 <style lang="scss">
+	@media (max-width: 1200px) {
+		.occurences {
+			display: none;
+		}
+	}
+
+	@media (max-width: 800px) {
+		.container {
+			display: none;
+		}
+	}
 	.container {
 		position: relative;
-		width: 18rem;
+		padding-inline: 1rem;
 		height: 15rem;
 		padding: 0.5rem 1rem;
 		border: 1px solid grey;
 		border-radius: 7px;
+		overflow-y: scroll;
 		.categories {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			gap: 1rem;
 			h2 {
 				font-weight: 400;
 				font-size: 1.2rem;
@@ -62,6 +75,7 @@
 				align-items: center;
 				gap: 0 4px;
 			}
+
 			.circle {
 				width: 0.5rem;
 				height: 0.5rem;

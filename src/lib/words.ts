@@ -5,7 +5,7 @@ export const replaceNewlines = (str: string): string => {
 	return str.replace(regex.newLine, ' <br> ');
 };
 
-export const space = '&nbsp;';
+export const space = ' ';
 
 export const splitText = (text: string): string[] => text.split(' ');
 
