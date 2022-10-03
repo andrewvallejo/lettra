@@ -113,9 +113,10 @@ to
 
 ## Technologies
 
-<img src="https://img.shields.io/badge/Svelte-FF3E00?logo=svelte&logoColor=fff&style=flat" alt="Svelte Badge">
+<img src="https://img.shields.io/badge/Svelte-FF3E00?logo=svelte&logoColor=fff&style=flat-square" alt="Svelte Badge">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat-square" alt="TypeScript Badge">
 <img src="https://img.shields.io/badge/Sass-C69?logo=sass&logoColor=fff&style=flat-square" alt="Sass Badge">
+<img src="https://img.shields.io/badge/D3.js-F9A03C?logo=d3dotjs&logoColor=fff&style=flat-square" alt="D3.js Badge">
 
 </div>
 
