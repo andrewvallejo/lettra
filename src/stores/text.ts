@@ -7,6 +7,7 @@ import type { Writable } from 'svelte/store';
 export const text: Writable<string> = writable('');
 
 export const parsedText = derived(text, ($text): WordI[] => {
+	if (!$text) wordiables.set([]);
 	checkForWordiables($text);
 	const words = splitText(replaceNewlines($text));
 	const objectifiedWords: WordI[] = objectifyWords(words);

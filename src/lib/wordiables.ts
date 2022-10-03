@@ -67,9 +67,8 @@ export const powerWordiables = (text: WordI[]): void => {
 };
 
 export const checkForWordiables = (text: string): string => {
-	const unsubscribe = wordiables.subscribe((words) => (matchedWords = words));
+	wordiables.subscribe((words) => (matchedWords = words));
 	const matches = text.match(regex.wordiables);
 	if (matches) syncMatches(matches);
-	onDestroy(unsubscribe);
 	return text;
 };

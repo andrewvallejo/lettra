@@ -1,48 +1,50 @@
 <script lang="ts">
 	import { checkForWordiables } from '$lib/wordiables';
-	import { parsedText, text, wordiables } from '$stores/text';
+	import { parsedText, text } from '$stores/text';
 	import { space } from '$lib/words';
 	import Word from './Word.svelte';
 	import { instructions } from '$stores/instructions';
-
-	let value: string = '';
 
 	let instructionsActive = true;
 
 	let textArea: HTMLTextAreaElement;
 
-	const clearEditor = () => (value = '');
+	const clearEditor = () => text.set('');
 
-	const handleKeyDown = (event: KeyboardEvent): void => {
-		instructionsActive && event.preventDefault();
-		if (instructionsActive && value.length >= $instructions.length) {
-			instructionsActive = false;
-			clearEditor();
-		}
-	};
-
-	const spliceInstructions = () => {
-		if (!instructionsActive) return;
+	const typeInstructions = () => {
 		const interval = setInterval(() => {
-			if ($instructions.length > value.length) {
-				value += $instructions[value.length];
+			if ($instructions.length > $text.length) {
+				$text += $instructions[$text.length];
 			} else {
 				clearInterval(interval);
 			}
 		}, 25);
 	};
 
-	$: checkForWordiables(value);
-	$: !value && instructionsActive && spliceInstructions();
-	$: !value && wordiables.set([]);
-	$: text.set(value);
+	const startApp = () => {
+		if (!$text && instructionsActive) {
+			typeInstructions();
+		}
+	};
+
+	const handleKeyDown = (event: KeyboardEvent): void => {
+		instructionsActive && event.preventDefault();
+		if (instructionsActive && $text.length >= $instructions.length) {
+			instructionsActive = false;
+			clearEditor();
+		}
+	};
+
+	$: checkForWordiables($text);
+	$: instructionsActive && startApp();
 	$: !instructionsActive && textArea && textArea.focus();
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
+
 <div class="editor" class:inactive={instructionsActive}>
 	<div class="container">
-		{#if value}
+		{#if $text}
 			<p class="live-text">
 				{#each $parsedText as word}
 					{#key word.string}
@@ -59,7 +61,13 @@
 			</p>
 		{/if}
 		<label for="editor">Editor</label>
-		<textarea id="editor" name="editor" class="text-input" bind:value bind:this={textArea} />
+		<textarea
+			id="editor"
+			name="editor"
+			class="text-input"
+			bind:value={$text}
+			bind:this={textArea}
+		/>
 	</div>
 </div>
 
