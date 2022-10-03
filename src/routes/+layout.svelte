@@ -18,6 +18,11 @@
 </footer>
 
 <style lang="scss">
+	@media (max-width: 500px) {
+		header {
+			background: hsl(0deg 0% 90%);
+		}
+	}
 	header {
 		display: flex;
 		position: relative;
