@@ -1,12 +1,12 @@
 import { writable } from 'svelte/store';
 import type { WordI } from '$types';
 
-type EditorI = {
+type Editor = {
 	parsedText: WordI[];
 	wordiables: WordI[];
 };
 
-const store: EditorI = {
+const store: Editor = {
 	parsedText: [],
 	wordiables: []
 };
