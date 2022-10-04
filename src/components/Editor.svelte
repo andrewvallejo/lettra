@@ -12,10 +12,12 @@
 
 	const clearEditor = () => text.set('');
 
+	const { prompt } = $instructions;
+
 	const typeInstructions = () => {
 		const interval = setInterval(() => {
-			if ($instructions.length > $text.length) {
-				$text += $instructions[$text.length];
+			if (prompt.length > $text.length) {
+				$text += prompt[$text.length];
 			} else {
 				clearInterval(interval);
 			}
@@ -30,7 +32,7 @@
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
 		instructionsActive && event.preventDefault();
-		if (instructionsActive && $text.length >= $instructions.length) {
+		if (instructionsActive && $text.length >= prompt.length) {
 			instructionsActive = false;
 			clearEditor();
 		}
