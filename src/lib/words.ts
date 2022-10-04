@@ -5,6 +5,10 @@ export const replaceNewlines = (str: string): string => {
 	return str.replace(regex.newLine, ' <br> ');
 };
 
+export const removeBackSlash = (word: string) => {
+	return word.replace(/\\/g, '');
+};
+
 export const space = ' ';
 
 export const splitText = (text: string): string[] => text.split(' ');

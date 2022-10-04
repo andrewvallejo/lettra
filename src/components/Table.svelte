@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { wordiables } from '$stores/text';
 	import { rainbow } from '$lib/wordiables';
+	import { removeBackSlash } from '$lib/words';
+	import { wordiables } from '$stores/text';
 	import { fade } from 'svelte/transition';
-
-	const removeBackSlash = (word: string) => {
-		return word.replace(/\\/g, '');
-	};
 </script>
 
 <div class="container">
