@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { rainbow } from '$lib/wordiables';
 	import { removeBackSlash } from '$lib/words';
+	import { editor } from '$stores/editor';
 	import { wordiables } from '$stores/text';
 	import { fade } from 'svelte/transition';
+
+	// const { wordiables } = $editor;
 </script>
 
 <div class="container">
@@ -15,7 +18,7 @@
 		<article class="wordRow">
 			<div class="declation">
 				<h3 style="color: {rainbow[i]}" transition:fade={{ delay: 250 }}>
-					{removeBackSlash(wordiable)}
+					{removeBackSlash($wordiables[i])}
 				</h3>
 				<div class="circle" style="background: {rainbow[i]}" in:fade />
 			</div>
