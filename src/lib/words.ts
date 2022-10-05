@@ -28,7 +28,7 @@ export const objectifyWords = (words: string[]): WordI[] => {
 			isWordiable: false,
 			color: '',
 			wordiablePos: -1,
-			occurrences: 1,
+			occurrences: 0,
 			type: 'word'
 		};
 	});
