@@ -12,14 +12,13 @@ const store: Instructions = {
 
 const instructionsStore = () => {
 	const { subscribe, set, update } = writable(store);
-	const setActive = () =>
-		update((instructions) => ({ ...instructions, active: !instructions.active }));
+	const deactivate = () => update((instructions) => ({ ...instructions, active: false }));
 
 	return {
 		subscribe,
 		set,
 		update,
-		setActive
+		deactivate
 	};
 };
 
