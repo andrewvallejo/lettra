@@ -1,18 +1,11 @@
 import { writable, derived } from 'svelte/store';
-import type { Writable } from 'svelte/store';
-import type { Word } from '$types';
-import { splitText, objectifyWords, replaceNewlines } from '$lib/words';
-import { checkForWordiables, powerWordiables } from '$lib/wordiables';
+import type { Writable, Derived } from 'svelte/store';
+import { replaceNewlines } from '$lib/words';
 
 export const text: Writable<string> = writable('');
 
-export const parsedText = derived(text, ($text): Word[] => {
-	if (!$text) wordiables.set([]);
-	checkForWordiables($text);
-	const words = splitText(replaceNewlines($text));
-	const objectifiedWords: Word[] = objectifyWords(words);
-	powerWordiables(objectifiedWords);
-	return objectifiedWords;
+export const cleanText: Derived<string> = derived(text, ($text) => {
+	if ($text) {
+		return replaceNewlines($text);
+	}
 });
-
-export const wordiables: Writable<string[]> = writable([]);

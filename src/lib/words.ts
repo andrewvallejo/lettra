@@ -1,8 +1,8 @@
 import { regex } from './regex';
 import type { Word } from '$types';
 
-export const replaceNewlines = (str: string): string => {
-	return str.replace(regex.newLine, ' <br> ');
+export const replaceNewlines = (text: string): string => {
+	return splitText(text.replace(regex.newLine, ' <br> '));
 };
 
 export const removeBackSlash = (word: string) => {

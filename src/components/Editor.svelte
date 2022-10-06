@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { powerWordiables } from '$lib/wordiables';
-	import { objectifyWords, replaceNewlines, space, splitText } from '$lib/words';
+	import { objectifyWords, space } from '$lib/words';
 	import { instructions } from '$stores/instructions';
-	import { text } from '$stores/text';
-	import { wordiables as wordiableStore } from '$stores/wordiables';
+	import { cleanText, text } from '$stores/text';
 	import { words as wordStore } from '$stores/words';
-	import type { Word } from '$types';
 	import LiveWord from './LiveWord.svelte';
 
 	let textArea: HTMLTextAreaElement;
@@ -39,12 +37,11 @@
 	};
 
 	const parseText = () => {
-		let words: string[] | Word[] = splitText(replaceNewlines($text));
-		words = objectifyWords(words);
-		powerWordiables(words);
-		wordStore.setParsedText(words);
-		const woridablesWords = words.filter((word) => word.isWordiable);
-		wordiableStore.setWordiables(woridablesWords);
+		if ($cleanText) {
+			const words = objectifyWords($cleanText);
+			powerWordiables(words);
+			wordStore.setParsedText(words);
+		}
 	};
 
 	$: instructionActive && startApp();

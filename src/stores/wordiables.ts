@@ -12,7 +12,7 @@ const wordiableStore = () => {
 		subscribe,
 		set,
 		update,
-		setWordiables: (wordiables: Word[]) => update((word) => ({ ...word, wordiables }))
+		setWords: (words: Word[]) => update((word) => ({ ...word, words }))
 	};
 };
 
