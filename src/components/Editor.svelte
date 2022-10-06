@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { powerWordiables } from '$lib/editor';
-	import { objectifyWords, space } from '$lib/editor';
+	import { objectifyWords, powerWordiables, space } from '$lib/editor';
 	import { instructions } from '$stores/instructions';
 	import { cleanText, text } from '$stores/text';
 	import { wordiableDraft, words } from '$stores/words';
@@ -10,31 +9,30 @@
 
 	const clearEditor = () => text.set('');
 
-	const { prompt, instructionActive } = $instructions;
-
 	const typeInstructions = () => {
 		const interval = setInterval(() => {
-			if (prompt.length > $text.length) {
-				$text += prompt[$text.length];
+			if ($instructions.prompt.length > $text.length) {
+				$text += $instructions.prompt[$text.length];
 			} else {
 				clearInterval(interval);
 			}
-		}, 25);
+		}, 15);
 	};
 
 	const startApp = () => {
-		if (!$text && instructionActive) {
+		if (!$text && $instructions.instructionActive) {
 			typeInstructions();
 		}
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
-		instructionActive && event.preventDefault();
-		if (instructionActive && $text.length >= prompt.length) {
-			instructions.deactivate();
+		$instructions.instructionActive && event.preventDefault();
+		if ($instructions.instructionActive && $text.length >= $instructions.prompt.length) {
+			instructions.toggleInstructions();
 			clearEditor();
 		}
 	};
+	$: console.log($instructions);
 
 	const parseText = () => {
 		if ($cleanText) {
@@ -44,15 +42,15 @@
 		}
 	};
 
-	$: instructionActive && startApp();
-	$: !instructionActive && textArea && textArea.focus();
+	$: console.log($instructions);
+	$: $instructions.instructionActive && startApp();
+	$: !$instructions.instructionActive && textArea && textArea.focus();
 	$: $text && parseText();
-	$: console.log($words);
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
 
-<div class="editor" class:inactive={instructionActive}>
+<div class="editor" class:inactive={$instructions.instructionActive}>
 	<div class="container">
 		{#if $text}
 			<p class="live-text">

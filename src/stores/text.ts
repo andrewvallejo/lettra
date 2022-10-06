@@ -1,6 +1,6 @@
 import { writable, derived } from 'svelte/store';
 import type { Writable, Derived } from 'svelte/store';
-import { replaceNewlines } from '$lib/words';
+import { replaceNewlines } from '$lib/editor';
 
 export const text: Writable<string> = writable('');
 
