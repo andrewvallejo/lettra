@@ -20,5 +20,5 @@ type Words = {
 };
 
 type Wordiables = {
-	words: Word[];
+	wordiables: Word[];
 };

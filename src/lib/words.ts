@@ -1,6 +1,6 @@
 import { regex } from './regex';
 import type { Word } from '$types';
-
+import { isWordiable } from '$lib/wordiables';
 export const replaceNewlines = (text: string): string => {
 	return splitText(text.replace(regex.newLine, ' <br> '));
 };
@@ -20,16 +20,16 @@ export const getStringFromText = (text: Word[]): string => {
 	}, '');
 };
 
-export const objectifyWords = (words: string[]): Word[] => {
+export const objectifyWords = (words: string[], preWordiables: string[]): Word[] => {
 	return words.map((word: string, index: number): Word => {
 		return {
 			string: word,
 			index,
-			isWordiable: false,
-			color: '',
+			isWordiable: isWordiable(word, preWordiables),
+			color: 'black',
 			wordiablePos: -1,
 			occurrences: 0,
-			type: 'word'
+			type: isWordiable ? 'wordiable' : 'word'
 		};
 	});
 };

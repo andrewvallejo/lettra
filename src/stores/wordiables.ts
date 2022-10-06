@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import type { Wordiables, Word } from '$types';
 
 const store: Wordiables = {
-	words: []
+	wordiables: []
 };
 
 const wordiableStore = () => {
@@ -12,7 +12,7 @@ const wordiableStore = () => {
 		subscribe,
 		set,
 		update,
-		setWords: (words: Word[]) => update((word) => ({ ...word, words }))
+		setWordiables: (wordiables: Word[]) => update((word) => ({ ...word, wordiables }))
 	};
 };
 

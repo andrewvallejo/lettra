@@ -3,7 +3,8 @@
 	import { objectifyWords, space } from '$lib/words';
 	import { instructions } from '$stores/instructions';
 	import { cleanText, text } from '$stores/text';
-	import { words as wordStore } from '$stores/words';
+	import { wordiables } from '$stores/wordiables';
+	import { wordiableDraft, words } from '$stores/words';
 	import LiveWord from './LiveWord.svelte';
 
 	let textArea: HTMLTextAreaElement;
@@ -38,15 +39,16 @@
 
 	const parseText = () => {
 		if ($cleanText) {
-			const words = objectifyWords($cleanText);
-			powerWordiables(words);
-			wordStore.setParsedText(words);
+			const upgradedWords = objectifyWords($cleanText, $wordiableDraft);
+			powerWordiables(upgradedWords, $wordiableDraft);
+			words.setParsedText(upgradedWords);
 		}
 	};
 
 	$: instructionActive && startApp();
 	$: !instructionActive && textArea && textArea.focus();
 	$: $text && parseText();
+	$: console.log($words);
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
@@ -55,7 +57,7 @@
 	<div class="container">
 		{#if $text}
 			<p class="live-text">
-				{#each $wordStore.words as word}
+				{#each $words.words as word}
 					{#key word.string}
 						{#if word.string === '<br>'}
 							<br />

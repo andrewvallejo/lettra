@@ -1,29 +1,28 @@
 import { regex } from './regex';
 import type { Word } from '$types';
 
-const matchedWords: string[] = [];
-
 export const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'black'];
 
-const isWordiable = (word: string): boolean => {
-	if (!matchedWords.length) return false;
+export const isWordiable = (word: string, preWordiables): boolean => {
 	const match = word.match(regex.wordiables);
-	if (match) return true;
+	if (preWordiables.includes(word) || match) return true;
 	return false;
 };
 
-const getWordiablePos = (word: string): number => {
-	const [match]: RegExpMatchArray = word.match(regex.wordiables) || [];
-	if (match) return matchedWords.indexOf(match);
+const getWordiablePos = (word: string, preWordiables): number => {
+	const match = word.match(regex.wordiables);
+	if (preWordiables.includes(word)) {
+		return preWordiables.indexOf(word);
+	}
+	if (match) return match.index;
 	return -1;
 };
 
-export const powerWordiables = (text: Word[]): void => {
-	text.forEach((t) => {
-		if (isWordiable(t.string)) {
-			t.isWordiable = true;
-			t.wordiablePos = getWordiablePos(t.string);
-			t.color = rainbow[t.wordiablePos];
+export const powerWordiables = (text: Word[], preWordiables: string[]): void => {
+	text.forEach((word) => {
+		if (word.isWordiable) {
+			word.wordiablePos = getWordiablePos(word.string, preWordiables);
+			word.color = rainbow[word.wordiablePos];
 		}
 	});
 };

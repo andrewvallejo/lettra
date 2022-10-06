@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { rainbow } from '$lib/wordiables';
 	import { removeBackSlash } from '$lib/words';
-	import { wordiables } from '$stores/wordiables';
+	import { wordiableDraft as wordiables } from '$stores/words';
 	import { fade } from 'svelte/transition';
-
-	const { words } = $wordiables;
 </script>
 
 <div class="container">
@@ -12,12 +10,12 @@
 		<h2>wordiables</h2>
 		<h2 class="occurences">occurences</h2>
 	</header>
-	{#if words.length > 1}
-		{#each words as wordiable, i}
+	{#if $wordiables.length > 1}
+		{#each $wordiables as wordiable, i}
 			<article class="wordRow">
 				<div class="declation">
 					<h3 style="color: {rainbow[i]}" transition:fade={{ delay: 250 }}>
-						{removeBackSlash(wordiable.string)}
+						{removeBackSlash(wordiable)}
 					</h3>
 					<div class="circle" style="background: {rainbow[i]}" in:fade />
 				</div>
