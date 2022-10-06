@@ -7,8 +7,6 @@
 	import { parsedText, text, wordiables } from '$stores/text';
 	import Word from './Word.svelte';
 
-	let instructionsActive = true;
-
 	let textArea: HTMLTextAreaElement;
 
 	const clearEditor = () => text.set('');
@@ -26,15 +24,15 @@
 	};
 
 	const startApp = () => {
-		if (!$text && instructionsActive) {
+		if (!$text && instructionActive) {
 			typeInstructions();
 		}
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
-		instructionsActive && event.preventDefault();
-		if (instructionsActive && $text.length >= prompt.length) {
-			instructionsActive = false;
+		instructionActive && event.preventDefault();
+		if (instructionActive && $text.length >= prompt.length) {
+			instructions.deactivate();
 			clearEditor();
 		}
 	};
