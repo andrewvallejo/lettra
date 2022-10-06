@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { powerWordiables } from '$lib/wordiables';
 	import { objectifyWords, space } from '$lib/words';
-	import { editor } from '$stores/editor';
+	import { words as wordStore } from '$stores/words';
+	import { wordiables as wordiableStore } from '$stores/wordiables';
 	import { instructions } from '$stores/instructions';
-	import { parsedText, text } from '$stores/text';
+	import { parsedText, text, wordiables } from '$stores/text';
 	import Word from './Word.svelte';
 
 	let instructionsActive = true;
@@ -12,7 +13,7 @@
 
 	const clearEditor = () => text.set('');
 
-	const { prompt } = $instructions;
+	const { prompt, instructionActive } = $instructions;
 
 	const typeInstructions = () => {
 		const interval = setInterval(() => {
@@ -41,20 +42,19 @@
 	const parseText = () => {
 		let words = objectifyWords($text.split(' '));
 		powerWordiables(words);
-		editor.setParsedText(words);
+		wordStore.setParsedText(words);
 		const woridablesWords = words.filter((word) => word.isWordiable);
-		editor.setWordiables(woridablesWords);
+		wordiableStore.setWordiables(woridablesWords);
 	};
 
-	$: instructionsActive && startApp();
-	$: !instructionsActive && textArea && textArea.focus();
+	$: instructionActive && startApp();
+	$: !instructionActive && textArea && textArea.focus();
 	$: $text && parseText();
-	$: console.log('editor', $editor);
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
 
-<div class="editor" class:inactive={instructionsActive}>
+<div class="editor" class:inactive={instructionActive}>
 	<div class="container">
 		{#if $text}
 			<p class="live-text">
