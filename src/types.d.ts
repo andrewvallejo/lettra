@@ -1,4 +1,4 @@
-export type WordI = {
+export type Word = {
 	string: string;
 	index: number;
 	isWordiable: boolean;
@@ -8,13 +8,17 @@ export type WordI = {
 	occurrences: number;
 };
 
-export type RegexI = {
+export type Regex = {
 	wordiables: RegExp;
 	backslash: RegExp;
 	newLine: RegExp;
 	newTab: RegExp;
 };
 
-export type PromptsI = {
-	[key: string]: string;
+type Words = {
+	parsedText: Word[];
+};
+
+type Wordiables = {
+	wordiables: Word[];
 };

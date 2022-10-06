@@ -1,10 +1,6 @@
 import { writable } from 'svelte/store';
 import type { Wordiables, Word } from '$types';
 
-type Wordiables = {
-	words: Word[];
-};
-
 const store: Wordiables = {
 	words: []
 };

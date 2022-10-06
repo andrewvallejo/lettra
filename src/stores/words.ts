@@ -1,10 +1,6 @@
 import { writable } from 'svelte/store';
 import type { Words, Word } from '$types';
 
-type Words = {
-	parsedText: Word[];
-};
-
 const store: Words = {
 	parsedText: []
 };
