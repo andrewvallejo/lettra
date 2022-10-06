@@ -1,6 +1,6 @@
-import type { RegexI } from '$types';
+import type { Regex } from '$types';
 
-export const regex: RegexI = {
+export const regex: Regex = {
 	wordiables: /\\(.*?)\\/g,
 	backslash: /\\/g,
 	newLine: /\n/g,

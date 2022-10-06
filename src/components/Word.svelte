@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { rainbow } from '$lib/wordiables';
-	import type { WordI } from '$types';
+	import type { Word } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
 	import { tweened, type Tweened } from 'svelte/motion';
 
-	export let word: WordI;
+	export let word: Word;
 
 	let text: string = word.string;
 
