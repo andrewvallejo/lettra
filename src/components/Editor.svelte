@@ -32,7 +32,6 @@
 			clearEditor();
 		}
 	};
-	$: console.log($instructions);
 
 	const parseText = () => {
 		if ($cleanText) {
@@ -42,7 +41,6 @@
 		}
 	};
 
-	$: console.log($instructions);
 	$: $instructions.instructionActive && startApp();
 	$: !$instructions.instructionActive && textArea && textArea.focus();
 	$: $text && parseText();
