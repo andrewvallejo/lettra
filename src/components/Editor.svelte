@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { powerWordiables } from '$lib/wordiables';
-	import { objectifyWords, space } from '$lib/words';
-	import { words as wordStore } from '$stores/words';
-	import { wordiables as wordiableStore } from '$stores/wordiables';
+	import { objectifyWords, replaceNewlines, space, splitText } from '$lib/words';
 	import { instructions } from '$stores/instructions';
-	import { parsedText, text, wordiables } from '$stores/text';
-	import Word from './Word.svelte';
+	import { text } from '$stores/text';
+	import { wordiables as wordiableStore } from '$stores/wordiables';
+	import { words as wordStore } from '$stores/words';
+	import type { Word } from '$types';
+	import LiveWord from './LiveWord.svelte';
 
 	let textArea: HTMLTextAreaElement;
 
@@ -38,7 +39,8 @@
 	};
 
 	const parseText = () => {
-		let words = objectifyWords($text.split(' '));
+		let words: string[] | Word[] = splitText(replaceNewlines($text));
+		words = objectifyWords(words);
 		powerWordiables(words);
 		wordStore.setParsedText(words);
 		const woridablesWords = words.filter((word) => word.isWordiable);
@@ -56,12 +58,12 @@
 	<div class="container">
 		{#if $text}
 			<p class="live-text">
-				{#each $parsedText as word}
+				{#each $wordStore.words as word}
 					{#key word.string}
 						{#if word.string === '<br>'}
 							<br />
 						{:else}
-							<Word {word} />
+							<LiveWord {word} />
 						{/if}
 						{#if word.string !== '<br>'}
 							{space}
