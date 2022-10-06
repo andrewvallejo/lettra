@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { rainbow } from '$lib/wordiables';
-	import { removeBackSlash } from '$lib/words';
+	import { rainbow } from '$lib/editor';
+	import { removeBackSlash } from '$lib/editor';
 	import { wordiableDraft as wordiables } from '$stores/words';
 	import { fade } from 'svelte/transition';
 </script>

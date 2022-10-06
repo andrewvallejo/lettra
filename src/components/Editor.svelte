@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { powerWordiables } from '$lib/wordiables';
-	import { objectifyWords, space } from '$lib/words';
+	import { powerWordiables } from '$lib/editor';
+	import { objectifyWords, space } from '$lib/editor';
 	import { instructions } from '$stores/instructions';
 	import { cleanText, text } from '$stores/text';
-	import { wordiables } from '$stores/wordiables';
 	import { wordiableDraft, words } from '$stores/words';
 	import LiveWord from './LiveWord.svelte';
 
