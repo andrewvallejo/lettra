@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import type { Words, Word } from '$types';
 
 const store: Words = {
-	parsedText: []
+	words: []
 };
 
 const wordStore = () => {
@@ -12,7 +12,7 @@ const wordStore = () => {
 		subscribe,
 		set,
 		update,
-		setParsedText: (parsedText: Word[]) => update((word) => ({ ...word, parsedText }))
+		setParsedText: (words: Word[]) => update((word) => ({ ...word, words }))
 	};
 };
 

@@ -16,9 +16,9 @@ export type Regex = {
 };
 
 type Words = {
-	parsedText: Word[];
+	words: Word[];
 };
 
 type Wordiables = {
-	wordiables: Word[];
+	words: Word[];
 };
