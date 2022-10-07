@@ -6,7 +6,7 @@ type Instructions = {
 };
 
 const store: Instructions = {
-	prompt: `In order to create a wordiable, you must surround it with two backslashes. For Example, \\flamingo\\ and \\doctor\\ could be wordiables. With every following iteration of the word's colors corresponding with it. \n  \n  I am applying for the \\doctor\\ role at \\flamingo\\ inc. \n \n	Hit any key to clear editor and begin!`,
+	prompt: `In order to create a wordiable, you must surround it with two backslashes. \n For Example, the words \\flamingo\\ and \\doctor\\ are now wordiables.\n With every following iteration of the word's colors corresponding with it.\n I am applying for the \\doctor\\ role at \\flamingo\\ inc. \n Hit any key to clear editor and begin!`,
 	active: true
 };
 
