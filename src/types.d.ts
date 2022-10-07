@@ -15,10 +15,6 @@ export type Regex = {
 	newTab: RegExp;
 };
 
-type Words = {
-	words: Word[];
-};
+type Words = Word[];
 
-type Wordiables = {
-	wordiables: Word[];
-};
+type Wordiables = Word[];
