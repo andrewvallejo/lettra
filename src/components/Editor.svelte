@@ -20,39 +20,39 @@
 	};
 
 	const startApp = () => {
-		if (!$text && $instructions.instructionActive) {
+		if (!$text && $instructions.active) {
 			typeInstructions();
 		}
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
-		$instructions.instructionActive && event.preventDefault();
-		if ($instructions.instructionActive && $text.length >= $instructions.prompt.length) {
+		$instructions.active && event.preventDefault();
+		if ($instructions.active && $text.length >= $instructions.prompt.length) {
 			instructions.toggleInstructions();
 			clearEditor();
 		}
 	};
 
 	const parseText = () => {
-		if ($cleanText) {
+		if ($text) {
 			const upgradedWords = objectifyWords($cleanText, $wordiableDraft);
 			powerWordiables(upgradedWords, $wordiableDraft);
-			words.setParsedText(upgradedWords);
+			words.setWords(upgradedWords);
 		}
 	};
 
-	$: $instructions.instructionActive && startApp();
-	$: !$instructions.instructionActive && textArea && textArea.focus();
+	$: $instructions.active && startApp();
+	$: !$instructions.active && textArea && textArea.focus();
 	$: $text && parseText();
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
 
-<div class="editor" class:inactive={$instructions.instructionActive}>
+<div class="editor" class:inactive={$instructions.active}>
 	<div class="container">
 		{#if $text}
 			<p class="live-text">
-				{#each $words.words as word}
+				{#each $words as word}
 					{#key word.string}
 						{#if word.string === '<br>'}
 							<br />
