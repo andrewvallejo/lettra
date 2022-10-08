@@ -1,55 +1,63 @@
 <script lang="ts">
-	import { checkForWordiables } from '$lib/wordiables';
-	import { parsedText, text, wordiables } from '$stores/text';
-	import { space } from '$lib/words';
-	import Word from './Word.svelte';
+	import { objectifyWords, powerWordiables, space } from '$lib/editor';
 	import { instructions } from '$stores/instructions';
-
-	let value: string = '';
-
-	let instructionsActive = true;
+	import { cleanText, text } from '$stores/text';
+	import { wordiableDraft, words } from '$stores/words';
+	import LiveWord from './LiveWord.svelte';
 
 	let textArea: HTMLTextAreaElement;
 
-	const clearEditor = () => (value = '');
+	const clearEditor = () => text.set('');
+
+	const typeInstructions = () => {
+		const interval = setInterval(() => {
+			if ($instructions.prompt.length > $text.length) {
+				$text += $instructions.prompt[$text.length];
+			} else {
+				clearInterval(interval);
+			}
+		}, 15);
+	};
+
+	const startApp = () => {
+		if (!$text && $instructions.active) {
+			typeInstructions();
+		}
+	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
-		instructionsActive && event.preventDefault();
-		if (instructionsActive && value.length >= $instructions.length) {
-			instructionsActive = false;
+		$instructions.active && event.preventDefault();
+		if ($instructions.active && $text.length >= $instructions.prompt.length) {
+			instructions.toggleInstructions();
 			clearEditor();
 		}
 	};
 
-	const spliceInstructions = () => {
-		if (!instructionsActive) return;
-		const interval = setInterval(() => {
-			if ($instructions.length > value.length) {
-				value += $instructions[value.length];
-			} else {
-				clearInterval(interval);
-			}
-		}, 25);
+	const parseText = () => {
+		if ($text) {
+			const upgradedWords = objectifyWords($cleanText, $wordiableDraft);
+			powerWordiables(upgradedWords, $wordiableDraft);
+			words.setWords(upgradedWords);
+		}
 	};
 
-	$: checkForWordiables(value);
-	$: !value && instructionsActive && spliceInstructions();
-	$: !value && wordiables.set([]);
-	$: text.set(value);
-	$: !instructionsActive && textArea && textArea.focus();
+	$: $instructions.active && startApp();
+	$: !$instructions.active && textArea && textArea.focus();
+	$: $text && parseText();
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
-<div class="editor" class:inactive={instructionsActive}>
+
+<div class="editor" class:inactive={$instructions.active}>
 	<div class="container">
-		{#if value}
+		{#if $text}
 			<p class="live-text">
-				{#each $parsedText as word}
+				{#each $words as word}
 					{#key word.string}
 						{#if word.string === '<br>'}
 							<br />
 						{:else}
-							<Word {word} />
+							<LiveWord {word} />
 						{/if}
 						{#if word.string !== '<br>'}
 							{space}
@@ -59,7 +67,13 @@
 			</p>
 		{/if}
 		<label for="editor">Editor</label>
-		<textarea id="editor" name="editor" class="text-input" bind:value bind:this={textArea} />
+		<textarea
+			id="editor"
+			name="editor"
+			class="text-input"
+			bind:value={$text}
+			bind:this={textArea}
+		/>
 	</div>
 </div>
 
@@ -104,11 +118,10 @@
 			.live-text {
 				z-index: 1;
 				position: absolute;
-				top: 0.1rem;
+				top: 0;
 				left: 0.1rem;
 				width: 100%;
 				height: 100%;
-				word-spacing: -0.39rem;
 				pointer-events: none;
 				overflow-wrap: break-word;
 			}

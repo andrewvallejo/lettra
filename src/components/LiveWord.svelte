@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { rainbow } from '$lib/wordiables';
-	import type { WordI } from '$types';
+	import { rainbow } from '$lib/editor';
+	import type { Word } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
 	import { tweened, type Tweened } from 'svelte/motion';
 
-	export let word: WordI;
+	export let word: Word;
 
 	let text: string = word.string;
 
@@ -31,12 +31,13 @@
 <style lang="scss">
 	span {
 		pointer-events: auto;
+		line-height: 1.12;
 		.wordiable {
 			font-weight: 600;
 		}
 		button {
 			position: relative;
-			border-bottom: transparent 1px solid;
+			border-bottom: transparent 0px solid;
 			cursor: pointer;
 
 			&:focus {

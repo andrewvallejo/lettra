@@ -1,11 +1,7 @@
 <script lang="ts">
-	import { wordiables } from '$stores/text';
-	import { rainbow } from '$lib/wordiables';
+	import { rainbow, removeBackSlash } from '$lib/editor';
+	import { wordiableDraft as wordiables } from '$stores/words';
 	import { fade } from 'svelte/transition';
-
-	const removeBackSlash = (word: string) => {
-		return word.replace(/\\/g, '');
-	};
 </script>
 
 <div class="container">
@@ -13,19 +9,20 @@
 		<h2>wordiables</h2>
 		<h2 class="occurences">occurences</h2>
 	</header>
-
-	{#each $wordiables as wordiable, i}
-		<article class="wordRow">
-			<div class="declation">
-				<h3 style="color: {rainbow[i]}" transition:fade={{ delay: 250 }}>
-					{removeBackSlash(wordiable)}
-				</h3>
-				<div class="circle" style="background: {rainbow[i]}" in:fade />
-			</div>
-			<h4 class="occurences" transition:fade={{ delay: 250 }}>0</h4>
-		</article>
-		<div class="line" style="background: {rainbow[i]}" in:fade />
-	{/each}
+	{#if $wordiables.length > 1}
+		{#each $wordiables as wordiable, i}
+			<article class="wordRow">
+				<div class="declation">
+					<h3 style="color: {rainbow[i]}" transition:fade={{ delay: 250 }}>
+						{removeBackSlash(wordiable)}
+					</h3>
+					<div class="circle" style="background: {rainbow[i]}" in:fade />
+				</div>
+				<h4 class="occurences" transition:fade={{ delay: 250 }}>0</h4>
+			</article>
+			<div class="line" style="background: {rainbow[i]}" in:fade />
+		{/each}
+	{/if}
 </div>
 
 <style lang="scss">

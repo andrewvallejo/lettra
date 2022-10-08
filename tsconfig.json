@@ -13,6 +13,7 @@
 		"module": "esnext",
 		"moduleResolution": "node",
 		"baseUrl": ".",
+		"types": ["node", "svelte"],
 		"paths": {
 			"$stores/*": ["src/stores/*"],
 			"$components/*": ["src/components/*"],
