@@ -118,11 +118,10 @@
 			.live-text {
 				z-index: 1;
 				position: absolute;
-				top: 0.1rem;
+				top: 0;
 				left: 0.1rem;
 				width: 100%;
 				height: 100%;
-				word-spacing: -0.39rem;
 				pointer-events: none;
 				overflow-wrap: break-word;
 			}

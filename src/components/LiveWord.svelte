@@ -31,12 +31,13 @@
 <style lang="scss">
 	span {
 		pointer-events: auto;
+		line-height: 1.12;
 		.wordiable {
 			font-weight: 600;
 		}
 		button {
 			position: relative;
-			border-bottom: transparent 1px solid;
+			border-bottom: transparent 0px solid;
 			cursor: pointer;
 
 			&:focus {
