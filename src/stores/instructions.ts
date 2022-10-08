@@ -9,7 +9,7 @@ const store: Instructions = {
 const instructionsStore = () => {
 	const { subscribe, set, update } = writable(store);
 
-	const toggleInstructions = () => {
+	const toggle = () => {
 		update((instructions: Instructions) => {
 			instructions.active = !instructions.active;
 			return instructions;
@@ -20,7 +20,7 @@ const instructionsStore = () => {
 		subscribe,
 		set,
 		update,
-		toggleInstructions
+		toggle
 	};
 };
 

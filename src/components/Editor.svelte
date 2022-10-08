@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { objectifyWords, powerWordiables, space } from '$lib/editor';
+	import { space } from '$lib/editor';
 	import { instructions } from '$stores/instructions';
-	import { cleanText, text } from '$stores/text';
-	import { wordiableDraft, words } from '$stores/words';
+	import { parsedText, text } from '$stores/text';
+	import { words } from '$stores/words';
 	import LiveWord from './LiveWord.svelte';
 
 	let textArea: HTMLTextAreaElement;
-
-	const clearEditor = () => text.set('');
 
 	const typeInstructions = () => {
 		const interval = setInterval(() => {
@@ -16,34 +14,20 @@
 			} else {
 				clearInterval(interval);
 			}
-		}, 15);
-	};
-
-	const startApp = () => {
-		if (!$text && $instructions.active) {
-			typeInstructions();
-		}
+		}, 35);
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
 		$instructions.active && event.preventDefault();
 		if ($instructions.active && $text.length >= $instructions.prompt.length) {
-			instructions.toggleInstructions();
-			clearEditor();
+			instructions.toggle();
+			text.set('');
 		}
 	};
 
-	const parseText = () => {
-		if ($text) {
-			const upgradedWords = objectifyWords($cleanText, $wordiableDraft);
-			powerWordiables(upgradedWords, $wordiableDraft);
-			words.setWords(upgradedWords);
-		}
-	};
-
-	$: $instructions.active && startApp();
-	$: !$instructions.active && textArea && textArea.focus();
-	$: $text && parseText();
+	$: words.setWords($parsedText);
+	$: if (!$text && $instructions.active) typeInstructions();
+	$: if (!$instructions.active && textArea) textArea.focus();
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
