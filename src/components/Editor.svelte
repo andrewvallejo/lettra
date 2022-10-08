@@ -134,7 +134,6 @@
 				border: 2.5px solid grey;
 				outline: none;
 				color: transparent;
-				color: pink;
 				resize: none;
 				background: eggshell;
 				caret-color: black;
