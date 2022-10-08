@@ -18,3 +18,8 @@ export type Regex = {
 type Words = Word[];
 
 type Wordiables = Word[];
+
+type Instructions = {
+	active: boolean;
+	prompt: string;
+};
