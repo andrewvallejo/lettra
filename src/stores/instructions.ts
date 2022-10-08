@@ -13,11 +13,18 @@ const store: Instructions = {
 const instructionsStore = () => {
 	const { subscribe, set, update } = writable(store);
 
+	const toggleInstructions = () => {
+		update((instructions: Instructions) => {
+			instructions.active = !instructions.active;
+			return instructions;
+		});
+	};
+
 	return {
 		subscribe,
 		set,
 		update,
-		toggleInstructions: () => update((store) => ({ ...store, active: !store.active }))
+		toggleInstructions
 	};
 };
 
