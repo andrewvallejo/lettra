@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { space } from '$lib/editor';
+	import { space } from '$lib/strings';
 	import { instructions } from '$stores/instructions';
 	import { parsedText, text } from '$stores/text';
 	import { words } from '$stores/words';
@@ -25,9 +25,9 @@
 		}
 	};
 
-	$: words.setWords($parsedText);
 	$: if (!$text && $instructions.active) typeInstructions();
 	$: if (!$instructions.active && textArea) textArea.focus();
+	$: words.setWords($parsedText);
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />

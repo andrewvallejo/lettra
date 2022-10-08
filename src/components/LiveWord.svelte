@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { rainbow } from '$lib/editor';
+	import { rainbow } from '$lib/strings';
 	import type { Word } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
 	import { tweened, type Tweened } from 'svelte/motion';

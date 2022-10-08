@@ -1,4 +1,5 @@
-import { objectifyWords, powerWordiables, replaceNewlines } from '$lib/editor';
+import { objectifyWords, powerWordiables } from '$lib/editor';
+import { replaceNewlines } from '$lib/strings';
 import type { Readable, Writable } from 'svelte/store';
 import { derived, writable } from 'svelte/store';
 import { words } from './words';
