@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { rainbow, removeBackSlash } from '$lib/strings';
+	import { removeBackSlash } from '$lib/strings';
 	import { wordiables } from '$stores/text';
 	import { fade } from 'svelte/transition';
 </script>
@@ -9,17 +9,17 @@
 		<h2>wordiables</h2>
 		<h2 class="occurences">occurences</h2>
 	</header>
-	{#each $wordiables as wordiable, i}
+	{#each $wordiables as wordiable}
 		<article class="wordRow">
 			<div class="declation">
-				<h3 style="color: {rainbow[i]}" transition:fade={{ delay: 250 }}>
+				<h3 style="color: {wordiable.color}" transition:fade={{ delay: 250 }}>
 					{removeBackSlash(wordiable.string)}
 				</h3>
-				<div class="circle" style="background: {rainbow[i]}" in:fade />
+				<div class="circle" style="background: {wordiable.color}" in:fade />
 			</div>
 			<h4 class="occurences">{wordiable.occurrences}</h4>
 		</article>
-		<div class="line" style="background: {rainbow[i]}" in:fade />
+		<div class="line" style="background: {wordiable.color}" in:fade />
 	{/each}
 </div>
 
