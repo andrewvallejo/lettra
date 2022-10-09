@@ -5,6 +5,9 @@ import path from 'path';
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
 	plugins: [sveltekit()],
+	server: {
+		port: 3000
+	},
 	resolve: {
 		alias: {
 			$stores: path.resolve('/src/stores'),

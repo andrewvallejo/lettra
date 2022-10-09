@@ -66,7 +66,7 @@ You can visit [Lettra's website](https://lettra.vercel.app) or clone the repo.
    npm run dev
    ```
 
-3. Once started, visit [localhost:5173](http://localhost::5173) on your browser.
+3. Once started, visit [localhost:3000](http://localhost:3000) on your browser.
 
 ## Usage
 
