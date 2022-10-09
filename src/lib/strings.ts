@@ -3,6 +3,7 @@ import { regex } from './regex';
 export const replaceNewlines = (text: string): string[] =>
 	splitText(text.replace(regex.newLine, ' <br> '));
 
+<<<<<<< HEAD
 export const replaceLinebreaks = (text: string[]): string =>
 	text.reduce((acc, word) => {
 		if (word === '<br>') acc += '\n';
@@ -15,6 +16,9 @@ export const trimText = (text: string): string => text.replace(regex.nonWhitespa
 export const removeBackSlashes = (word: string) => word.replace(/\\/g, '');
 
 export const addBackSlashes = (text: string): string => text.replace(regex.word, '\\$&\\');
+=======
+export const removeBackSlash = (word: string) => word.replace(/\\/g, '');
+>>>>>>> 78872bb (Revert "Feature/button")
 
 export const splitText = (text: string): string[] => text.split(' ');
 
