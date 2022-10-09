@@ -30,10 +30,8 @@
 		splitted[index] = flippedWord;
 		const newText = splitted.join(' ');
 		textStore.set(newText);
-		// text needs to update on the dom too
 	};
 
-	$: console.log('textStore', $textStore);
 	$: color.set(rainbow[word.wordiablePos]);
 </script>
 
