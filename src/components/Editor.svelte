@@ -27,7 +27,7 @@
 
 	$: if (!$text && $instructions.active) typeInstructions();
 	$: if (!$instructions.active && textArea) textArea.focus();
-	$: words.setWords($parsedText);
+	$: $text ? words.setWords($parsedText) : words.clear();
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />

@@ -18,12 +18,11 @@
 		console.log('button works');
 	};
 
-	$: font = word.isWordiable ? 'wordiable' : 'word';
 	$: color.set(rainbow[word.wordiablePos]);
 </script>
 
 <span>
-	<button on:click={handleClick} style="color: {$color}" class={font}>
+	<button on:click={handleClick} style="color: {$color}" class={word.type}>
 		{text}
 	</button>
 </span>
