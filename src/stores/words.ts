@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { Words, Word } from '$types';
+import type { Word, Words } from '$types';
 
 const store: Words = [];
 
@@ -12,6 +12,9 @@ const wordStore = () => {
 		update,
 		setWords(words: Word[]) {
 			set(words);
+			words.forEach((word) => {
+				word.occurrences = words.filter((w) => w.string === word.string).length;
+			});
 		},
 		countOccurrences(word: string) {
 			update((words: Words) => {
@@ -19,6 +22,9 @@ const wordStore = () => {
 				words[wordIndex].occurrences++;
 				return words;
 			});
+		},
+		clear() {
+			set([]);
 		}
 	};
 };
