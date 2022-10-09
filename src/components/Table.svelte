@@ -7,7 +7,7 @@
 <div class="container">
 	<header class="categories">
 		<h2>wordiables</h2>
-		<h2 class="occurences">occurences</h2>
+		<h2 class="occurrences">occurrences</h2>
 	</header>
 	{#each $wordiables as wordiable}
 		<article class="wordRow">
@@ -17,7 +17,7 @@
 				</h3>
 				<div class="circle" style="background: {wordiable.color}" in:fade />
 			</div>
-			<h4 class="occurences">{wordiable.occurrences}</h4>
+			<h4 class="occurrences">{wordiable.occurrences}</h4>
 		</article>
 		<div class="line" style="background: {wordiable.color}" in:fade />
 	{/each}
@@ -25,7 +25,7 @@
 
 <style lang="scss">
 	@media (max-width: 1200px) {
-		.occurences {
+		.occurrences {
 			display: none;
 		}
 	}
