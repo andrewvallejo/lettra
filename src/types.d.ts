@@ -22,5 +22,5 @@ type Wordiables = Word[];
 
 type Instructions = {
 	active: boolean;
-	prompt: string;
+	script: string;
 };

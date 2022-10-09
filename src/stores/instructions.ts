@@ -2,8 +2,16 @@ import type { Instructions } from '../types';
 import { writable } from 'svelte/store';
 
 const store: Instructions = {
-	prompt: `In order to create a wordiable, you must surround it with two backslashes.\n \n For Example, the words \\flamingo\\ and \\doctor\\ are now wordiables.\n \n With every following iteration of the word's colors corresponding with it.\n \n I am applying for the \\doctor\\ role at \\flamingo\\ inc.\n \n Hit any key to clear editor and begin!`,
-	active: true
+	active: true,
+	script: `In order to create a wordiable, you must surround it with two backslashes.
+
+For Example, the words \\flamingo\\ and \\doctor\\ are now wordiables.
+
+With every following iteration of the word's colors corresponding with it.
+
+I am applying for the \\doctor\\ role at \\flamingo\\ inc.
+
+Hit any key to clear editor and begin!`
 };
 
 const instructionsStore = () => {
