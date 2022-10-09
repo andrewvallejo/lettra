@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { removeBackSlash } from '$lib/strings';
+	import { removeBackSlashes } from '$lib/strings';
 	import { wordiables } from '$stores/text';
 	import { fade } from 'svelte/transition';
 </script>
@@ -13,7 +13,7 @@
 		<article class="wordRow">
 			<div class="declation">
 				<h3 style="color: {wordiable.color}" transition:fade={{ delay: 250 }}>
-					{removeBackSlash(wordiable.string)}
+					{removeBackSlashes(wordiable.string)}
 				</h3>
 				<div class="circle" style="background: {wordiable.color}" in:fade />
 			</div>
