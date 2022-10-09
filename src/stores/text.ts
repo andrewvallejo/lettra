@@ -1,8 +1,9 @@
-import { objectifyWords, powerWordiables } from '$lib/editor';
-import { replaceNewlines } from '$lib/strings';
-import type { Readable, Writable } from 'svelte/store';
 import { derived, writable } from 'svelte/store';
+import type { Readable, Writable } from 'svelte/store';
 import { words } from './words';
+import { objectifyWords, powerWordiables } from '$lib/editor';
+import type { Words } from '$types';
+import { replaceNewlines } from '$lib/strings';
 
 export const text: Writable<string> = writable('');
 
@@ -10,13 +11,16 @@ export const cleanText: Readable<string[]> = derived(text, ($text) => {
 	return replaceNewlines($text);
 });
 
-export const wordiableDraft = derived(words, ($words) => {
-	const wordiables = $words.filter((word) => word.isWordiable).map((word) => word.string);
-	return [...new Set(wordiables)];
+export const wordiables = derived(words, ($words): Words => {
+	const wordiables = $words.filter((word) => word.isWordiable);
+	const uniqueWordiables = wordiables.filter(
+		(word, index, self) => index === self.findIndex((w) => w.string === word.string)
+	);
+	return uniqueWordiables;
 });
 
-export const parsedText = derived([cleanText, wordiableDraft], ([$cleanText, $wordiableDraft]) => {
-	const upgradedWords = objectifyWords($cleanText, $wordiableDraft);
-	powerWordiables(upgradedWords, $wordiableDraft);
+export const parsedText = derived([cleanText, wordiables], ([$cleanText, $wordiables]) => {
+	const upgradedWords = objectifyWords($cleanText);
+	powerWordiables(upgradedWords, $wordiables);
 	return upgradedWords;
 });
