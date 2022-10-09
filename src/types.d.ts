@@ -13,6 +13,7 @@ export type Regex = {
 	backslash: RegExp;
 	newLine: RegExp;
 	newTab: RegExp;
+	word: RegExp;
 };
 
 type Words = Word[];
