@@ -1,12 +1,9 @@
 import { regex } from './regex';
 
-export const replaceNewlines = (text: string): string[] => {
-	return splitText(text.replace(regex.newLine, ' <br> '));
-};
+export const replaceNewlines = (text: string): string[] =>
+	splitText(text.replace(regex.newLine, ' <br> '));
 
-export const removeBackSlash = (word: string) => {
-	return word.replace(/\\/g, '');
-};
+export const removeBackSlash = (word: string) => word.replace(/\\/g, '');
 
 export const splitText = (text: string): string[] => text.split(' ');
 
