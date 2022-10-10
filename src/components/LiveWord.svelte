@@ -7,11 +7,7 @@
 
 	export let word: Word;
 
-	let wordType: string = word.type;
-
 	let text: string = word.string;
-
-	let index = word.index;
 
 	let color: Tweened<string> = tweened(rainbow[7], {
 		duration: 350,
@@ -23,15 +19,11 @@
 		let newText: string;
 		let splitted: string[] = $cleanText;
 		let flippedWord: string =
-			wordType === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
 
 		splitted[index] = flippedWord;
 		newText = splitted.join(' ');
 		textStore.set(reverseParseText(newText));
-	};
-
-	$: color.set(rainbow[word.wordiablePos]);
-</script>
+	}
 
 <span>
 	<button on:click={handleClick} style="color: {$color}" class={word.type}>
