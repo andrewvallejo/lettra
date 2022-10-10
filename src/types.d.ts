@@ -13,11 +13,8 @@ export type Regex = {
 	backslash: RegExp;
 	newLine: RegExp;
 	newTab: RegExp;
-<<<<<<< HEAD
 	word: RegExp;
 	nonWhitespace: RegExp;
-=======
->>>>>>> 78872bb (Revert "Feature/button")
 };
 
 type Words = Word[];
