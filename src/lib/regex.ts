@@ -5,5 +5,6 @@ export const regex: Regex = {
 	backslash: /\\/g,
 	newLine: /\n/g,
 	newTab: /\t/g,
-	word: /\w+/g
+	word: /\w+/g,
+	nonWhitespace: /[^\S\r\n]+/g
 };
