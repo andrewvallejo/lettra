@@ -75,7 +75,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 65rem;
+		width: 66rem;
 		min-width: 25rem;
 		height: clamp(13rem, 94%, 50rem);
 		border: 20px solid #e5e5e5;
@@ -119,6 +119,7 @@
 				padding: 0;
 				border: 2.5px solid grey;
 				outline: none;
+				color: transparent;
 				color: pink;
 				resize: none;
 				background: eggshell;
