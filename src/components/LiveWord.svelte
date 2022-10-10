@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { addBackSlashes, rainbow, removeBackSlashes, splitText } from '$lib/strings';
+	import { addBackSlashes, reverseParseText, rainbow, removeBackSlashes } from '$lib/strings';
+	import { cleanText, text as textStore } from '$stores/text';
 	import type { Word } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
 	import { tweened, type Tweened } from 'svelte/motion';
-	import { text as textStore } from '$stores/text';
 
 	export let word: Word;
 
@@ -20,16 +20,14 @@
 	});
 
 	const handleClick = () => {
-		let flippedWord: string;
-		let splitted: string[] = splitText($textStore);
-		if (wordType === 'wordiable') {
-			flippedWord = removeBackSlashes(word.string);
-		} else {
-			flippedWord = addBackSlashes(word.string);
-		}
+		let newText: string;
+		let splitted: string[] = $cleanText;
+		let flippedWord: string =
+			wordType === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
+
 		splitted[index] = flippedWord;
-		const newText = splitted.join(' ');
-		textStore.set(newText);
+		newText = splitted.join(' ');
+		textStore.set(reverseParseText(newText));
 	};
 
 	$: color.set(rainbow[word.wordiablePos]);
