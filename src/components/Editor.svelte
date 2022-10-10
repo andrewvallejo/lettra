@@ -28,7 +28,6 @@
 	$: if (!$text && $instructions.active) typeInstructions();
 	$: if (!$instructions.active && textArea) textArea.focus();
 	$: $text ? words.setWords($parsedText) : words.clear();
-	$: words.setWords($parsedText);
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
@@ -51,7 +50,6 @@
 				{/each}
 			</p>
 		{/if}
-
 		<label for="editor">Editor</label>
 		<textarea
 			id="editor"
