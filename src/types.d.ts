@@ -14,6 +14,7 @@ export type Regex = {
 	newLine: RegExp;
 	newTab: RegExp;
 	word: RegExp;
+	nonWhitespace: RegExp;
 };
 
 type Words = Word[];
