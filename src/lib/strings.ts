@@ -4,6 +4,9 @@ export const replaceNewlines = (text: string): string[] =>
 	splitText(text.replace(regex.newLine, ' <br> '));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> eb073f5 (Add new methods to parse string into text-input form)
 export const replaceLinebreaks = (text: string[]): string =>
 	text.reduce((acc, word) => {
 		if (word === '<br>') acc += '\n';
@@ -16,9 +19,12 @@ export const trimText = (text: string): string => text.replace(regex.nonWhitespa
 export const removeBackSlashes = (word: string) => word.replace(/\\/g, '');
 
 export const addBackSlashes = (text: string): string => text.replace(regex.word, '\\$&\\');
+<<<<<<< HEAD
 =======
 export const removeBackSlash = (word: string) => word.replace(/\\/g, '');
 >>>>>>> 78872bb (Revert "Feature/button")
+=======
+>>>>>>> eb073f5 (Add new methods to parse string into text-input form)
 
 export const splitText = (text: string): string[] => text.split(' ');
 
