@@ -1,12 +1,17 @@
 <script lang="ts">
-	import { rainbow } from '$lib/strings';
+	import { addBackSlashes, rainbow, removeBackSlashes, reverseParseText } from '$lib/strings';
+	import { cleanText, text as textStore } from '$stores/text';
 	import type { Word } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
 	import { tweened, type Tweened } from 'svelte/motion';
 
 	export let word: Word;
 
+	let wordType: string = word.type;
+
 	let text: string = word.string;
+
+	let index = word.index;
 
 	let color: Tweened<string> = tweened(rainbow[7], {
 		duration: 350,
@@ -15,7 +20,14 @@
 	});
 
 	const handleClick = () => {
-		console.log('button works');
+		let newText: string;
+		let splitted: string[] = $cleanText;
+		let flippedWord: string =
+			wordType === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
+
+		splitted[index] = flippedWord;
+		newText = splitted.join(' ');
+		textStore.set(reverseParseText(newText));
 	};
 
 	$: color.set(rainbow[word.wordiablePos]);

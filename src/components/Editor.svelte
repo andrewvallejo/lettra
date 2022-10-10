@@ -9,17 +9,17 @@
 
 	const typeInstructions = () => {
 		const interval = setInterval(() => {
-			if ($instructions.prompt.length > $text.length) {
-				$text += $instructions.prompt[$text.length];
+			if ($instructions.script.length > $text.length) {
+				$text += $instructions.script[$text.length];
 			} else {
 				clearInterval(interval);
 			}
-		}, 35);
+		}, 5);
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
 		$instructions.active && event.preventDefault();
-		if ($instructions.active && $text.length >= $instructions.prompt.length) {
+		if ($instructions.active && $text.length >= $instructions.script.length) {
 			instructions.toggle();
 			text.set('');
 		}
@@ -73,7 +73,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 65rem;
+		width: 66rem;
 		min-width: 25rem;
 		height: clamp(13rem, 94%, 50rem);
 		border: 20px solid #e5e5e5;
@@ -112,7 +112,7 @@
 
 			.text-input {
 				position: absolute;
-				width: 101%;
+				width: 100%;
 				height: inherit;
 				padding: 0;
 				border: 2.5px solid grey;

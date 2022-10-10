@@ -13,6 +13,8 @@ export type Regex = {
 	backslash: RegExp;
 	newLine: RegExp;
 	newTab: RegExp;
+	word: RegExp;
+	nonWhitespace: RegExp;
 };
 
 type Words = Word[];
@@ -21,5 +23,5 @@ type Wordiables = Word[];
 
 type Instructions = {
 	active: boolean;
-	prompt: string;
+	script: string;
 };
