@@ -7,6 +7,8 @@
 
 	export let word: Word;
 
+	let active = false;
+
 	let wordType: string = word.type;
 
 	let text: string = word.string;
@@ -19,22 +21,43 @@
 		interpolate: interpolateLab
 	});
 
+	const debounce = (callback: () => void) => {
+		setTimeout(() => {
+			if (!active) {
+				callback();
+			}
+		}, 250);
+	};
+
 	const handleClick = () => {
 		let newText: string;
 		let splitted: string[] = $cleanText;
 		let flippedWord: string =
 			wordType === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
-
 		splitted[index] = flippedWord;
-		newText = splitted.join(' ');
-		textStore.set(reverseParseText(newText));
+		newText = reverseParseText(splitted.join(' '));
+		textStore.set(newText);
+	};
+
+	const handleDoubleClick = () => {
+		active = true;
+		setTimeout(() => {
+			if (active) {
+				active = false;
+			}
+		}, 250);
 	};
 
 	$: color.set(rainbow[word.wordiablePos]);
 </script>
 
 <span>
-	<button on:click={handleClick} style="color: {$color}" class={word.type}>
+	<button
+		on:dblclick={handleDoubleClick}
+		on:click={() => debounce(handleClick)}
+		style="color: {$color}"
+		class={word.type}
+	>
 		{text}
 	</button>
 </span>
