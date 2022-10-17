@@ -14,7 +14,7 @@
 			} else {
 				clearInterval(interval);
 			}
-		}, 35);
+		}, 3); //TODO change back to 35
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
@@ -42,7 +42,7 @@
 						{#if word.string === '<br>'}
 							<br />
 						{:else}
-							<LiveWord {word} />
+							<LiveWord {word} {textArea} />
 						{/if}
 						{#if word.string !== '<br>'}
 							{space}
