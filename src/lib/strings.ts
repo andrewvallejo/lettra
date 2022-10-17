@@ -27,3 +27,7 @@ export const reverseParseText = (text: string) => {
 	processed = replaceLinebreaks(processed.split(' '));
 	return processed;
 };
+
+export const flipWord = (text: string, type: string) => {
+	return type === 'wordiable' ? removeBackSlashes(text) : addBackSlashes(text);
+};
