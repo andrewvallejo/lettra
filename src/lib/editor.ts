@@ -1,19 +1,23 @@
 import type { Word } from '$types';
-import { rainbow } from './strings';
+import { addBackSlashes, rainbow } from './strings';
 import { regex } from './regex';
 
-export const isWordiable = (word: string): boolean => {
+export const isWordiable = (word: string, draft: string[] = []): boolean => {
 	const match = word.match(regex.wordiables);
 	if (match) return true;
+	if (draft.length) {
+		//check to see if word wrapped in \\ backslashes is in draft
+		if (draft.includes(addBackSlashes(word))) return true;
+	}
 	return false;
 };
 
-export const objectifyWords = (words: string[]): Word[] => {
+export const objectifyWords = (words: string[], wordiableDraft: Word[]): Word[] => {
 	return words.map((word: string, index: number): Word => {
 		return {
 			string: word,
 			index,
-			isWordiable: isWordiable(word),
+			isWordiable: isWordiable(word, wordiableDraft),
 			color: 'black',
 			wordiablePos: -1,
 			occurrences: 0,
