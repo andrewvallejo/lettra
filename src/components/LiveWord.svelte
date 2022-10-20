@@ -13,9 +13,15 @@
 
 	let index = word.index;
 
-	let color: Tweened<string> = tweened(rainbow[7], {
+	let delay = index * 10 + 150;
+
+	let prevColor = rainbow[word.wordiablePos - 1];
+
+	$: word.isInWordiables && (prevColor = rainbow[7]);
+
+	let color: Tweened<string> = tweened(prevColor, {
 		duration: 350,
-		delay: 250,
+		delay: delay,
 		interpolate: interpolateLab
 	});
 
