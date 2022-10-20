@@ -2,14 +2,14 @@ import type { Word } from '$types';
 import { addBackSlashes, rainbow } from './strings';
 import { regex } from './regex';
 
+export const isInWordiables = (word: string, wordiables: string[] = []): boolean => {
+	if (wordiables.includes(addBackSlashes(word))) return true;
+};
+
 export const isWordiable = (word: string): boolean => {
 	const match = word.match(regex.wordiables);
 	if (match) return true;
 	return false;
-};
-
-export const isInWordiables = (word: string, wordiables: string[] = []): boolean => {
-	if (wordiables.includes(addBackSlashes(word))) return true;
 };
 
 export const objectifyWords = (words: string[], wordiables: Word[]): Word[] => {
