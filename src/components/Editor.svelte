@@ -14,7 +14,7 @@
 			} else {
 				clearInterval(interval);
 			}
-		}, 35);
+		}, 3); //!5
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
