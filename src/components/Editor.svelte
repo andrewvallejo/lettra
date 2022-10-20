@@ -38,7 +38,7 @@
 		{#if $text}
 			<p class="live-text">
 				{#each $words as word}
-					{#key word.string}
+					{#key word.string + word.color}
 						{#if word.string === '<br>'}
 							<br />
 						{:else}
