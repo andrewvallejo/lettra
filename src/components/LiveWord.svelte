@@ -7,36 +7,33 @@
 
 	export let word: Word;
 
-	let wordType: string = word.type;
+	let type: string = word.type;
 
 	let text: string = word.string;
 
 	let index = word.index;
 
-	let delay = index * 10 + 150;
+	let delay = index * 45;
 
-	let prevColor = rainbow[word.wordiablePos - 1];
-
-	$: word.isInWordiables && (prevColor = rainbow[7]);
-
-	let color: Tweened<string> = tweened(prevColor, {
+	let color: Tweened<string> = tweened(rainbow[7], {
 		duration: 350,
 		delay: delay,
 		interpolate: interpolateLab
 	});
 
 	const handleClick = () => {
+		if (type === 'wordiableCopy') return;
 		let newText: string;
 		let splitted: string[] = $cleanText;
 		let flippedWord: string =
-			wordType === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
+			type === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
 
 		splitted[index] = flippedWord;
 		newText = splitted.join(' ');
 		textStore.set(reverseParseText(newText));
 	};
 
-	$: color.set(rainbow[word.wordiablePos]);
+	$: color.set(word.color);
 </script>
 
 <span>
@@ -49,8 +46,19 @@
 	span {
 		pointer-events: auto;
 		line-height: 1.12;
+		.word {
+			font-weight: 400;
+		}
+
+		&:hover {
+			opacity: 1 !important;
+		}
 		.wordiable {
 			font-weight: 600;
+		}
+		.wordiableCopy {
+			font-weight: 400;
+			cursor: text;
 		}
 		button {
 			position: relative;
