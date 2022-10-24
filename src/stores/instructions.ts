@@ -7,9 +7,9 @@ const store: Instructions = {
 
 For Example, the words \\flamingo\\ and \\doctor\\ are now wordiables.
 
-With every following iteration of the word's colors corresponding with it.
+With every following iteration of the word's colors corresponding with it. 
 
-I am applying for the \\doctor\\ role at \\flamingo\\ inc.
+I am applying for the doctor role at flamingo inc.
 
 Hit any key to clear editor and begin!`
 };
