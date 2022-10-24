@@ -7,12 +7,16 @@ import sveltePreprocess from 'svelte-preprocess';
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: sveltePreprocess({
-		sass: {
-			sync: true,
-			implementation: sass
-		}
-	}),
+	preprocess: [
+		sveltePreprocess({
+			sass: {
+				sync: true,
+				implementation: sass
+			},
+
+			postcss: true
+		})
+	],
 	kit: {
 		adapter: adapter()
 	}
