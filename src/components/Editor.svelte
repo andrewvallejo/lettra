@@ -106,8 +106,8 @@
 			.live-text {
 				z-index: 1;
 				position: absolute;
-				top: 0;
-				left: 0.1rem;
+				inset: 0.125rem;
+				letter-spacing: 0.01rem;
 				width: 100%;
 				height: 100%;
 				pointer-events: none;
