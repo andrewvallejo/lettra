@@ -14,7 +14,7 @@
 			} else {
 				clearInterval(interval);
 			}
-		}, 35);
+		}, 3); //!Todo change this back
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
@@ -42,7 +42,9 @@
 						{#if word.string === '<br>'}
 							<br />
 						{:else}
-							<LiveWord {word} />
+							<span>
+								<LiveWord {word} />
+							</span>
 						{/if}
 						{#if word.string !== '<br>'}
 							{space}
@@ -58,6 +60,7 @@
 			class="text-input"
 			bind:value={$text}
 			bind:this={textArea}
+			spellcheck="false"
 		/>
 	</div>
 </div>
@@ -109,6 +112,32 @@
 				height: 100%;
 				pointer-events: none;
 				overflow-wrap: break-word;
+
+				& span:has(.wordiableCopy):hover {
+					opacity: 0.8;
+				}
+
+				& span:has(.wordiableCopy):not(:hover) {
+					opacity: 1;
+				}
+				&:hover > span:has(.wordiable) {
+					opacity: 0.75;
+				}
+				&:hover > span:has(.word) {
+					opacity: 0.55;
+				}
+
+				&:hover > span:has(.wordiable):hover {
+					opacity: 1;
+				}
+				&:hover > span:has(.word):hover {
+					opacity: 0.8;
+				}
+
+				span {
+					opacity: 1;
+					transition: opacity 0.2s ease 0.1s;
+				}
 			}
 
 			.text-input {
