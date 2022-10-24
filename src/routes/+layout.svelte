@@ -1,8 +1,9 @@
 <script lang="ts">
+	import '../app.postcss';
 </script>
 
 <header>
-	<img class="logo" src={`favicon.png`} alt="Lettra's Logo" />
+	<img class="logo" src={`favicon.png`} alt="Lettra&apos;s Logo" />
 	<div class="title">
 		<h1>Lettra</h1>
 	</div>
@@ -54,7 +55,7 @@
 			padding: 1rem;
 			h1 {
 				color: grey;
-				font-weight: 300;
+				font-weight: 500;
 				font-size: 1.25rem;
 				font-family: Courier New, monospace;
 				text-transform: lowercase;
