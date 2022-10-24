@@ -39,10 +39,10 @@
 <span>
 	<button on:click={handleClick} style="color: {$color};" class={word.type}>
 		{#if word.isWordiable}
-			<div style="display:flex; color: {$color};">
-				<span class="back-slash">\</span>
+			<div style="color: {$color};">
+				<p class="back-slash">\</p>
 				{removeBackSlashes(text)}
-				<span class="back-slash">\</span>
+				<p class="back-slash">\</p>
 			</div>
 		{:else}
 			{text}
@@ -81,6 +81,9 @@
 				border-bottom: black 2px solid;
 				transition: all 1s;
 				transform: scale(1.05);
+			}
+			div {
+				display: flex;
 			}
 		}
 	}
