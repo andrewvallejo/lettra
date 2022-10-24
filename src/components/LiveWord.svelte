@@ -7,35 +7,46 @@
 
 	export let word: Word;
 
-	let wordType: string = word.type;
+	let type: string = word.type;
 
 	let text: string = word.string;
 
 	let index = word.index;
 
+	let delay = index * 45;
+
 	let color: Tweened<string> = tweened(rainbow[7], {
 		duration: 350,
-		delay: 250,
+		delay: delay,
 		interpolate: interpolateLab
 	});
 
 	const handleClick = () => {
+		if (type === 'wordiableCopy') return;
 		let newText: string;
 		let splitted: string[] = $cleanText;
 		let flippedWord: string =
-			wordType === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
+			type === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
 
 		splitted[index] = flippedWord;
 		newText = splitted.join(' ');
 		textStore.set(reverseParseText(newText));
 	};
 
-	$: color.set(rainbow[word.wordiablePos]);
+	$: color.set(word.color);
 </script>
 
 <span>
-	<button on:click={handleClick} style="color: {$color}" class={word.type}>
-		{text}
+	<button on:click={handleClick} style="color: {$color};" class={word.type}>
+		{#if word.isWordiable}
+			<div style="color: {$color};">
+				<p class="back-slash">\</p>
+				{removeBackSlashes(text)}
+				<p class="back-slash">\</p>
+			</div>
+		{:else}
+			{text}
+		{/if}
 	</button>
 </span>
 
@@ -43,8 +54,19 @@
 	span {
 		pointer-events: auto;
 		line-height: 1.12;
+		.word {
+			font-weight: 400;
+		}
 		.wordiable {
 			font-weight: 600;
+		}
+		.wordiableCopy {
+			font-weight: 400;
+			cursor: text;
+		}
+		.back-slash {
+			opacity: 0.1;
+			font-weight: 200;
 		}
 		button {
 			position: relative;
@@ -59,6 +81,9 @@
 				border-bottom: black 2px solid;
 				transition: all 1s;
 				transform: scale(1.05);
+			}
+			div {
+				display: flex;
 			}
 		}
 	}

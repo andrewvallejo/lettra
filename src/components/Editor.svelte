@@ -28,6 +28,7 @@
 	$: if (!$text && $instructions.active) typeInstructions();
 	$: if (!$instructions.active && textArea) textArea.focus();
 	$: $text ? words.setWords($parsedText) : words.clear();
+	$: words.setWords($parsedText);
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
@@ -37,11 +38,13 @@
 		{#if $text}
 			<p class="live-text">
 				{#each $words as word}
-					{#key word.string}
+					{#key word.string + word.color}
 						{#if word.string === '<br>'}
 							<br />
 						{:else}
-							<LiveWord {word} />
+							<span>
+								<LiveWord {word} />
+							</span>
 						{/if}
 						{#if word.string !== '<br>'}
 							{space}
@@ -57,6 +60,7 @@
 			class="text-input"
 			bind:value={$text}
 			bind:this={textArea}
+			spellcheck="false"
 		/>
 	</div>
 </div>
@@ -102,12 +106,38 @@
 			.live-text {
 				z-index: 1;
 				position: absolute;
-				top: 0;
-				left: 0.1rem;
+				inset: 0.125rem;
+				letter-spacing: 0.01rem;
 				width: 100%;
 				height: 100%;
 				pointer-events: none;
 				overflow-wrap: break-word;
+
+				& span:has(.wordiableCopy):hover {
+					opacity: 0.8;
+				}
+
+				& span:has(.wordiableCopy):not(:hover) {
+					opacity: 1;
+				}
+				&:hover > span:has(.wordiable) {
+					opacity: 0.75;
+				}
+				&:hover > span:has(.word) {
+					opacity: 0.55;
+				}
+
+				&:hover > span:has(.wordiable):hover {
+					opacity: 1;
+				}
+				&:hover > span:has(.word):hover {
+					opacity: 0.8;
+				}
+
+				span {
+					opacity: 1;
+					transition: opacity 0.2s ease 0.1s;
+				}
 			}
 
 			.text-input {

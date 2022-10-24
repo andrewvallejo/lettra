@@ -17,22 +17,6 @@
 </main>
 
 <style lang="scss">
-	:global(*) {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		color: black;
-		font-size: 1.3rem;
-		font-family: Roboto, sans-serif;
-		font-family: Courier New, monospace;
-		background: eggshell;
-	}
-	:global(button) {
-		border: none;
-		background: none;
-	}
-
 	.layout {
 		display: flex;
 		position: absolute;
