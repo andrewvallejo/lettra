@@ -2,6 +2,7 @@ export type Word = {
 	string: string;
 	index: number;
 	isWordiable: boolean;
+	isInWordiables: boolean;
 	color: string;
 	wordiablePos: number;
 	type: string;

@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import type { Word, Words } from '$types';
-
+import { addBackSlashes } from '$lib/strings';
 const store: Words = [];
 
 const wordStore = () => {
@@ -13,14 +13,8 @@ const wordStore = () => {
 		setWords(words: Word[]) {
 			set(words);
 			words.forEach((word) => {
-				word.occurrences = words.filter((w) => w.string === word.string).length;
-			});
-		},
-		countOccurrences(word: string) {
-			update((words: Words) => {
-				const wordIndex = words.findIndex((w) => w.string === word);
-				words[wordIndex].occurrences++;
-				return words;
+				word.occurrences += words.filter((w) => w.string === word.string).length;
+				word.occurrences += words.filter((w) => word.string === addBackSlashes(w.string)).length;
 			});
 		},
 		clear() {

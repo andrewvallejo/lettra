@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { addBackSlashes, flipWord, rainbow, reverseParseText } from '$lib/strings';
+	import {
+		addBackSlashes,
+		flipWord,
+		rainbow,
+		removeBackSlashes,
+		reverseParseText
+	} from '$lib/strings';
 	import { cleanText, text as textStore } from '$stores/text';
 	import type { Word } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
@@ -25,9 +31,11 @@
 
 	let inputValue: string;
 
+	let delay = index * 45;
+
 	const color: Tweened<string> = tweened(rainbow[7], {
 		duration: 350,
-		delay: 250,
+		delay: delay,
 		interpolate: interpolateLab
 	});
 
@@ -40,10 +48,14 @@
 	};
 
 	const handleClick = () => {
+		if (type === 'wordiableCopy') return;
+
 		let splitted: string[] = $cleanText;
 		let newText: string;
-		textArea.focus();
+		let flippedWord: string =
+			type === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
 
+		textArea.focus();
 		splitted[index] = flippedWord;
 		newText = reverseParseText(splitted.join(' '));
 		textStore.set(newText);
@@ -98,7 +110,7 @@
 		}
 	};
 
-	$: color.set(rainbow[word.wordiablePos]);
+	$: color.set(word.color);
 	$: type === 'word' ? (inputValue = addBackSlashes(value)) : (inputValue = value);
 </script>
 
@@ -120,7 +132,11 @@
 			bind:this={button}
 			on:focus={handleFocus}
 		>
-			{string}
+			<div style="color: {$color};">
+				<p class="back-slash">\</p>
+				{removeBackSlashes(string)}
+				<p class="back-slash">\</p>
+			</div>
 		</button>
 	{/if}
 </span>
@@ -129,8 +145,19 @@
 	span {
 		pointer-events: auto;
 		line-height: 1.12;
+		.word {
+			font-weight: 400;
+		}
 		.wordiable {
 			font-weight: 600;
+		}
+		.wordiableCopy {
+			font-weight: 400;
+			cursor: text;
+		}
+		.back-slash {
+			opacity: 0.1;
+			font-weight: 200;
 		}
 		button {
 			position: relative;
@@ -145,6 +172,9 @@
 				border-bottom: black 2px solid;
 				transition: all 1s;
 				transform: scale(1.05);
+			}
+			div {
+				display: flex;
 			}
 		}
 

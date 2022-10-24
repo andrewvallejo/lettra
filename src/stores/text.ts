@@ -20,7 +20,8 @@ export const wordiables = derived(words, ($words): Words => {
 });
 
 export const parsedText = derived([cleanText, wordiables], ([$cleanText, $wordiables]) => {
-	const upgradedWords = objectifyWords($cleanText);
-	powerWordiables(upgradedWords, $wordiables);
+	const stringifiedWords = $wordiables.map((word) => word.string);
+	const upgradedWords = objectifyWords($cleanText, stringifiedWords);
+	powerWordiables(upgradedWords, stringifiedWords);
 	return upgradedWords;
 });

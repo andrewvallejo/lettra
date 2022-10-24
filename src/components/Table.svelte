@@ -11,7 +11,7 @@
 	</header>
 	{#each $wordiables as wordiable}
 		<article class="wordRow">
-			<div class="declation">
+			<div class="declaration">
 				<h3 style="color: {wordiable.color}" transition:fade={{ delay: 250 }}>
 					{removeBackSlashes(wordiable.string)}
 				</h3>
@@ -43,13 +43,14 @@
 		border: 1px solid grey;
 		border-radius: 7px;
 		overflow-y: scroll;
+
 		.categories {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			gap: 1rem;
-			h2 {
-				font-weight: 400;
+			:is(h2, h3, h4) {
+				font-family: Courier New, monospace;
 				font-size: 1.2rem;
 			}
 		}
@@ -64,7 +65,8 @@
 		.wordRow {
 			display: flex;
 			justify-content: space-between;
-			.declation {
+
+			.declaration {
 				display: flex;
 				flex-direction: row-reverse;
 				align-items: center;
