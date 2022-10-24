@@ -4,6 +4,7 @@ import { regex } from './regex';
 
 export const isInWordiables = (word: string, wordiables: string[] = []): boolean => {
 	if (wordiables.includes(addBackSlashes(word))) return true;
+	return false;
 };
 
 export const isWordiable = (word: string): boolean => {
@@ -12,12 +13,12 @@ export const isWordiable = (word: string): boolean => {
 	return false;
 };
 
-export const objectifyWords = (words: string[], wordiables: Word[]): Word[] => {
+export const objectifyWords = (words: string[], wordiables: string[]): Word[] => {
 	return words.map((word: string, index: number): Word => {
 		return {
 			string: word,
 			index,
-			isWordiable: isWordiable(word, wordiables),
+			isWordiable: isWordiable(word),
 			isInWordiables: isInWordiables(word, wordiables),
 			color: 'black',
 			wordiablePos: -1,
@@ -27,7 +28,7 @@ export const objectifyWords = (words: string[], wordiables: Word[]): Word[] => {
 	});
 };
 
-export const powerWordiables = (text: Word[], wordiables: Word[]): void => {
+export const powerWordiables = (text: Word[], wordiables: string[]): void => {
 	text.forEach((word) => {
 		if (word.isWordiable) {
 			word.wordiablePos = wordiables.indexOf(word.string);
@@ -36,7 +37,7 @@ export const powerWordiables = (text: Word[], wordiables: Word[]): void => {
 		} else if (word.isInWordiables) {
 			word.wordiablePos = wordiables.indexOf(addBackSlashes(word.string));
 			word.color = rainbow[word.wordiablePos];
-			word.type = 'wordiable';
+			word.type = 'wordiableCopy';
 		}
 	});
 };
