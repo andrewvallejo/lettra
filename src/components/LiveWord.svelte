@@ -37,8 +37,16 @@
 </script>
 
 <span>
-	<button on:click={handleClick} style="color: {$color}" class={word.type}>
-		{text}
+	<button on:click={handleClick} style="color: {$color};" class={word.type}>
+		{#if word.isWordiable}
+			<div style="display:flex; color: {$color};">
+				<span class="back-slash">\</span>
+				{removeBackSlashes(text)}
+				<span class="back-slash">\</span>
+			</div>
+		{:else}
+			{text}
+		{/if}
 	</button>
 </span>
 
@@ -49,16 +57,16 @@
 		.word {
 			font-weight: 400;
 		}
-
-		&:hover {
-			opacity: 1 !important;
-		}
 		.wordiable {
 			font-weight: 600;
 		}
 		.wordiableCopy {
 			font-weight: 400;
 			cursor: text;
+		}
+		.back-slash {
+			opacity: 0.1;
+			font-weight: 200;
 		}
 		button {
 			position: relative;
