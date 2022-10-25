@@ -43,7 +43,7 @@
 							<br />
 						{:else}
 							<span>
-								<LiveWord {word} />
+								<LiveWord {word} {textArea} />
 							</span>
 						{/if}
 						{#if word.string !== '<br>'}

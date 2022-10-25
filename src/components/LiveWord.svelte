@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { addBackSlashes, rainbow, removeBackSlashes, reverseParseText } from '$lib/strings';
+	import {
+		addBackSlashes,
+		flipWord,
+		rainbow,
+		removeBackSlashes,
+		reverseParseText
+	} from '$lib/strings';
 	import { cleanText, text as textStore } from '$stores/text';
 	import type { Word } from '$types';
 	import { interpolateLab } from 'd3-interpolate';
@@ -7,47 +13,134 @@
 
 	export let word: Word;
 
-	let type: string = word.type;
+	export let textArea: HTMLTextAreaElement;
 
-	let text: string = word.string;
+	let { index, string, type } = word;
 
-	let index = word.index;
+	let flippedWord: string = flipWord(string, type);
 
-	let delay = index * 45;
+	let isSelected: boolean = false;
 
-	let color: Tweened<string> = tweened(rainbow[7], {
+	let isTextMenuActive: boolean = false;
+
+	let button: HTMLSpanElement;
+
+	let htmlInput: HTMLInputElement;
+
+	let value: string = string;
+
+	let inputValue: string;
+
+	let delay = index * 10 + 200;
+
+	const color: Tweened<string> = tweened(rainbow[7], {
 		duration: 350,
 		delay: delay,
 		interpolate: interpolateLab
 	});
 
+	const debounce = (callback: () => void) => {
+		setTimeout(() => {
+			if (!isSelected) {
+				callback();
+			}
+		}, 250);
+	};
+
 	const handleClick = () => {
 		if (type === 'wordiableCopy') return;
-		let newText: string;
 		let splitted: string[] = $cleanText;
-		let flippedWord: string =
-			type === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
-
+		let newText: string;
+		textArea.focus();
 		splitted[index] = flippedWord;
-		newText = splitted.join(' ');
-		textStore.set(reverseParseText(newText));
+		newText = reverseParseText(splitted.join(' '));
+		textStore.set(newText);
+	};
+
+	const handleDoubleClick = () => {
+		if (type === 'wordiableCopy') return;
+		isSelected = true;
+		isTextMenuActive = true;
+		htmlInput && selectText();
+		setTimeout(() => {
+			if (isSelected) {
+				isSelected = false;
+			}
+		}, 250);
+	};
+
+	const handleFocus = () => {
+		setTimeout(() => {
+			button.focus();
+		}, 0);
+	};
+
+	const selectText = () => {
+		let start = $cleanText.indexOf(string);
+		let end = start + string.length;
+		textArea.focus();
+		textArea.setSelectionRange(start + 1, end - 1);
+		htmlInput.setSelectionRange(start + 1, end - 1);
+	};
+
+	const handleInput = (event: any) => {
+		if (event.key === 'Enter') {
+			event.preventDefault();
+			let splitted: string[] = $cleanText;
+			splitted = splitted.map((word) => {
+				if (word === string || word === flippedWord) {
+					return inputValue;
+				} else {
+					return word;
+				}
+			});
+			textStore.set(reverseParseText(splitted.join(' ')));
+			isTextMenuActive = false;
+			isSelected = false;
+			textArea.setSelectionRange($textStore.length, $textStore.length);
+		} else if (event.key === 'Escape') {
+			event.preventDefault();
+			isTextMenuActive = false;
+			isSelected = false;
+			textArea.setSelectionRange($textStore.length, $textStore.length);
+		}
 	};
 
 	$: color.set(word.color);
+	$: type === 'word' ? (inputValue = addBackSlashes(value)) : (inputValue = value);
+	$: value = removeBackSlashes(string);
+	$: inputValue = addBackSlashes(value);
 </script>
 
 <span>
-	<button on:click={handleClick} style="color: {$color};" class={word.type}>
-		{#if word.isWordiable}
-			<div style="color: {$color};">
-				<p class="back-slash">\</p>
-				{removeBackSlashes(text)}
-				<p class="back-slash">\</p>
-			</div>
-		{:else}
-			{text}
-		{/if}
-	</button>
+	{#if isTextMenuActive}
+		<input
+			bind:this={htmlInput}
+			bind:value
+			type="text"
+			on:keydown={handleInput}
+			style="width: {value.length}ch;"
+		/>
+	{:else}
+		<button
+			on:dblclick={handleDoubleClick}
+			on:click={() => debounce(handleClick)}
+			style="color: {$color}"
+			class={word.type}
+			bind:this={button}
+			on:focus={handleFocus}
+		>
+			{#if word.isWordiable}
+				<div style="color: {$color};">
+					<p class="back-slash">\</p>
+					{removeBackSlashes(string)}
+					<p class="back-slash">\</p>
+				</div>
+			{:else}
+				{string}
+			{/if}
+		</button>
+	{/if}
 </span>
 
 <style lang="scss">
@@ -65,7 +158,7 @@
 			cursor: text;
 		}
 		.back-slash {
-			opacity: 0.1;
+			opacity: 0.15;
 			font-weight: 200;
 		}
 		button {
@@ -74,17 +167,25 @@
 			cursor: pointer;
 
 			&:focus {
-				border-bottom: black 1px solid;
-				transition: all 1s;
+				font-weight: 700;
+				transition: all 250ms ease-in-out;
 			}
 			&:active {
-				border-bottom: black 2px solid;
-				transition: all 1s;
-				transform: scale(1.05);
+				transition: all 250ms ease-in-out;
+				font-weight: 700;
 			}
 			div {
 				display: flex;
 			}
+		}
+
+		input {
+			top: 0;
+			border: none;
+			background-image: none;
+			background-color: transparent;
+			box-shadow: none;
+			cursor: pointer;
 		}
 	}
 </style>
