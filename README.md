@@ -15,37 +15,54 @@
 
 ## Features
 
-<details>
-  <summary>
-   
-   1. Wordiables - These are words that are variables!  <sup>**`click to expand`**</sup>
-   
-  </summary>
+- Each word in your
+document is
+interactable, allowing
+you to do more than the
+average editor.
+Matching wordiables
+are all linked to each
+other, allowing for
+blazingly-fast editing.
 
-> - Words in the document with `\ backslashes \` surrounding it will be a Wordiable.
-> - Up to seven Wordibles can be created, each with its assigned color.
-> - Colors are applied to each iteration of the word in the document.
+- Any text can instantly
+become a wordiable
+upon being clicked or
+wrapped in backslashes
 
-</details>
+- Any word can become
+a wordiable and visa-
+versa. All consecutive
+matching text will
+automatically update
+as well.
 
-<details>
-  <summary>
-   
-   2. Wordiables Table - Easily see and change all of your Wordiables! <sup>**`click to expand`**</sup>
-   
-  </summary>
+- Double-click any word
+to enable its mini-editor.
+Anything you type into
+the word's input will
+replace all consecutive
+terms.
 
-> A table of the selected words will show the order in which the Wordibles first occur, how many times they appear on the document, and its associated color. Selecting a word from here will highlight the Wordiable from the document and allow you to update all occurrences at once. <sub>_feature in progress!_</sub>
+- If a word becomes a
+wordiable, then every
+matching text in the
+document will sync to
+the new word color.
 
-</details>
+- Each type of word has
+its own visual effects for
+easy identification. Word
+tvpes also interact
+differentlv when clicked
+or when the cursor
+hovers over.
 
 <div align='center'>
  
-## Wireframe
+## Demo
 
-> Feel free to explore my wireframe and thoughts on [Figma](https://www.figma.com/file/gQ7y0NcZqBecv25aPrDzOI/Lettra?node-id=0%3A1)
-
-![lettra](https://user-images.githubusercontent.com/17935770/165384152-b341c29a-24f2-437a-8f36-b065a66c115a.png)
+![Demo](https://user-images.githubusercontent.com/17935770/197898033-69f35357-39a8-46b8-8565-831e77966407.gif)
 
  </div>
 
@@ -95,6 +112,7 @@ In this example,`\Dear\` (and any of the following iterations of the word) will 
 - Add "Paragraphiables" that will hold different variations of your CL.
   - Wordiables will be consistent in each stored paragraph to further increase the efficiency of creating versions of cover letters for when applying to companies with different core values or positions.
 - Add 'auto-detect Wordiables' feature that will try and determine which words are the ones the job-seeker would've chosen manually.
+- Fully Interactive for Mobile- this won't simply be a smaller editor but one that has mobile-centric design first (no feature will be compromised).
 
 <div align='center'>
 
