@@ -14,7 +14,7 @@
 			} else {
 				clearInterval(interval);
 			}
-		}, 3); //TODO change back to 35
+		}, 35);
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
