@@ -31,7 +31,7 @@
 
 	let inputValue: string;
 
-	let delay = index * 45;
+	let delay = index * 10 + 200;
 
 	const color: Tweened<string> = tweened(rainbow[7], {
 		duration: 350,
@@ -62,6 +62,8 @@
 	};
 
 	const handleDoubleClick = () => {
+		if (type === 'wordiableCopy') return;
+
 		isSelected = true;
 		isTextMenuActive = true;
 		htmlInput && selectText();
@@ -90,6 +92,7 @@
 
 	// Create a store that stores the correct form of Text String
 	// TODO: fix double click
+	// TODO remove click from wordiableCopy
 	// TODO: when hitting enter; the cursor should be at the end of the sentence
 	// TODO: When you click on a word while isTextMenuActive is true, it should enter the word via handleInpt
 
@@ -112,6 +115,8 @@
 
 	$: color.set(word.color);
 	$: type === 'word' ? (inputValue = addBackSlashes(value)) : (inputValue = value);
+	$: value = removeBackSlashes(string);
+	$: inputValue = addBackSlashes(value);
 </script>
 
 <span>
@@ -132,11 +137,15 @@
 			bind:this={button}
 			on:focus={handleFocus}
 		>
-			<div style="color: {$color};">
-				<p class="back-slash">\</p>
-				{removeBackSlashes(string)}
-				<p class="back-slash">\</p>
-			</div>
+			{#if word.isWordiable}
+				<div style="color: {$color};">
+					<p class="back-slash">\</p>
+					{removeBackSlashes(string)}
+					<p class="back-slash">\</p>
+				</div>
+			{:else}
+				{string}
+			{/if}
 		</button>
 	{/if}
 </span>
@@ -156,7 +165,7 @@
 			cursor: text;
 		}
 		.back-slash {
-			opacity: 0.1;
+			opacity: 0.15;
 			font-weight: 200;
 		}
 		button {
@@ -165,13 +174,12 @@
 			cursor: pointer;
 
 			&:focus {
-				border-bottom: black 1px solid;
-				transition: all 1s;
+				font-weight: 700;
+				transition: all 250ms ease-in-out;
 			}
 			&:active {
-				border-bottom: black 2px solid;
-				transition: all 1s;
-				transform: scale(1.05);
+				transition: all 250ms ease-in-out;
+				font-weight: 700;
 			}
 			div {
 				display: flex;
