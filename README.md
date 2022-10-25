@@ -9,7 +9,7 @@
 > [Lettra](https://lettra.vercel.app) is a means for job seekers to reduce the time it takes to write a cover letter by selecting keywords to turn into variables, thus **effortlessly** changing _all_ occurrences of any words. 
 <div align='right'>
  
- <sub>**_Application is currently in its alpha stage_**.</sub>
+ <sub>**_Application has now reached beta!_**.</sub>
 
 </div>
 
@@ -84,23 +84,10 @@ In the previous example, every iteration of `\OmniBark\` will turn red. If you w
 
 In this example,`\Dear\` (and any of the following iterations of the word) will turn red, and all instances of `OmniBark` will now be orange.
 
-<!-- Not a feature yet: You only need to do this to the first iteration of the word seen in your document; then, every iteration afterward will become a **Wordiable** and can be manipulated all at once. -->
-
 ```
  Dear \OmniBark\ Hirer,
  I would love to work at \OmniBark\ because...
 ```
-
-<!-- This is not a feature yet
-Select OmniBark from the Wordiable Table, or edit the word without removing the `\` (in any order), which will update the appearances of all the other words that are the same. If you replace `\OmniBark\` with `\UniMeows\` will automatically change the document from
-
-`Dear OmniBark Hirer, I would love to work at OmniBark because...`
-
-to
-
-`Dear UniMeow Hirer, I would love to work at UniMeow because...`
-
- all within the time it took for you to spell out `UniMeow` -->
 
 ## Roadmap
 
