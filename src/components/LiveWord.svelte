@@ -49,12 +49,8 @@
 
 	const handleClick = () => {
 		if (type === 'wordiableCopy') return;
-
 		let splitted: string[] = $cleanText;
 		let newText: string;
-		let flippedWord: string =
-			type === 'wordiable' ? removeBackSlashes(word.string) : addBackSlashes(word.string);
-
 		textArea.focus();
 		splitted[index] = flippedWord;
 		newText = reverseParseText(splitted.join(' '));
@@ -63,11 +59,9 @@
 
 	const handleDoubleClick = () => {
 		if (type === 'wordiableCopy') return;
-
 		isSelected = true;
 		isTextMenuActive = true;
 		htmlInput && selectText();
-
 		setTimeout(() => {
 			if (isSelected) {
 				isSelected = false;
@@ -84,23 +78,22 @@
 	const selectText = () => {
 		let start = $cleanText.indexOf(string);
 		let end = start + string.length;
-
 		textArea.focus();
 		textArea.setSelectionRange(start + 1, end - 1);
 		htmlInput.setSelectionRange(start + 1, end - 1);
 	};
 
-	// Create a store that stores the correct form of Text String
-	// TODO: fix double click
-	// TODO remove click from wordiableCopy
-	// TODO: when hitting enter; the cursor should be at the end of the sentence
-	// TODO: When you click on a word while isTextMenuActive is true, it should enter the word via handleInpt
-
 	const handleInput = (event: any) => {
 		if (event.key === 'Enter') {
 			event.preventDefault();
 			let splitted: string[] = $cleanText;
-			splitted[index] = inputValue;
+			splitted = splitted.map((word) => {
+				if (word === string || word === flippedWord) {
+					return inputValue;
+				} else {
+					return word;
+				}
+			});
 			textStore.set(reverseParseText(splitted.join(' ')));
 			isTextMenuActive = false;
 			isSelected = false;
