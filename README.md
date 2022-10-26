@@ -9,7 +9,7 @@
 > [Lettra](https://lettra.vercel.app) is a means for job seekers to reduce the time it takes to write a cover letter by selecting keywords to turn into variables, thus **effortlessly** changing _all_ occurrences of any words. 
 <div align='right'>
  
- <sub>**_Application has now reached beta!_**.</sub>
+ <sub>**_Application has now reached beta!_**</sub>
 
 </div>
 
