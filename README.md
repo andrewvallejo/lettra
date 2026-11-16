@@ -1,65 +1,66 @@
 <img align='left' src="https://user-images.githubusercontent.com/17935770/167260199-2edfda2a-475a-4cb7-8aa9-c787de97ba2b.png" alt="logo" width="150"/>
- 
+
 <div align='center'>
- 
+
 # Lettra
- 
-</div> 
- 
-> [Lettra](https://lettra.vercel.app) is a means for job seekers to reduce the time it takes to write a cover letter by selecting keywords to turn into variables, thus **effortlessly** changing _all_ occurrences of any words. 
+
+</div>
+
+> [Lettra](https://lettra.vercel.app) is a means for job seekers to reduce the time it takes to write a cover letter by selecting keywords to turn into variables, thus **effortlessly** changing _all_ occurrences of any words.
+
 <div align='right'>
- 
- <sub>**_Application has now reached beta!_**</sub>
+
+<sub>**_Application has now reached beta!_**</sub>
 
 </div>
 
 ## Features
 
 - Each word in your
-document is
-interactable, allowing
-you to do more than the
-average editor.
-Matching wordiables
-are all linked to each
-other, allowing for
-blazingly-fast editing.
+  document is
+  interactable, allowing
+  you to do more than the
+  average editor.
+  Matching wordiables
+  are all linked to each
+  other, allowing for
+  blazingly-fast editing.
 
 - Any text can instantly
-become a wordiable
-upon being clicked or
-wrapped in backslashes
+  become a wordiable
+  upon being clicked or
+  wrapped in backslashes
 
 - Any word can become
-a wordiable and visa-
-versa. All consecutive
-matching text will
-automatically update
-as well.
+  a wordiable and visa-
+  versa. All consecutive
+  matching text will
+  automatically update
+  as well.
 
 - Double-click any word
-to enable its mini-editor.
-Anything you type into
-the word's input will
-replace all consecutive
-terms.
+  to enable its mini-editor.
+  Anything you type into
+  the word's input will
+  replace all consecutive
+  terms.
 
 - If a word becomes a
-wordiable, then every
-matching text in the
-document will sync to
-the new word color.
+  wordiable, then every
+  matching text in the
+  document will sync to
+  the new word color.
 
 - Each type of word has
-its own visual effects for
-easy identification. Word
-tvpes also interact
-differentlv when clicked
-or when the cursor
-hovers over.
+  its own visual effects for
+  easy identification. Word
+  tvpes also interact
+  differentlv when clicked
+  or when the cursor
+  hovers over.
 
 <div align='center'>
- 
+
 ## Demo
 
 ![Demo](https://user-images.githubusercontent.com/17935770/197898033-69f35357-39a8-46b8-8565-831e77966407.gif)

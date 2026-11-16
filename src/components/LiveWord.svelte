@@ -61,7 +61,7 @@
 		if (type === 'wordiableCopy') return;
 		isSelected = true;
 		isTextMenuActive = true;
-		htmlInput && selectText();
+		if (htmlInput) selectText();
 		setTimeout(() => {
 			if (isSelected) {
 				isSelected = false;
@@ -83,7 +83,7 @@
 		htmlInput.setSelectionRange(start + 1, end - 1);
 	};
 
-	const handleInput = (event: any) => {
+	const handleInput = (event: KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault();
 			let splitted: string[] = $cleanText;
@@ -107,7 +107,11 @@
 	};
 
 	$: color.set(word.color);
-	$: type === 'word' ? (inputValue = addBackSlashes(value)) : (inputValue = value);
+	$: if (type === 'word') {
+		inputValue = addBackSlashes(value);
+	} else {
+		inputValue = value;
+	}
 	$: value = removeBackSlashes(string);
 	$: inputValue = addBackSlashes(value);
 </script>

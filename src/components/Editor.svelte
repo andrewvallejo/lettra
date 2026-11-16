@@ -18,7 +18,7 @@
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
-		$instructions.active && event.preventDefault();
+		if ($instructions.active) event.preventDefault();
 		if ($instructions.active && $text.length >= $instructions.script.length) {
 			instructions.toggle();
 			text.set('');
@@ -27,7 +27,11 @@
 
 	$: if (!$text && $instructions.active) typeInstructions();
 	$: if (!$instructions.active && textArea) textArea.focus();
-	$: $text ? words.setWords($parsedText) : words.clear();
+	$: if ($text) {
+		words.setWords($parsedText);
+	} else {
+		words.clear();
+	}
 	$: words.setWords($parsedText);
 </script>
 
@@ -60,8 +64,7 @@
 			class="text-input"
 			bind:value={$text}
 			bind:this={textArea}
-			spellcheck="false"
-		/>
+			spellcheck="false"></textarea>
 	</div>
 </div>
 
@@ -113,24 +116,24 @@
 				pointer-events: none;
 				overflow-wrap: break-word;
 
-				& span:has(.wordiableCopy):hover {
+				& span:has(:global(.wordiableCopy)):hover {
 					opacity: 0.8;
 				}
 
-				& span:has(.wordiableCopy):not(:hover) {
+				& span:has(:global(.wordiableCopy)):not(:hover) {
 					opacity: 1;
 				}
-				&:hover > span:has(.wordiable) {
+				&:hover > span:has(:global(.wordiable)) {
 					opacity: 0.75;
 				}
-				&:hover > span:has(.word) {
+				&:hover > span:has(:global(.word)) {
 					opacity: 0.55;
 				}
 
-				&:hover > span:has(.wordiable):hover {
+				&:hover > span:has(:global(.wordiable)):hover {
 					opacity: 1;
 				}
-				&:hover > span:has(.word):hover {
+				&:hover > span:has(:global(.word)):hover {
 					opacity: 0.8;
 				}
 

@@ -1,5 +1,5 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
+	"extends": "$app/tsconfig",
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
@@ -11,17 +11,15 @@
 		"strict": true,
 		"target": "esnext",
 		"module": "esnext",
-		"moduleResolution": "node",
-		"baseUrl": ".",
-		"types": ["node", "svelte"],
+		"types": ["node", "svelte", "$app/types", "vite/client"],
 		"paths": {
-			"$stores/*": ["src/stores/*"],
-			"$components/*": ["src/components/*"],
-			"$text/*": ["src/components/editor/text/*"],
-			"$lib": ["src/lib"],
-			"$lib/*": ["src/lib/*"],
-			"$types": ["src/types.d.ts"],
-			"$editor/*": ["src/lib/editor/*"]
+			"$stores/*": ["./src/stores/*"],
+			"$components/*": ["./src/components/*"],
+			"$text/*": ["./src/components/editor/text/*"],
+			"$lib": ["./src/lib"],
+			"$lib/*": ["./src/lib/*"],
+			"$types": ["./src/types.d.ts"],
+			"$editor/*": ["./src/lib/editor/*"]
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]

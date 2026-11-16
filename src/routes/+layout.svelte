@@ -57,7 +57,9 @@
 				color: grey;
 				font-weight: 500;
 				font-size: 1.25rem;
-				font-family: Courier New, monospace;
+				font-family:
+					Courier New,
+					monospace;
 				text-transform: lowercase;
 			}
 		}
