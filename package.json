@@ -1,9 +1,13 @@
 {
 	"name": "lettra-client",
 	"version": "0.9.0",
+	"engines": {
+		"node": "22.x"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"preview": "vite preview --port 4173",
 		"package": "svelte-kit package",
 		"test": "playwright test",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
@@ -11,10 +15,16 @@
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
+	"overrides": {
+		"brace-expansion": "1.1.22",
+		"minimatch": "3.1.5",
+		"nanoid": "3.3.20",
+		"undici": "5.29.0"
+	},
 	"devDependencies": {
 		"@playwright/test": "^1.22.2",
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/adapter-auto": "^1.0.3",
+		"@sveltejs/kit": "1.30.4",
 		"@tsconfig/svelte": "^3.0.0",
 		"@types/d3-interpolate": "^3.0.1",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
@@ -24,19 +34,19 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.44.0",
+		"svelte": "^3.59.2",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.7",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
-		"vite": "^3.0.0",
-		"postcss": "^8.4.14",
+		"vite": "^4.5.14",
+		"postcss": "^8.5.23",
 		"postcss-load-config": "^4.0.1",
 		"autoprefixer": "^10.4.7"
 	},
 	"type": "module",
 	"dependencies": {
 		"d3-interpolate": "^3.0.1",
-		"sass": "^1.54.0"
+		"sass": "^1.77.8"
 	}
 }
