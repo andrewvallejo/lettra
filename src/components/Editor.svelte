@@ -18,7 +18,7 @@
 	};
 
 	const handleKeyDown = (event: KeyboardEvent): void => {
-		$instructions.active && event.preventDefault();
+		if ($instructions.active) event.preventDefault();
 		if ($instructions.active && $text.length >= $instructions.script.length) {
 			instructions.toggle();
 			text.set('');
@@ -27,7 +27,11 @@
 
 	$: if (!$text && $instructions.active) typeInstructions();
 	$: if (!$instructions.active && textArea) textArea.focus();
-	$: $text ? words.setWords($parsedText) : words.clear();
+	$: if ($text) {
+		words.setWords($parsedText);
+	} else {
+		words.clear();
+	}
 	$: words.setWords($parsedText);
 </script>
 
@@ -60,8 +64,7 @@
 			class="text-input"
 			bind:value={$text}
 			bind:this={textArea}
-			spellcheck="false"
-		/>
+			spellcheck="false"></textarea>
 	</div>
 </div>
 

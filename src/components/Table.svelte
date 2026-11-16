@@ -15,11 +15,11 @@
 				<h3 style="color: {wordiable.color}" transition:fade={{ delay: 250 }}>
 					{removeBackSlashes(wordiable.string)}
 				</h3>
-				<div class="circle" style="background: {wordiable.color}" in:fade />
+				<div class="circle" style="background: {wordiable.color}" in:fade></div>
 			</div>
 			<h4 class="occurrences">{wordiable.occurrences}</h4>
 		</article>
-		<div class="line" style="background: {wordiable.color}" in:fade />
+		<div class="line" style="background: {wordiable.color}" in:fade></div>
 	{/each}
 </div>
 
@@ -50,7 +50,9 @@
 			align-items: center;
 			gap: 1rem;
 			:is(h2, h3, h4) {
-				font-family: Courier New, monospace;
+				font-family:
+					Courier New,
+					monospace;
 				font-size: 1.2rem;
 			}
 		}
