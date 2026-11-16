@@ -113,24 +113,24 @@
 				pointer-events: none;
 				overflow-wrap: break-word;
 
-				& span:has(.wordiableCopy):hover {
+				& span:has(:global(.wordiableCopy)):hover {
 					opacity: 0.8;
 				}
 
-				& span:has(.wordiableCopy):not(:hover) {
+				& span:has(:global(.wordiableCopy)):not(:hover) {
 					opacity: 1;
 				}
-				&:hover > span:has(.wordiable) {
+				&:hover > span:has(:global(.wordiable)) {
 					opacity: 0.75;
 				}
-				&:hover > span:has(.word) {
+				&:hover > span:has(:global(.word)) {
 					opacity: 0.55;
 				}
 
-				&:hover > span:has(.wordiable):hover {
+				&:hover > span:has(:global(.wordiable)):hover {
 					opacity: 1;
 				}
-				&:hover > span:has(.word):hover {
+				&:hover > span:has(:global(.word)):hover {
 					opacity: 0.8;
 				}
 
