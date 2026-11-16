@@ -1,9 +1,13 @@
 {
 	"name": "lettra-client",
 	"version": "0.9.0",
+	"engines": {
+		"node": "22.x"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"preview": "vite preview --host 0.0.0.0 --port 4173",
 		"package": "svelte-kit package",
 		"test": "playwright test",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
